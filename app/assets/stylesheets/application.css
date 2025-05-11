@@ -1,3 +1,7 @@
+@charset "utf-8";
+
+@import url("https://unpkg.com/ress/dist/ress.min.css");
+
 /*
  * This is a manifest file that'll be compiled into application.css, which will include all the files
  * listed below.
@@ -14,3 +18,175 @@
  *= require_self
  */
 
+/* -------------------- */
+/* custom properties */
+/* -------------------- */
+/* color */
+:root {
+  --color-bg-base: #fff;
+  --color-bg-gray: #ddd;
+  /* --color-bg-primary: ; */
+  /* --color-bg-secondary: ; */
+  --color-border-black: #000;
+  --color-border-white: #fff;
+  --color-border-gray: #ddd;
+  --color-font-base: #000;
+  /* --color-font-primary: ; */
+  --color-font-white: #fff;
+}
+
+/* content width */
+:root {
+  --width-content-s: 960px;
+  --width-content-m: 1080px;
+  --width-content-l: 1200px;
+}
+
+/* font */
+:root {
+  --font-family-base: "Zen Kaku Gothic New", sans-serif;
+}
+
+/* -------------------- */
+/* reset css */
+/* -------------------- */
+a {
+  text-decoration: none;
+  color: inherit;
+}
+
+ul,
+ol {
+  list-style: none;
+}
+
+img {
+  max-width: 100%;
+  height: auto;
+}
+
+/* -------------------- */
+/* style */
+/* -------------------- */
+html {
+  background-color: var(--color-bg-base);
+}
+
+body {
+  font-size: 14px;
+  line-height: 1.5;
+  color: var(--color-font-base);
+  font-family: var(--font-family-base);
+}
+
+/* -------------------- */
+/* layout */
+/* -------------------- */
+
+.l-container--s,
+.l-container--m,
+.l-container--l {
+  width: 90%;
+  margin: 0 auto;
+}
+
+.l-container--s {
+  max-width: var(--width-content-s);
+}
+
+.l-container--m {
+  max-width: var(--width-content-m);
+}
+
+.l-container--l {
+  max-width: var(--width-content-l);
+}
+
+/* -------------------- */
+/* components */
+/* -------------------- */
+/* button */
+.c-button {
+  display: grid;
+  place-items: center;
+  max-width: 200px;
+  width: 100%;
+  height: 40px;
+  line-height: 1.0;
+  cursor: pointer;
+  border-radius: 4px;
+}
+
+.c-button--white {
+  border: 1px solid var(--color-border-black);
+}
+
+@media (any-hover: hover) {
+  .c-button--white:hover {
+    background-color: var(--color-bg-gray);
+    transition: 0.5s;
+  }
+}
+
+.c-button--center {
+  margin: 0 auto;
+}
+
+/* devise */
+.c-devise-form__container {
+  padding: 32px 16px;
+}
+
+.c-devise-form__title {
+  font-size: 20px;
+  font-weight: 600;
+  text-align: center;
+  margin-bottom: 16px;
+}
+
+.c-devise-form__inside {
+  max-width: 400px;
+  width: 100%;
+  border: 1px solid var(--color-border-gray);
+  border-radius: 4px;
+  margin: 0 auto;
+  padding: 32px;
+}
+
+.c-devise-form__input-title {
+  display: inline-block;
+  font-size: 16px;
+  margin: 0 0.5rem 4px 0;
+}
+
+.c-devise-form__input-title em {
+  font-style: normal;
+}
+
+.c-devise-form__input {
+  width: 100%;
+  height: 40px;
+  border: 1px solid var(--color-border-gray);
+  border-radius: 4px;
+  padding: 8px;
+  margin-bottom: 16px;
+}
+
+.c-devise__remember-me {
+  display: block;
+  margin-bottom: 16px;
+}
+
+.c-devise-form__link-wrapper {
+  text-align: center;
+}
+
+.c-devise-form__link-wrapper--spaced {
+  margin-top: 16px;
+}
+
+.c-devise-form__link {
+  display: inline-block;
+  font-size: 12px;
+  border-bottom: 1px solid var(--color-border-black);
+}
