@@ -1,0 +1,26 @@
+<header class="header">
+  <div class="header__inner">
+    <div class="header__logo">
+      <%= link_to "Yomitsuzuri", root_path %>
+    </div>
+
+    <nav aria-label="グローバルナビゲーション" class="header__nav">
+      <ul class="header__list">
+        <% if user_signed_in? %>
+          <!-- ログイン時 -->
+          <li class="header__item">
+            <%= link_to "マイページ", user_path(current_user) %>
+          </li>
+        <% else %>
+          <!-- 未ログイン時 -->
+          <li class="header__item">
+            <%= link_to "ログイン", new_user_session_path %>
+          </li>
+          <li class="header__item">
+            <%= link_to "新規登録", new_user_registration_path %>
+          </li>
+        <% end %>
+      </ul>
+    </nav>
+  </div>
+</header>
