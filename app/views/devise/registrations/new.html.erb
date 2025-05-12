@@ -1,38 +1,42 @@
-<div class="c-devise-form__container l-container">
-  <h2 class="c-devise-form__title">アカウントを作成</h2>
+<div class="c-devise__container l-container--s">
+  <h2 class="c-devise__title">アカウントを作成</h2>
 
-  <div class="c-devise-form__inside">
+  <div class="c-devise__inner">
     <%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
       <%= render "devise/shared/error_messages", resource: resource %>
 
       <div class="field">
         <%= f.label(
               :email,
-              class: "c-devise-form__input-title"
+              class: "c-devise__input-title"
             ) %>
         <%= f.email_field(
               :email,
               autofocus: true,
               autocomplete: "email",
-              class: "c-devise-form__input"
+              class: "c-devise__input"
             ) %>
       </div>
 
       <div class="field">
         <%= f.label(
               :password,
-              class: "c-devise-form__input-title"
+              class: "c-devise__input-title"
             ) do %>
           パスワード  
           <% if @minimum_password_length %>
-            <em>(<%= @minimum_password_length %>文字以上)</em>
+            <span>(<%= @minimum_password_length %>文字以上)</span>
           <% end %>
         <% end %>
 
         <%= f.password_field(
               :password,
+              id: "user_password",
               autocomplete: "new-password",
-              class: "c-devise-form__input"
+              required: true,
+              minlength: @minimum_password_length,
+              title: "#{@minimum_password_length}文字以上で入力してください",
+              class: "c-devise__input"
             ) %>
       </div>
 
@@ -40,12 +44,14 @@
       <div class="field">
         <%= f.label(
               :password_confirmation,
-              class: "c-devise-form__input-title"
+              id: "user_password_confirmation",
+              class: "c-devise__input-title"
             ) %>
         <%= f.password_field(
               :password_confirmation,
               autocomplete: "new-password",
-              class: "c-devise-form__input"
+              class: "c-devise__input",
+              oninput: "this.setCustomValidity(this.value !== document.getElementById('user_password').value ? 'パスワードが一致しません' : '')"
             ) %>
       </div>
 
