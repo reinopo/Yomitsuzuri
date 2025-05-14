@@ -11,6 +11,9 @@ module Yomitsuzuri
     # Initialize configuration defaults for originally generated Rails version.
     config.load_defaults 7.1
 
+    config.x.google_books.api_key = ENV["GOOGLE_BOOKS_API_KEY"]
+
+
     config.i18n.default_locale = :ja
 
 

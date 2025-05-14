@@ -1,0 +1,21 @@
+<footer class="footer">
+  <div class="footer__inner">
+    <div class="footer__nav" aria-label="フッターナビゲーション">
+      <ul class="footer__list">
+        <li class="footer__item">
+          <%= link_to "利用規約", terms_path %>
+        </li>
+        <li class="footer__item">
+          <%= link_to "プライバシーポリシー", privacy_path %>
+        </li>
+        <li class="footer__item">
+          <%= link_to "お問い合わせ", contact_path %>
+        </li>
+      </ul>
+    </div>
+
+    <p class="footer__copyright">
+      &copy; <%= Time.current.year %> Yomitsuzuri
+    </p>
+  </div>
+</footer>
