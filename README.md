@@ -31,3 +31,5 @@ Things you may want to cover:
 ## Next Steps
 - トップページのデザイン調整
 - ログイン/新規登録リンクの設置
+
+- google books apiの導入
