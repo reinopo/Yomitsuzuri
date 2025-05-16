@@ -33,3 +33,4 @@ Things you may want to cover:
 - ログイン/新規登録リンクの設置
 
 - google books apiの導入
+- ヘッダーに検索インプットの挿入
