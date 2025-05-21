@@ -34,3 +34,4 @@ Things you may want to cover:
 
 - google books apiの導入
 - ヘッダーに検索インプットの挿入
+- マイページに保存するデータの紐付け
