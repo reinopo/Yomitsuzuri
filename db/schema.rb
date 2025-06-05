@@ -10,12 +10,21 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2025_05_14_083650) do
+ActiveRecord::Schema[7.1].define(version: 2025_06_05_054104) do
   create_table "authors", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
     t.string "name"
     t.text "description"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+  end
+
+  create_table "authorships", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
+    t.bigint "book_id", null: false
+    t.bigint "author_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["author_id"], name: "index_authorships_on_author_id"
+    t.index ["book_id"], name: "index_authorships_on_book_id"
   end
 
   create_table "books", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
@@ -62,6 +71,8 @@ ActiveRecord::Schema[7.1].define(version: 2025_05_14_083650) do
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 
+  add_foreign_key "authorships", "authors"
+  add_foreign_key "authorships", "books"
   add_foreign_key "books", "authors"
   add_foreign_key "favorite_authors", "authors"
   add_foreign_key "favorite_authors", "users"

@@ -2,6 +2,7 @@ require "net/http"
 require "uri"
 require "json"
 
+# Google Books APIを叩いて本の情報を取得
 class BookSearchService
   GOOGLE_BOOKS_URL = "https://www.googleapis.com/books/v1/volumes"
 
