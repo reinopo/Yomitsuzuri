@@ -1,22 +1,33 @@
-<h2>検索結果</h2>
+<div class="l-container--l l-section">
+  <h2 class="c-title-level1">
+    「<%= params[:q] %>」の検索結果
+  </h2>
 
-<% if @google_books.present? %>
-  <ul>
-    <% @google_books.each do |book| %>
-      <li>
-        <strong><%= book[:title] %></strong><br>
-        著者: <%= book[:authors].join(", ") %><br>
-        ISBN: <%= book[:isbn] || "なし" %><br>
-        出版日: <%= book[:published_date] %><br>
-        <img src="<%= book[:thumbnail_link] %>" alt="">
-        <% if Book.exists?(google_id: book[:google_id]) %>
-          <span style="color: green;">（DBに保存済み）</span>
-        <% else %>
-          <span style="color: red;">（未保存）</span>
-        <% end %>
-      </li>
-    <% end %>
-  </ul>
-<% else %>
-  <p>該当する本は見つかりませんでした。</p>
-<% end %>
+  <% if @google_books.present? %>
+    <ul class="c-works__container">
+      <% @google_books.each do |book| %>
+        <li class="c-works">
+          <img class="c-works__image" src="<%= book[:thumbnail_link] %>" alt="">
+
+          <div class="c-works__text">
+            <h3 class="c-works__title"><%= book[:title] %></h3>
+            <p class="c-works__author">
+              <%= book[:authors].join(", ") %>
+            </p>
+            <p class="c-works__published_date">
+              出版日: <%= book[:published_date] %>
+            </p>
+            ISBN: <%= book[:isbn] || "なし" %><br>
+            <!-- <% if Book.exists?(google_id: book[:google_id]) %>
+              <span style="color: green;">（DBに保存済み）</span>
+            <% else %>
+              <span style="color: red;">（未保存）</span>
+            <% end %> -->
+          </div>
+        </li>
+      <% end %>
+    </ul>
+  <% else %>
+    <p>該当する本は見つかりませんでした。</p>
+  <% end %>
+</div>
