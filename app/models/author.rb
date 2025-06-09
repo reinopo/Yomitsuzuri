@@ -1,6 +1,5 @@
 class Author < ApplicationRecord
   # 本との関連
-  has_many :books, dependent: :destroy
   has_many :authorships, dependent: :destroy
   has_many :books, through: :authorships
 

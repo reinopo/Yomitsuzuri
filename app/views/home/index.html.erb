@@ -15,5 +15,13 @@
     <h2 class="c-title-level1 c-title-level1--center">
       探してみる
     </h2>
+    <%= form_with url: search_index_path, method: :get, local: true do |form| %>
+    <div class="search-box">
+      <%= form.label :q, "本を検索" %>
+      <%= form.text_field :q, placeholder: "書籍名・著者名など" %>
+      <%= form.submit "検索" %>
+    </div>
+<% end %>
+
   </div>
 </section>

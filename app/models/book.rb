@@ -1,6 +1,5 @@
 class Book < ApplicationRecord
   # 著者との関連
-  belongs_to :author
   has_many :authorships, dependent: :destroy
   has_many :authors, through: :authorships
 

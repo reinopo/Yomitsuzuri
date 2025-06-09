@@ -16,7 +16,8 @@ class BookSearchService
     uri.query = URI.encode_www_form({
       q: @query,
       key: @api_key,
-      maxResults: 20
+      maxResults: 20,
+      langRestrict: 'ja'
     })
 
     response = Net::HTTP.get_response(uri)
@@ -27,6 +28,7 @@ class BookSearchService
 
   private
 
+  # 取得した本の情報を形成
   def parse_items(items)
     items.map do |item|
       info = item["volumeInfo"] || {}

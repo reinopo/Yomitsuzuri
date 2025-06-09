@@ -28,14 +28,14 @@ ActiveRecord::Schema[7.1].define(version: 2025_06_05_054104) do
   end
 
   create_table "books", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
-    t.bigint "author_id", null: false
+    t.string "google_id"
     t.string "title"
     t.date "published_date"
     t.string "thumbnail_link"
+    t.text "description"
     t.string "isbn"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["author_id"], name: "index_books_on_author_id"
   end
 
   create_table "favorite_authors", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
@@ -73,7 +73,6 @@ ActiveRecord::Schema[7.1].define(version: 2025_06_05_054104) do
 
   add_foreign_key "authorships", "authors"
   add_foreign_key "authorships", "books"
-  add_foreign_key "books", "authors"
   add_foreign_key "favorite_authors", "authors"
   add_foreign_key "favorite_authors", "users"
   add_foreign_key "reading_logs", "books"

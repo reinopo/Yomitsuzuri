@@ -5,6 +5,7 @@ Rails.application.routes.draw do
 
   # リソース
   resources :users, only: [:show]
+  resources :search, only: [:index]
 
   # 静的ページ
   get 'static/terms' => "static#terms", as: :terms

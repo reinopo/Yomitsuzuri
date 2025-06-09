@@ -1,2 +1,22 @@
-<h1>Search#index</h1>
-<p>Find me in app/views/search/index.html.erb</p>
+<h2>検索結果</h2>
+
+<% if @google_books.present? %>
+  <ul>
+    <% @google_books.each do |book| %>
+      <li>
+        <strong><%= book[:title] %></strong><br>
+        著者: <%= book[:authors].join(", ") %><br>
+        ISBN: <%= book[:isbn] || "なし" %><br>
+        出版日: <%= book[:published_date] %><br>
+        <img src="<%= book[:thumbnail_link] %>" alt="">
+        <% if Book.exists?(google_id: book[:google_id]) %>
+          <span style="color: green;">（DBに保存済み）</span>
+        <% else %>
+          <span style="color: red;">（未保存）</span>
+        <% end %>
+      </li>
+    <% end %>
+  </ul>
+<% else %>
+  <p>該当する本は見つかりませんでした。</p>
+<% end %>
