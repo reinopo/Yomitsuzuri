@@ -18,6 +18,15 @@
               出版日: <%= book[:published_date] %>
             </p>
             ISBN: <%= book[:isbn] || "なし" %><br>
+            <!-- ログイン時は登録用モーダル、ログアウト時はログインページに遷移 -->
+            <% if user_signed_in? %>
+              <button class="open-register-modal" data-book-id="<%= book[:isbn] %>">
+                マイページに登録
+              </button>
+            <% else %>
+              <%= link_to "マイページに登録", new_user_session_path, class: "register-login-link" %>
+            <% end %>
+
             <!-- <% if Book.exists?(google_id: book[:google_id]) %>
               <span style="color: green;">（DBに保存済み）</span>
             <% else %>
@@ -30,4 +39,29 @@
   <% else %>
     <p>該当する本は見つかりませんでした。</p>
   <% end %>
+
+  <!-- 登録モーダル（最初は非表示） -->
+<div id="register-modal" style="display: none;">
+  <div class="modal-content">
+    <h2>作品を登録</h2>
+    <%= form_with url: reading_logs_path, method: :post, local: true do |f| %>
+      <%= hidden_field_tag :isbn %>
+      <div>
+        <label>コメント</label>
+        <%= f.text_area :comment %>
+      </div>
+      <div>
+        <label>引用</label>
+        <%= f.text_area :citation %>
+      </div>
+      <div>
+        <label>読了状況</label>
+        <%= f.select :is_read, [["未読", 0], ["読んでる", 1], ["読了", 2]] %>
+      </div>
+      <%= f.submit "登録" %>
+    <% end %>
+    <button id="close-register-modal">閉じる</button>
+  </div>
+</div>
+
 </div>

@@ -6,6 +6,7 @@ Rails.application.routes.draw do
   # リソース
   resources :users, only: [:show]
   resources :search, only: [:index]
+  resources :reading_logs, only: [:create, :update, :destroy]
 
   # 静的ページ
   get 'static/terms' => "static#terms", as: :terms
@@ -17,9 +18,6 @@ Rails.application.routes.draw do
   get 'search/index' => 'search#index'
   get 'books/index' => 'books#index'
   get 'books/show' => 'books#show'
-  get 'reading_logs/create' => 'reading_logs#create'
-  get 'reading_logs/update' => 'reading_logs#update'
-  get 'reading_logs/destroy' => 'reading_logs#destroy'
   get 'favorite_authors/create' => 'favorite_authors#create'
   get 'favorite_authors/destroy' => 'favorite_authors#destroy'
 
