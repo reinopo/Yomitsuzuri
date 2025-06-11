@@ -1,6 +1,7 @@
 class Book < ApplicationRecord
   # 著者との関連
   has_many :authorships, dependent: :destroy
+  # 中間テーブルのauthorshipテーブルを通してauthorを参照
   has_many :authors, through: :authorships
 
   # 読書ログとの関連

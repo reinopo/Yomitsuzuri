@@ -1,26 +1,29 @@
 // Configure your import map in config/importmap.rb. Read more: https://github.com/rails/importmap-rails
-import Rails from "@rails/ujs"
-Rails.start()
 
 import "@hotwired/turbo-rails"
-import "controllers"
+// import "controllers"
 
+// 作品登録用モーダル
+document.addEventListener("turbo:load", () => {
+  console.log("モーダルJS読み込まれた（turbo:load）");
 
-document.addEventListener("DOMContentLoaded", () => {
-  const modal = document.getElementById("register-modal");
-  const closeBtn = document.getElementById("close-register-modal");
-  const openButtons = document.querySelectorAll(".open-register-modal");
-  const bookIdInput = document.querySelector("#register-modal input[name='book_id']");
+  const registerModal = document.querySelector(".register-modal");
+  const registerModalCloseBtn = document.querySelector(".register-modal__close");
+  const registerModalOpenBtns = document.querySelectorAll(".register-modal__open");
+  const bookIdInput = document.querySelector(".register-modal input[name='isbn']");
 
-  openButtons.forEach(btn => {
+  registerModalOpenBtns.forEach(btn => {
     btn.addEventListener("click", () => {
       const bookId = btn.dataset.bookId;
+      console.log("登録ボタンが押された:", bookId);
       bookIdInput.value = bookId;
-      modal.style.display = "block";
+      registerModal.style.display = "flex";
     });
   });
 
-  closeBtn.addEventListener("click", () => {
-    modal.style.display = "none";
-  });
+  if (registerModalCloseBtn) {
+    registerModalCloseBtn.addEventListener("click", () => {
+      registerModal.style.display = "none";
+    });
+  }
 });

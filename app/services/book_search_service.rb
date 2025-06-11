@@ -35,7 +35,7 @@ class BookSearchService
 
       # HTTPS化&サムネ画像がない場合に代替画像を付与
       thumbnail = info.dig("imageLinks", "thumbnail")
-      book_image = thumbnail ? thumbnail.gsub(/^http:/, "https:") : "/sample.jpg"
+      book_image = thumbnail ? thumbnail.gsub(/^http:/, "https:") : "no-image.jpeg"
 
       # 2種のISBNから1つ抽出
       identifiers = info["industryIdentifiers"] || []
