@@ -61,18 +61,25 @@ a {
   cursor: pointer;
 }
 
-input[type=checkbox] {
-  cursor: pointer;
-}
-
-ul,
-ol {
+ul, ol {
   list-style: none;
 }
 
 img {
   max-width: 100%;
   height: auto;
+}
+
+button, input, select, textarea {
+  color: inherit;
+  font: inherit;
+  background: none;
+  border: none;
+  padding: 0;
+}
+
+input[type=checkbox] {
+  cursor: pointer;
 }
 
 /* -------------------- */
@@ -134,11 +141,18 @@ body {
 .c-button {
   display: grid;
   place-items: center;
-  max-width: 200px;
   width: 100%;
   height: 40px;
   line-height: 1.0;
   border-radius: 4px;
+}
+
+.c-button--small {
+  max-width: 130px;
+}
+
+.c-button--medium {
+  max-width: 200px;
 }
 
 .c-button--white {
@@ -340,23 +354,6 @@ body {
 /* search-result */
 /* -------------------- */
 /* register-modal */
-.register-modal__open {
-  display: block;
-  color: var(--color-font-base);
-  border-radius: 4px;
-  border: solid 1px var(--color-border-base--light);
-  padding: 8px 32px;
-  margin: 8px auto 0 auto;
-}
-
-@media (any-hover: hover) {
-  .register-modal__open:hover {
-    color: var(--color-font-black);
-    background-color: var(--color-bg-primary--light);
-    transition: 0.5s;
-  }
-}
-
 .register-modal {
   display: none;
   position: fixed;
@@ -465,19 +462,7 @@ body {
 }
 
 .register-modal__submit {
-  display: block;
-  background-color: var(--color-bg-primary--light);
-  padding: 8px 32px;
-  border: solid 1px var(--color-border-base--light);
-  border-radius: 4px;
-  margin: 8px auto 4px auto;
-}
-
-@media (any-hover: hover) {
-  .register-modal__submit:hover {
-    background-color: var(--color-bg-primary);
-    transition: 0.5s;
-  }
+  margin-top: 16px;
 }
 
 .register-modal__close {
@@ -488,5 +473,7 @@ body {
 @media (any-hover: hover) {
   .register-modal__close:hover {
     color: var(--color-font-black);
+    text-decoration: underline;
+    text-underline-offset: 2px;
   }
 }
