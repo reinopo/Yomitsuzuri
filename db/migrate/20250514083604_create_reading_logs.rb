@@ -3,7 +3,7 @@ class CreateReadingLogs < ActiveRecord::Migration[7.1]
     create_table :reading_logs do |t|
       t.references :user, null: false, foreign_key: true
       t.references :book, null: false, foreign_key: true
-      t.integer :is_read
+      t.integer :readingStatus
       t.text :comment
       t.text :citation
 

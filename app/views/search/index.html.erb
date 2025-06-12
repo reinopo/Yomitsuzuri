@@ -9,32 +9,33 @@
         <li class="c-works">
           <!-- サムネ画像がない場合は代替画像を表示 -->
           <% image_url = book[:thumbnail_link] %>
-          <img class="c-works__image" src="<%= image_url.start_with?("http") ? image_url : asset_path(image_url) %>" alt="本のサムネイル画像">
+          <img class="c-works__image" src="<%= image_url.start_with?("http") ? image_url : asset_path(image_url) %>" alt="本の表紙画像">
 
-          <div class="c-works__text">
-            <h3 class="c-works__title"><%= book[:title] %></h3>
-            <p class="c-works__author">
-              <%= book[:authors].join(", ") %>
-            </p>
-            <p class="c-works__published_date">
-              出版日: <%= book[:published_date] %>
-            </p>
-            ISBN: <%= book[:isbn] || "なし" %><br>
+          <div class="c-works__info">
+            <div class="c-works__text">
+              <h3 class="c-works__title"><%= book[:title] %></h3>
+              <p class="c-works__author">
+                <%= book[:authors].join(", ") %>
+              </p>
+              <p class="c-works__published_date">
+                <%= book[:published_date] %>
+              </p>
+            </div>
+
             <!-- ログイン時は登録用モーダル、ログアウト時はログインページに遷移 -->
             <% if user_signed_in? %>
-              <button class="register-modal__open" data-book-id="<%= book[:isbn] %>">
+              <button type="button" class="register-modal__open"
+                      data-book-id="<%= book[:isbn] %>"
+                      data-book-title="<%= book[:title] %>"
+                      data-book-authors="<%= book[:authors].join(', ') %>"
+                      data-book-image="<%= image_url.start_with?("http") ? image_url : asset_path(image_url) %>" >
                 作品を登録
               </button>
             <% else %>
               <%= link_to "作品を登録", new_user_session_path, class: "register-login-link" %>
             <% end %>
-
-            <!-- <% if Book.exists?(google_id: book[:google_id]) %>
-              <span style="color: green;">（DBに保存済み）</span>
-            <% else %>
-              <span style="color: red;">（未保存）</span>
-            <% end %> -->
           </div>
+
         </li>
       <% end %>
     </ul>
@@ -42,31 +43,43 @@
     <p>該当する本は見つかりませんでした。</p>
   <% end %>
 
-  <!-- 登録モーダル -->
-<div class="register-modal">
-  <div class="register-modal__content">
-    <h2 class="c-title-level1 c-title-level1--center">作品を登録</h2>
-    <%= form_with url: reading_logs_path, method: :post, local: true do |f| %>
-      <%= hidden_field_tag :isbn %>
-      <div class="register-modal__textarea-wrap">
-        <label class="register-modal__textarea-label">コメント</label>
-        <%= f.text_area :comment, class: "register-modal__textarea" %>
+  <!-- 作品登録モーダル -->
+  <div class="register-modal">
+    <div class="register-modal__wrap">
+      <h2 class="register-modal__title">作品を登録</h2>
+
+        <!-- 登録ボタンに埋め込んだ情報をjsで差し込む -->
+      <div class="register-modal__book-info">
+        <p class="register-modal__book-title"></p>
+        <p class="register-modal__book-authors"></p>
       </div>
-      <div class="register-modal__textarea-wrap">
-        <label class="register-modal__textarea-label">引用メモ</label>
-        <%= f.text_area :citation, class: "register-modal__textarea" %>
+
+      <div class="register-modal__content">
+        <img class="register-modal__book-image" src="" alt="本の表紙画像" />
+        <%= form_with url: reading_logs_path, method: :post, local: true do |f| %>
+          <%= hidden_field_tag :isbn %>
+          <div class="register-modal__textarea-wrap">
+            <%= f.label :comment, "コメント", class: "register-modal__textarea-label" %>
+            <%= f.text_area :comment, id: "comment", placeholder: "あなたの考えを記しておきましょう", class: "register-modal__textarea" %>
+          </div>
+          <div class="register-modal__textarea-wrap">
+            <%= f.label :citation, "引用メモ", class: "register-modal__textarea-label" %>
+            <%= f.text_area :citation, id: "citation", placeholder: "心に残った文章を書き留めておきましょう", class: "register-modal__textarea" %>
+          </div>
+          <div>
+            <%= f.label :readingStatus, "読書状況", class: "register-modal__textarea-label" %>
+            <div class="register-modal__select-wrap">
+              <%= f.select :readingStatus,
+                            [["選択してください", nil], ["既読", 0], ["未読", 1], ["積読", 2]],
+                            { include_blank: false },
+                            class: "register-modal__status" %>
+            </div>
+          </div>
+          <%= f.submit "登録する", class: "register-modal__submit" %>
+        <% end %>
       </div>
-      <div>
-        <label class="register-modal__textarea-label">読書ステータス</label>
-        <%= f.select :is_read,
-                      [["選択してください", nil], ["既読", 0], ["未読", 1], ["積読", 2]],
-                      { include_blank: false },
-                      class: "register-modal__status" %>
-      </div>
-      <%= f.submit "登録", class: "register-modal__submit" %>
-    <% end %>
-    <button class="register-modal__close">閉じる</button>
+      <button type="button" class="register-modal__close">閉じる</button>
+    </div>
   </div>
-</div>
 
 </div>

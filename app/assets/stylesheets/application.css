@@ -177,6 +177,7 @@ body {
   height: 100%;
   display: flex;
   border-right: 1px solid var(--color-border-base--light);
+  position: relative;
 }
 
 .c-works__image {
@@ -184,10 +185,21 @@ body {
   width: 50%;
 }
 
-.c-works__text {
+.c-works__info {
   width: 50%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
   border-bottom: 1px solid var(--color-border-base--light);
-  padding: 0 8px;
+  padding: 0 8px 24px 8px;
+}
+
+.c-works__title {
+  margin-bottom: 4px;
+}
+
+.c-works__author {
+  margin-bottom: 4px;
 }
 
 /* devise */
@@ -327,6 +339,24 @@ body {
 /* -------------------- */
 /* search-result */
 /* -------------------- */
+/* register-modal */
+.register-modal__open {
+  display: block;
+  color: var(--color-font-base);
+  border-radius: 4px;
+  border: solid 1px var(--color-border-base--light);
+  padding: 8px 32px;
+  margin: 8px auto 0 auto;
+}
+
+@media (any-hover: hover) {
+  .register-modal__open:hover {
+    color: var(--color-font-black);
+    background-color: var(--color-bg-primary--light);
+    transition: 0.5s;
+  }
+}
+
 .register-modal {
   display: none;
   position: fixed;
@@ -335,23 +365,128 @@ body {
   width: 100%;
   height: 100%;
   background-color: rgba(0, 0, 0, 0.4);
-  display: flex;
   align-items: center;
   justify-content: center;
   z-index: 9999;
 }
 
-.register-modal__content {
+.register-modal__wrap {
   background-color: white;
   padding: 30px;
   border-radius: 10px;
-  max-width: 500px;
-  width: 90%;
+  max-width: 700px;
+  width: 100%;
   box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+}
+
+.register-modal__title {
+  font-size: 16px;
+  font-weight: normal;
+  border-bottom: 1px solid var(--color-border-base--light);
+  padding-bottom: 4px;
+  margin-bottom: 8px;
+}
+
+.register-modal__book-title {
+  font-size: 18px;
+}
+
+.register-modal__content {
+  display: flex;
+  gap: 24px;
+  margin-top: 8px;
+}
+
+.register-modal__content form {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.register-modal__textarea-wrap {
+  width: 100%;
+}
+
+.register-modal__textarea-label {
+  display: inline-block;
+  margin: 0 8px 4px 0;
+}
+
+.register-modal__textarea {
+  width: 100%;
+  height: 80px;
+  border: 1px solid var(--color-border-base--light);
+  padding: 8px;
+  border-radius: 4px;
+}
+
+.register-modal__textarea:focus {
+  border: solid 1px var(--color-border-base);
+}
+
+.register-modal__book-image {
+  width: 120px;
+  height: 100%;
+}
+
+.register-modal__select-wrap {
+  position: relative;
+  display: inline-block;
+}
+
+.register-modal__select-wrap::after {
+  content: "⌄";
+  font-size: 12px;
+  line-height: 1.0;
+  position: absolute;
+  right: 8px;
+  top: 50%;
+  transform: translateY(-70%);
+  pointer-events: none;
+  color: var(--color-font-base);
+}
+
+.register-modal__status {
+  font-size: 12px;
+  height: 28px;
+  appearance: none;
+  -moz-appearance: none;
+  border: solid 1px var(--color-border-base--light);
+  border-radius: 4px;
+  cursor: pointer;
+  padding: 2px 20px 2px 8px;
+}
+
+@media (any-hover: hover) {
+  .register-modal__status:hover {
+    border: solid 1px var(--color-border-base);
+  }
+}
+
+.register-modal__submit {
+  display: block;
+  background-color: var(--color-bg-primary--light);
+  padding: 8px 32px;
+  border: solid 1px var(--color-border-base--light);
+  border-radius: 4px;
+  margin: 8px auto 4px auto;
+}
+
+@media (any-hover: hover) {
+  .register-modal__submit:hover {
+    background-color: var(--color-bg-primary);
+    transition: 0.5s;
+  }
+}
+
+.register-modal__close {
+  color: var(--color-font-base);
+  margin-left: 16px;
 }
 
 @media (any-hover: hover) {
   .register-modal__close:hover {
     color: var(--color-font-black);
-}
+  }
 }
