@@ -7,12 +7,12 @@
     <nav aria-label="グローバルナビゲーション" class="header__nav">
       <ul class="header__list">
         <% if user_signed_in? %>
-          <!-- ログイン時 -->
+          <%# ログイン時 %>
           <li class="header__item">
             <%= link_to "マイページ", user_path(current_user) %>
           </li>
         <% else %>
-          <!-- 未ログイン時 -->
+          <%# 未ログイン時 %>
           <li class="header__item">
             <%= link_to "ログイン", new_user_session_path %>
           </li>

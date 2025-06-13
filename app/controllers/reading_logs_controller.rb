@@ -52,17 +52,14 @@ class ReadingLogsController < ApplicationController
         citation: citation
       )
 
+      # 登録成功時には、create.turbo_stream.erbの中身を実行
       flash[:register_success_notice] = "#{@book.title} を登録しました！"
-
       respond_to do |format|
         format.turbo_stream
       end
     end
 
-    # 成功時の処理
-    # flash[:register_success_notice] = "#{book.title} を登録しました！"
-    # redirect_to user_path(current_user)
-
+  # 登録失敗時の処理
   rescue => e
     Rails.logger.error "登録エラー: #{e.message}"
     flash[:alert] = "登録に失敗しました。もう一度お試しください。"

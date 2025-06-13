@@ -7,7 +7,7 @@
     <ul class="c-works__container">
       <% @google_books.each do |book| %>
         <li class="c-works">
-          <!-- サムネ画像がない場合は代替画像を表示 -->
+          <%# サムネ画像がない場合は代替画像を表示 %>
           <% image_url = book[:thumbnail_link] %>
           <img class="c-works__image" src="<%= image_url.start_with?("http") ? image_url : asset_path(image_url) %>" alt="本の表紙画像">
 
@@ -22,9 +22,9 @@
               </p>
             </div>
 
-            <!-- ログイン時は登録用モーダル、ログアウト時はログインページに遷移 -->
+            <%# ログイン時は登録用モーダル、ログアウト時はログインページに遷移 %>
             <% if user_signed_in? %>
-              <!-- DBに保存するデータをボタンに埋め込む -->
+              <%# DBに保存するデータをボタンに埋め込む %>
               <button type="button" class="register-modal__open c-button c-button--small c-button--center c-button--white"
                       data-book-id="<%= book[:isbn] %>"
                       data-book-title="<%= book[:title] %>"
@@ -47,12 +47,12 @@
     <p>該当する本は見つかりませんでした。</p>
   <% end %>
 
-  <!-- 作品登録モーダル -->
+  <%# 作品登録モーダル %>
   <div class="register-modal">
     <div class="register-modal__wrap">
       <h2 class="register-modal__title">作品を登録</h2>
 
-      <!-- 登録ボタンに埋め込んだ情報をjsで差し込む -->
+      <%# 登録ボタンに埋め込んだ情報をjsで差し込む %>
       <div class="register-modal__book-info">
         <p class="register-modal__book-title"></p>
         <p class="register-modal__book-authors"></p>
@@ -64,7 +64,7 @@
                       method: :post,
                       local: false,
                       scope: :reading_log do |f| %>
-          <!-- 書籍情報を入力値と一緒に hidden で送る -->
+          <%# 書籍情報を入力値と一緒に hidden で送る %>
           <%= hidden_field_tag :book_title %>
           <%= hidden_field_tag :book_authors %>
           <%= hidden_field_tag :book_published_date %>
@@ -76,7 +76,7 @@
           <div class="register-modal__textarea-wrap">
             <%= f.label :comment, "コメント", class: "register-modal__textarea-label" %>
             <%= f.text_area :comment, id: "comment", placeholder: "あなたの考えを記しておきましょう", class: "register-modal__textarea" %>
-            <!-- scopeにreading_logを設定しているので、name="reading_log[comment]"と同じ -->
+            <%# scopeにreading_logを設定しているので、name="reading_log[comment]"と同じ %>
           </div>
           <div class="register-modal__textarea-wrap">
             <%= f.label :citation, "引用メモ", class: "register-modal__textarea-label" %>
@@ -97,16 +97,4 @@
       <button type="button" class="register-modal__close">閉じる</button>
     </div>
   </div>
-
-  <!-- 作品登録成功モーダル -->
-  <!-- <% if flash[:register_success_notice].present? %>
-    <div class="register-success-modal">
-      <div class="register-success-modal__content">
-        <p>作品を登録しました！</p>
-        <button class="register-success-modal__close">OK</button>
-      </div>
-    </div>
-  <% end %> -->
-
-
 </div>

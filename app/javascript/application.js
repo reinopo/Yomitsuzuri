@@ -73,26 +73,3 @@ document.addEventListener("turbo:load", () => {
     }
   });
 });
-
-// // --------------------
-// // 作品登録成功モーダル
-// // --------------------
-// document.addEventListener("turbo:load", () => {
-//   const registerSuccessModal = document.querySelector(".register-success-modal");
-//   const registerSuccessCloseBtn = document.querySelector(".register-success-modal__close");
-
-//   console.log("✅ 成功モーダル", registerSuccessModal);
-//   console.log("✅ 成功モーダル閉じるボタン", registerSuccessCloseBtn);
-//   console.log("✅ body data-user-id:", document.body.dataset.userId);
-
-//   if (registerSuccessModal && registerSuccessCloseBtn) {
-//     registerSuccessCloseBtn.addEventListener("click", () => {
-//       const userId = document.body.dataset.userId;
-//       if (userId) {
-//         window.location.href = `/users/${userId}`;
-//       } else {
-//         window.location.href = "/";
-//       }
-//     });
-//   }
-// });
