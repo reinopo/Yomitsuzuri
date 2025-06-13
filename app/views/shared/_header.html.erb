@@ -8,11 +8,21 @@
       <ul class="header__list">
         <% if user_signed_in? %>
           <%# ログイン時 %>
+          <li class="header__search">
+            <%= form_with url: search_index_path, method: :get, local: true do |form| %>
+              <div class="c-search">
+                <%= form.text_field :q, placeholder: "タイトル・著者名など", class: "c-search__text-field" %>
+                <%= button_tag(type: "submit", class: "c-search__submit-btn") do %>
+                  <svg role="img" xmlns="http://www.w3.org/2000/svg" width="32px" height="32px" viewBox="0 0 24 24" aria-labelledby="searchIconTitle" stroke="#3e3e3e" stroke-width="1.5" stroke-linecap="square" stroke-linejoin="miter" fill="none" color="#3e3e3e"> <title id="searchIconTitle">検索</title> <path d="M14.4121122,14.4121122 L20,20"/> <circle cx="10" cy="10" r="6"/> </svg>
+                <% end %>
+              </div>
+            <% end %>
+          </li>
           <li class="header__item">
             <%= link_to "マイページ", user_path(current_user) %>
           </li>
         <% else %>
-          <%# 未ログイン時 %>
+          <%# ログアウト時 %>
           <li class="header__item">
             <%= link_to "ログイン", new_user_session_path %>
           </li>

@@ -1,21 +1,24 @@
-# id="modals"のタグ内に_success_modal.html.erbの中身を埋め込む
-<%= turbo_stream.append "modals", partial: "reading_logs/success_modal", locals: { message: "#{@book.title} を登録しました！" } %>
+<%# 作品登録に成功した時のみ実行される。
+application.html.erbの中のid="modals"のタグ内に_success_modal.html.erbの中身を埋め込む。
+scriptタグの中身は、Turbo Stream で差し込まれたあとに即時実行される（すぐready） %>
+<%= turbo_stream.append "modals", partial: "reading_logs/success_modal", locals: { message: "「#{@book.title}」を登録しました！" } %>
 
 <%= turbo_stream.after "modals" do %>
   <script>
-    <%# 登録用モーダルを閉じる %>
+    <%# 作品登録用モーダルを閉じる %>
     const registerModal = document.querySelector(".register-modal");
     if (registerModal) {
       registerModal.style.display = "none";
     }
 
-    <%# 成功モーダルのボタンにイベントリスナーを再登録 %>
-    const successModal = document.querySelector(".register-success-modal");
-    const closeBtn = document.querySelector(".register-success-modal__close");
+    <%# 作品登録完了モーダルのボタンにイベントリスナーを再登録 %>
+    const registerSuccessModal = document.querySelector(".register-success-modal");
+    const registerSuccessModalCloseBtn = document.querySelector(".register-success-modal__close");
 
-    if (successModal && closeBtn) {
-      closeBtn.addEventListener("click", () => {
+    if (registerSuccessModal && registerSuccessModalCloseBtn) {
+      registerSuccessModalCloseBtn.addEventListener("click", () => {
         const userId = document.body.dataset.userId;
+        <%# ログイン時はマイページにリダイレクト %>
         if (userId) {
           window.location.href = `/users/${userId}`;
         } else {
