@@ -3,6 +3,7 @@ class ReadingLogsController < ApplicationController
 
   def create
     puts "📘 createアクション入った！"
+    book = nil
 
     ActiveRecord::Base.transaction do
       # 1. JSでフォームから送られてきた値を取得
@@ -12,19 +13,19 @@ class ReadingLogsController < ApplicationController
       status = params[:reading_log][:reading_status]
 
     # 2. 選択された本がすでにDBにあるかを isbn を元に確認し、なければインスタンス作成
-      book = Book.find_or_initialize_by(isbn: isbn)
+      @book = Book.find_or_initialize_by(isbn: isbn)
 
       # 選択された本が DB にない場合
-      unless book.persisted?
+      unless @book.persisted?
         # モーダルボタンに仕込んだdata属性から本の情報をJSが取得してhidden fieldに入れて送信。その送信された値をまとめて代入して DB に保存
-        book.assign_attributes(
+        @book.assign_attributes(
           title: params[:book_title],
           published_date: params[:book_published_date],
           thumbnail_link: params[:book_image_url],
           google_id: params[:book_google_id],
           description: params[:book_description]
         )
-        book.save!
+        @book.save!
       end
 
     # 3. 著者情報を保存
@@ -34,7 +35,7 @@ class ReadingLogsController < ApplicationController
           # 著者がすでに DB に存在するかを確認し、なければインスタンス作成
           author = Author.find_or_create_by!(name: author_name)
           # 著者と本の結びつきを確認し、なければ結びつきを作る
-          Authorship.find_or_create_by!(author: author, book: book)
+          Authorship.find_or_create_by!(author: author, book: @book)
         end
       end
 
@@ -45,16 +46,22 @@ class ReadingLogsController < ApplicationController
 
     # 4. ユーザーに紐づいた ReadingLog を作成
       current_user.reading_logs.create!(
-        book: book,
+        book: @book,
         reading_status: status,
         comment: comment,
         citation: citation
       )
+
+      flash[:register_success_notice] = "#{@book.title} を登録しました！"
+
+      respond_to do |format|
+        format.turbo_stream
+      end
     end
 
     # 成功時の処理
-    flash[:notice] = "作品を登録しました！"
-    redirect_to user_path(current_user)
+    # flash[:register_success_notice] = "#{book.title} を登録しました！"
+    # redirect_to user_path(current_user)
 
   rescue => e
     Rails.logger.error "登録エラー: #{e.message}"

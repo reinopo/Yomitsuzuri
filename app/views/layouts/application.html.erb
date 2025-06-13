@@ -15,9 +15,12 @@
     <%= javascript_importmap_tags %>
   </head>
 
-  <body>
+  <body<%= user_signed_in? ? " data-user-id='#{current_user.id}'" : "" %>>
+    <div id="modals"></div>
     <%= render "shared/header" %>
     <main><%= yield %></main>
     <%= render "shared/footer" %>
   </body>
+  
+
 </html>

@@ -24,8 +24,8 @@
 
             <!-- ログイン時は登録用モーダル、ログアウト時はログインページに遷移 -->
             <% if user_signed_in? %>
+              <!-- DBに保存するデータをボタンに埋め込む -->
               <button type="button" class="register-modal__open c-button c-button--small c-button--center c-button--white"
-                      <!-- DBに保存するデータをボタンに埋め込む -->
                       data-book-id="<%= book[:isbn] %>"
                       data-book-title="<%= book[:title] %>"
                       data-book-authors="<%= book[:authors].join(', ') %>"
@@ -60,7 +60,10 @@
 
       <div class="register-modal__content">
         <img class="register-modal__book-image" src="" alt="本の表紙画像" />
-        <%= form_with url: reading_logs_path, method: :post, local: true, scope: :reading_log do |f| %>
+        <%= form_with url: reading_logs_path,
+                      method: :post,
+                      local: false,
+                      scope: :reading_log do |f| %>
           <!-- 書籍情報を入力値と一緒に hidden で送る -->
           <%= hidden_field_tag :book_title %>
           <%= hidden_field_tag :book_authors %>
@@ -94,5 +97,16 @@
       <button type="button" class="register-modal__close">閉じる</button>
     </div>
   </div>
+
+  <!-- 作品登録成功モーダル -->
+  <!-- <% if flash[:register_success_notice].present? %>
+    <div class="register-success-modal">
+      <div class="register-success-modal__content">
+        <p>作品を登録しました！</p>
+        <button class="register-success-modal__close">OK</button>
+      </div>
+    </div>
+  <% end %> -->
+
 
 </div>

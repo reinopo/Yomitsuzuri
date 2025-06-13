@@ -1,0 +1,26 @@
+<%= turbo_stream.append "modals", partial: "reading_logs/success_modal", locals: { message: "#{@book.title} を登録しました！" } %>
+
+<%= turbo_stream.after "modals" do %>
+  <script>
+    // 登録用モーダルを閉じる
+    const registerModal = document.querySelector(".register-modal");
+    if (registerModal) {
+      registerModal.style.display = "none";
+    }
+
+    // 成功モーダルのボタンにイベントリスナーを再登録
+    const successModal = document.querySelector(".register-success-modal");
+    const closeBtn = document.querySelector(".register-success-modal__close");
+
+    if (successModal && closeBtn) {
+      closeBtn.addEventListener("click", () => {
+        const userId = document.body.dataset.userId;
+        if (userId) {
+          window.location.href = `/users/${userId}`;
+        } else {
+          window.location.href = "/";
+        }
+      });
+    }
+  </script>
+<% end %>
