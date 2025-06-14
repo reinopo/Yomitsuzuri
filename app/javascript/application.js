@@ -9,16 +9,16 @@ import "@hotwired/turbo-rails"
 document.addEventListener("turbo:load", () => {
   console.log("モーダルJSが読み込まれた");
 
-  const registerModal = document.querySelector(".register-modal");
-  const registerModalCloseBtn = document.querySelector(".register-modal__close");
-  const registerModalOpenBtns = document.querySelectorAll(".register-modal__open");
+  const registerModal = document.querySelector(".c-register-modal");
+  const registerModalCloseBtn = document.querySelector(".c-register-modal__close");
+  const registerModalOpenBtns = document.querySelectorAll(".c-register-modal__open");
   // モーダルフォーム内にある hidden field (name='isbn')
-  const bookIdInput = document.querySelector(".register-modal input[name='isbn']");
+  const bookIdInput = document.querySelector(".c-register-modal input[name='isbn']");
 
   // モーダル内の要素（画像・タイトル・著者）のHTMLタグを取得
-  const bookImageTag = document.querySelector(".register-modal__book-image");
-  const bookTitleTag = document.querySelector(".register-modal__book-title");
-  const bookAuthorsTag = document.querySelector(".register-modal__book-authors");
+  const bookImageTag = document.querySelector(".c-register-modal__book-image");
+  const bookTitleTag = document.querySelector(".c-register-modal__book-title");
+  const bookAuthorsTag = document.querySelector(".c-register-modal__book-authors");
 
   registerModalOpenBtns.forEach(btn => {
     btn.addEventListener("click", () => {

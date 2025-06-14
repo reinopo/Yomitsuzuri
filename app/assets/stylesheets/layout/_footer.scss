@@ -1,0 +1,24 @@
+.footer {
+  &__inner {
+  text-align: center;
+  padding: 32px 16px;
+}
+
+  &__nav {
+    margin-bottom: 16px;
+  }
+
+  &__list {
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+  }
+
+  &__link {
+    @media (any-hover: hover) {
+      &:hover {
+        text-decoration: underline;
+      }
+    }
+  }
+}

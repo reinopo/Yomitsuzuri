@@ -1,14 +1,14 @@
 <header class="header">
   <div class="header__inner">
     <div class="header__logo">
-      <%= link_to "Yomitsuzuri", root_path %>
+      <%= link_to "Yomitsuzuri", root_path, class: "header__logo-link" %>
     </div>
 
     <nav aria-label="グローバルナビゲーション" class="header__nav">
       <ul class="header__list">
         <% if user_signed_in? %>
           <%# ログイン時 %>
-          <li class="header__search">
+          <li class="header__item--search">
             <%= form_with url: search_index_path, method: :get, local: true do |form| %>
               <div class="c-search">
                 <%= form.text_field :q, placeholder: "タイトル・著者名など", class: "c-search__text-field" %>
@@ -19,15 +19,15 @@
             <% end %>
           </li>
           <li class="header__item">
-            <%= link_to "マイページ", user_path(current_user) %>
+            <%= link_to "マイページ", home_mypage_path, class: "header__item-link" %>
           </li>
         <% else %>
           <%# ログアウト時 %>
           <li class="header__item">
-            <%= link_to "ログイン", new_user_session_path %>
+            <%= link_to "ログイン", new_user_session_path, class: "header__item-link" %>
           </li>
           <li class="header__item">
-            <%= link_to "新規登録", new_user_registration_path %>
+            <%= link_to "新規登録", new_user_registration_path, class: "header__item-link" %>
           </li>
         <% end %>
       </ul>

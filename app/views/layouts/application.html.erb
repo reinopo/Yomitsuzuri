@@ -6,21 +6,25 @@
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
 
-    <!-- google font -->
+    <%# google font %>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Zen+Kaku+Gothic+New&display=swap" rel="stylesheet">
 
+    <%# style %>
+    <link rel="stylesheet" href="https://unpkg.com/ress/dist/ress.min.css">
     <%= stylesheet_link_tag "application", "data-turbo-track": "reload" %>
+
+    <%# JS %>
     <%= javascript_importmap_tags %>
   </head>
 
-  <body<%= user_signed_in? ? " data-user-id='#{current_user.id}'" : "" %>>
+  <%= tag.body data: { user_id: current_user&.id } do %>
     <div id="modals"></div>
     <%= render "shared/header" %>
     <main><%= yield %></main>
     <%= render "shared/footer" %>
-  </body>
+  <% end %>
   
 
 </html>

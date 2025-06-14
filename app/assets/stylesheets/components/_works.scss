@@ -1,0 +1,35 @@
+.c-works {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 24px;
+
+  &__item {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    border-right: 1px solid var(--color-border-base--light);
+    position: relative;
+  }
+
+  &__image {
+    display: block;
+    width: 50%;
+  }
+
+  &__info {
+    width: 50%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    border-bottom: 1px solid var(--color-border-base--light);
+    padding: 0 8px 24px 8px;
+  }
+
+  &__title {
+    margin-bottom: 4px;
+  }
+
+  &__author {
+    margin-bottom: 4px;
+  }
+}

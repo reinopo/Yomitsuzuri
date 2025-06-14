@@ -1,0 +1,49 @@
+main {
+  padding-top: var(--header-height);
+}
+
+/* -------------------- */
+/* Layout: container */
+/* -------------------- */
+.l-container {
+  &--s,
+  &--m,
+  &--l {
+    width: 90%;
+    margin: 0 auto;
+  }
+
+  &--s {
+    max-width: var(--width-content-s);
+  }
+
+  &--m {
+    max-width: var(--width-content-m);
+  }
+
+  &--l {
+    max-width: var(--width-content-l);
+  }
+}
+
+/* -------------------- */
+/* Layout: section */
+/* -------------------- */
+.l-section {
+  padding: 32px 16px;
+}
+
+.l-section-body {
+  padding: 24px 0;
+}
+
+/* -------------------- */
+/* Layout: article */
+/* -------------------- */
+.l-article {
+  padding: 32px 16px;
+}
+
+.l-article-body {
+  padding: 16px 0;
+}

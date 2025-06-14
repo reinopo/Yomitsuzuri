@@ -73,3 +73,5 @@ gem "devise"
 gem 'devise-i18n'
 
 gem "puma", "~> 6.6"
+
+gem 'sassc-rails'

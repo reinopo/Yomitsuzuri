@@ -1,0 +1,38 @@
+/* -------------------- */
+/* mypage */
+/* -------------------- */
+.mypage {
+  &__index {
+    width: 100vw;
+    background-color: var(--color-bg-base);
+    padding: 40px 200px;
+  }
+
+  &__wrap {
+    display: flex;
+    background-color: var(--color-bg-white);
+    margin: 0 auto;
+  }
+
+  &__profile {
+    width: 300px;
+    height: 400px;
+    border-right: solid 1px var(--color-border-base--light);
+  }
+
+  &__contents {
+    width: calc(100vw - 700px);
+  }
+}
+
+/* -------------------- */
+/* mypage: home */
+/* -------------------- */
+
+/* -------------------- */
+/* mypage: favorite_author */
+/* -------------------- */
+
+/* -------------------- */
+/* mypage: citation */
+/* -------------------- */

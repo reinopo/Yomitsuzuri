@@ -5,9 +5,9 @@
 
   <div class="l-section-body">
     <% if @google_books.present? %>
-      <ul class="c-works__container">
+      <ul class="c-works">
         <% @google_books.each do |book| %>
-          <li class="c-works">
+          <li class="c-works__item">
             <%# サムネ画像がない場合は代替画像を表示 %>
             <% image_url = book[:thumbnail_link] %>
             <img class="c-works__image" src="<%= image_url.start_with?("http") ? image_url : asset_path(image_url) %>" alt="本の表紙画像">
@@ -26,7 +26,7 @@
               <%# ログイン時は登録用モーダル、ログアウト時はログインページに遷移 %>
               <% if user_signed_in? %>
                 <%# DBに保存するデータをボタンに埋め込む %>
-                <button type="button" class="register-modal__open c-button c-button--small c-button--center c-button--white"
+                <button type="button" class="c-register-modal__open c-button c-button--small c-button--center c-button--white"
                         data-book-id="<%= book[:isbn] %>"
                         data-book-title="<%= book[:title] %>"
                         data-book-authors="<%= book[:authors].join(', ') %>"
@@ -51,22 +51,23 @@
 
 
   <%# 作品登録モーダル %>
-  <div class="register-modal">
-    <div class="register-modal__wrap">
-      <h2 class="register-modal__title">作品を登録</h2>
+  <div class="c-register-modal">
+    <div class="c-register-modal__wrap">
+      <h2 class="c-register-modal__title">作品を登録</h2>
 
       <%# 登録ボタンに埋め込んだ情報をjsで差し込む %>
-      <div class="register-modal__book-info">
-        <p class="register-modal__book-title"></p>
-        <p class="register-modal__book-authors"></p>
+      <div class="c-register-modal__book-info">
+        <p class="c-register-modal__book-title"></p>
+        <p class="c-register-modal__book-authors"></p>
       </div>
 
-      <div class="register-modal__content">
-        <img class="register-modal__book-image" src="" alt="本の表紙画像" />
+      <div class="c-register-modal__content">
+        <img class="c-register-modal__book-image" src="" alt="本の表紙画像" />
         <%= form_with url: reading_logs_path,
                       method: :post,
                       local: false,
-                      scope: :reading_log do |f| %>
+                      scope: :reading_log,
+                      class: "c-register-modal__form" do |f| %>
           <%# 書籍情報を入力値と一緒に hidden で送る %>
           <%= hidden_field_tag :book_title %>
           <%= hidden_field_tag :book_authors %>
@@ -76,28 +77,28 @@
           <%= hidden_field_tag :book_description %>
           <%= hidden_field_tag :isbn %>
 
-          <div class="register-modal__textarea-wrap">
-            <%= f.label :comment, "コメント", class: "register-modal__textarea-label" %>
-            <%= f.text_area :comment, id: "comment", placeholder: "あなたの考えを記しておきましょう", class: "register-modal__textarea" %>
+          <div class="c-register-modal__textarea-wrap">
+            <%= f.label :comment, "コメント", class: "c-register-modal__textarea-label" %>
+            <%= f.text_area :comment, id: "comment", placeholder: "あなたの考えを記しておきましょう", class: "c-register-modal__textarea" %>
             <%# scopeにreading_logを設定しているので、name="reading_log[comment]"と同じ %>
           </div>
-          <div class="register-modal__textarea-wrap">
-            <%= f.label :citation, "引用メモ", class: "register-modal__textarea-label" %>
-            <%= f.text_area :citation, id: "citation", placeholder: "心に残った文章を書き留めておきましょう", class: "register-modal__textarea" %>
+          <div class="c-register-modal__textarea-wrap">
+            <%= f.label :citation, "引用メモ", class: "c-register-modal__textarea-label" %>
+            <%= f.text_area :citation, id: "citation", placeholder: "心に残った文章を書き留めておきましょう", class: "c-register-modal__textarea" %>
           </div>
           <div>
-            <%= f.label :reading_status, "読書状況", class: "register-modal__textarea-label" %>
-            <div class="register-modal__select-wrap">
+            <%= f.label :reading_status, "読書状況", class: "c-register-modal__textarea-label" %>
+            <div class="c-register-modal__select-wrap">
               <%= f.select :reading_status,
                             [["選択してください", nil], ["既読", 0], ["未読", 1], ["積読", 2]],
                             { include_blank: false },
-                            class: "register-modal__status" %>
+                            class: "c-register-modal__status" %>
             </div>
           </div>
-          <%= f.submit "登録する", class: "register-modal__submit c-button c-button--medium c-button--center c-button--white" %>
+          <%= f.submit "登録する", class: "c-register-modal__submit c-button c-button--medium c-button--center c-button--white" %>
         <% end %>
       </div>
-      <button type="button" class="register-modal__close">閉じる</button>
+      <button type="button" class="c-register-modal__close">閉じる</button>
     </div>
   </div>
 </div>

@@ -7,6 +7,11 @@ Rails.application.routes.draw do
   resources :users, only: [:show]
   resources :search, only: [:index]
   resources :reading_logs, only: [:create, :update, :destroy]
+  resource :mypage, only: [:show] do
+    get :home   # /mypage/home
+    get :favorites, path: 'favorite_authors'  # /mypage/favorite_authors
+    get :citations  # /mypage/citations
+  end
 
   # 静的ページ
   get 'static/terms' => "static#terms", as: :terms
