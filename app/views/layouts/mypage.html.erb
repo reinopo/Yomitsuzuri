@@ -31,16 +31,16 @@
             <%= link_to "アカウント情報編集", edit_user_registration_path %>
           </section>
 
-          <section class="mypage__contents">
+          <section class="mypage__contents-wrap">
             <ul class="mypage__nav">
-              <li class="mypage__home-link">
-                <%= link_to "ホーム", home_mypage_path, class: ("is-active" if current_page?(home_mypage_path)) %>
+              <li class="mypage__nav-item">
+                <%= link_to "ホーム", home_mypage_path, class: ["mypage__nav-link", ("is-active" if current_page?(home_mypage_path))].compact.join(" ") %>
               </li>
-              <li class="mypage__favorite-author-link">
-                <%= link_to "お気に入り著者", favorites_mypage_path, class: ("is-active" if current_page?(favorites_mypage_path)) %>
+              <li class="mypage__nav-item">
+                <%= link_to "お気に入り著者", favorites_mypage_path, class: ["mypage__nav-link", ("is-active" if current_page?(favorites_mypage_path))].compact.join(" ") %>
               </li>
-              <li class="mypage__citation-link">
-                <%= link_to "引用メモ", citations_mypage_path, class: ("is-active" if current_page?(citations_mypage_path)) %>
+              <li class="mypage__nav-item">
+                <%= link_to "引用メモ", citations_mypage_path, class: ["mypage__nav-link", ("is-active" if current_page?(citations_mypage_path))].compact.join(" ") %>
               </li>
             </ul>
 

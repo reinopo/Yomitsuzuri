@@ -6,6 +6,7 @@ class MypagesController < ApplicationController
   end
 
   def home
+    @reading_logs = current_user.reading_logs.includes(:book)
   end
 
   def favorites

@@ -3,7 +3,7 @@ main {
 }
 
 /* -------------------- */
-/* Layout: container */
+/* container */
 /* -------------------- */
 .l-container {
   &--s,
@@ -27,7 +27,7 @@ main {
 }
 
 /* -------------------- */
-/* Layout: section */
+/* section */
 /* -------------------- */
 .l-section {
   padding: 32px 16px;
@@ -38,7 +38,7 @@ main {
 }
 
 /* -------------------- */
-/* Layout: article */
+/* article */
 /* -------------------- */
 .l-article {
   padding: 32px 16px;
@@ -47,3 +47,7 @@ main {
 .l-article-body {
   padding: 16px 0;
 }
+
+/* -------------------- */
+/* padding */
+/* -------------------- */

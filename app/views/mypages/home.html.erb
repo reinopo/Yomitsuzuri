@@ -1,3 +1,28 @@
-<div class="mypage__home">
-  ホーム
+
+<div class="mypage__contents mypage__home">
+  <h2>読書ログ一覧</h2>
+
+  <% if @reading_logs.any? %>
+    <ul class="c-works">
+      <% @reading_logs.each do |log| %>
+        <li class="c-works__item">
+          <% book = log.book %>
+          <%= image_tag(book.thumbnail_link, class: "c-works__image", srcset: nil) if book.thumbnail_link.present? %>
+
+          <div class="c-works__info">
+            <p class="c-works__title"><%= book.title %></p>
+            <p class="c-works__author">
+              <% book.authors.each do |author| %>
+                <%= author.name %><% unless author == book.authors.last %> / <% end %>
+              <% end %>
+            </p>
+            <%# <%= link_to "詳細を見る", book_path(book), class: "c-button c-button--small c-button--center" %> %>
+          </div>
+        </li>
+      <% end %>
+    </ul>
+  <% else %>
+    <p>まだ読書ログがありません。</p>
+  <% end %>
 </div>
+

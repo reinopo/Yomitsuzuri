@@ -8,3 +8,7 @@ body {
   color: var(--color-font-base);
   font-family: var(--font-family-base);
 }
+
+*, *::before, *::after {
+  box-sizing: border-box;
+}

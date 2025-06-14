@@ -20,8 +20,48 @@
     border-right: solid 1px var(--color-border-base--light);
   }
 
-  &__contents {
+  &__contents-wrap {
     width: calc(100vw - 700px);
+  }
+
+  &__nav {
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+  }
+
+  &__nav-item {
+    width: 150px;
+    height: 50px;
+  }
+
+  &__nav-link {
+    display: block;
+    height: 50px;
+    line-height: 50px;
+    text-align: center;
+    letter-spacing: 0.08em;
+    border-top: solid 1px transparent;
+    border-right: solid 1px var(--color-border-base--light);
+    border-bottom: solid 1px var(--color-border-base--light);
+    transition: background-color 0.3s ease;
+
+    &.is-active {
+      font-weight: bold;
+      border-bottom: solid 6px var(--color-bg-primary);
+    }
+
+    @media (any-hover: hover) {
+      &:hover {
+        background-color: var(--color-bg-gray);
+        border-top: solid 1px var(--color-border-base--light);
+      }
+    }
+  }
+
+  &__contents {
+    margin: 24px;
+    background-color: pink;
   }
 }
 
