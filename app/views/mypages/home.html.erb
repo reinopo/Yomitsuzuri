@@ -1,28 +1,29 @@
-
 <div class="mypage__contents mypage__home">
   <h2>読書ログ一覧</h2>
 
-  <% if @reading_logs.any? %>
-    <ul class="c-works">
-      <% @reading_logs.each do |log| %>
-        <li class="c-works__item">
+  <% if @reading_logs.present? %>
+      <ul class="c-works">
+        <% @reading_logs.each do |log| %>
           <% book = log.book %>
-          <%= image_tag(book.thumbnail_link, class: "c-works__image", srcset: nil) if book.thumbnail_link.present? %>
+          <li class="c-works__item">
+            <% image_url = book.thumbnail_link %>
+            <img class="c-works__image" src="<%= image_url.present? && image_url.start_with?("http") ? image_url : asset_path("no-image.jpeg") %>" alt="本の表紙画像">
 
-          <div class="c-works__info">
-            <p class="c-works__title"><%= book.title %></p>
-            <p class="c-works__author">
-              <% book.authors.each do |author| %>
-                <%= author.name %><% unless author == book.authors.last %> / <% end %>
-              <% end %>
-            </p>
-            <%# <%= link_to "詳細を見る", book_path(book), class: "c-button c-button--small c-button--center" %> %>
-          </div>
-        </li>
-      <% end %>
-    </ul>
-  <% else %>
-    <p>まだ読書ログがありません。</p>
-  <% end %>
+            <div class="c-works__info">
+              <div class="c-works__text">
+                <h3 class="c-works__title"><%= book.title %></h3>
+                <p class="c-works__author">
+                  <%= book.authors.map(&:name).join(", ") %>
+                </p>
+              </div>
+
+              <%# <%= link_to "詳細を見る", book_path(book), class: "c-button c-button--small c-button--white c-button--center" %>
+            </div>
+          </li>
+        <% end %>
+      </ul>
+    <% else %>
+      <p>まだ作品が登録されていません。</p>
+    <% end %>
 </div>
 

@@ -45,12 +45,13 @@ class ReadingLogsController < ApplicationController
       puts "🟡 ここから ReadingLog を保存"
 
     # 4. ユーザーに紐づいた ReadingLog を作成
-      current_user.reading_logs.create!(
-        book: @book,
+      reading_log = current_user.reading_logs.find_or_initialize_by(book: @book)
+      reading_log.assign_attributes(
         reading_status: status,
         comment: comment,
         citation: citation
       )
+      reading_log.save!
 
       # 登録成功時には、create.turbo_stream.erbの中身を実行
       flash[:register_success_notice] = "#{@book.title} を登録しました！"
