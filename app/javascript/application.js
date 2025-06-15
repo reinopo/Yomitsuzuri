@@ -12,8 +12,8 @@ document.addEventListener("turbo:load", () => {
   const registerModal = document.querySelector(".c-register-modal");
   const registerModalCloseBtn = document.querySelector(".c-register-modal__close");
   const registerModalOpenBtns = document.querySelectorAll(".c-register-modal__open");
-  // モーダルフォーム内にある hidden field (name='isbn')
-  const bookIdInput = document.querySelector(".c-register-modal input[name='isbn']");
+  // モーダルフォーム内にある hidden field (name='book_google_id')
+  const bookIdInput = document.querySelector(".c-register-modal input[name='book_google_id']");
 
   // モーダル内の要素（画像・タイトル・著者）のHTMLタグを取得
   const bookImageTag = document.querySelector(".c-register-modal__book-image");
@@ -22,10 +22,10 @@ document.addEventListener("turbo:load", () => {
 
   registerModalOpenBtns.forEach(btn => {
     btn.addEventListener("click", () => {
-      // ボタンに埋め込んだdata-book-idの値（選択された本のisbn）をbookIdに代入
-      const bookId = btn.dataset.bookId;
+      // ボタンに埋め込んだdata-book-google-idの値（選択された本のgoogle_id）をbookIdに代入
+      const bookId = btn.dataset.bookGoogleId;
       console.log("登録ボタンが押された:", bookId);
-      // モーダルフォーム内にある hidden field (name='isbn') に、上で取得した isbn を代入
+      // モーダルフォーム内にある hidden field (name='book_google_id') に、上で取得した book_google_id を代入
       bookIdInput.value = bookId;
       registerModal.style.display = "flex";
 
@@ -45,7 +45,7 @@ document.addEventListener("turbo:load", () => {
       document.querySelector("input[name='book_title']").value = bookTitle;
       document.querySelector("input[name='book_authors']").value = bookAuthors;
       document.querySelector("input[name='book_image_url']").value = bookImage;
-      document.querySelector("input[name='book_google_id']").value = btn.dataset.bookGoogleId || "";
+      document.querySelector("input[name='book_google_id']").value = bookId;
       document.querySelector("input[name='book_published_date']").value = btn.dataset.bookPublishedDate || "";
       document.querySelector("input[name='book_description']").value = btn.dataset.bookDescription || "";
     });

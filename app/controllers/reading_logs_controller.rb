@@ -7,22 +7,23 @@ class ReadingLogsController < ApplicationController
 
     ActiveRecord::Base.transaction do
       # 1. JSでフォームから送られてきた値を取得
-      isbn = params[:isbn]
+      # isbn = params[:isbn]
+      google_id = params[:book_google_id].to_s.strip
       comment = params[:reading_log][:comment]
       citation = params[:reading_log][:citation]
       status = params[:reading_log][:reading_status]
 
-    # 2. 選択された本がすでにDBにあるかを isbn を元に確認し、なければインスタンス作成
-      @book = Book.find_or_initialize_by(isbn: isbn)
+    # 2. 選択された本がすでにDBにあるかを google_id を元に確認し、なければインスタンス作成
+      @book = Book.find_or_initialize_by(google_id: google_id)
 
       # 選択された本が DB にない場合
       unless @book.persisted?
         # モーダルボタンに仕込んだdata属性から本の情報をJSが取得してhidden fieldに入れて送信。その送信された値をまとめて代入して DB に保存
         @book.assign_attributes(
+          isbn: params[:book_isbn],
           title: params[:book_title],
           published_date: params[:book_published_date],
           thumbnail_link: params[:book_image_url],
-          google_id: params[:book_google_id],
           description: params[:book_description]
         )
         @book.save!
@@ -46,6 +47,8 @@ class ReadingLogsController < ApplicationController
 
     # 4. ユーザーに紐づいた ReadingLog を作成
       reading_log = current_user.reading_logs.find_or_initialize_by(book: @book)
+      puts "🧾 ログ：#{reading_log.inspect}"
+      puts "🟢 新規？: #{reading_log.new_record?}"
       reading_log.assign_attributes(
         reading_status: status,
         comment: comment,

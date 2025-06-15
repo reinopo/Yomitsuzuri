@@ -1,4 +1,6 @@
 class Book < ApplicationRecord
+  validates :google_id, uniqueness: true
+  
   # 著者との関連
   has_many :authorships, dependent: :destroy
   # 中間テーブルのauthorshipテーブルを通してauthorを参照
