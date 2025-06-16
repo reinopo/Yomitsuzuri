@@ -18,6 +18,7 @@
     width: 300px;
     height: 400px;
     border-right: solid 1px var(--color-border-base--light);
+    border-bottom: solid 1px var(--color-border-base--light);
   }
 
   &__contents-wrap {
@@ -61,7 +62,6 @@
 
   &__contents {
     margin: 24px;
-    background-color: pink;
   }
 }
 

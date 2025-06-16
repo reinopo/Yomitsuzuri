@@ -2,12 +2,11 @@ class ReadingLogsController < ApplicationController
   before_action :authenticate_user!
 
   def create
-    puts "📘 createアクション入った！"
+    # puts "📘 createアクション入った！"
     book = nil
 
     ActiveRecord::Base.transaction do
       # 1. JSでフォームから送られてきた値を取得
-      # isbn = params[:isbn]
       google_id = params[:book_google_id].to_s.strip
       comment = params[:reading_log][:comment]
       citation = params[:reading_log][:citation]
@@ -46,15 +45,18 @@ class ReadingLogsController < ApplicationController
       puts "🟡 ここから ReadingLog を保存"
 
     # 4. ユーザーに紐づいた ReadingLog を作成
+      # puts "📘 Book ID: #{@book.id}"
       reading_log = current_user.reading_logs.find_or_initialize_by(book: @book)
-      puts "🧾 ログ：#{reading_log.inspect}"
-      puts "🟢 新規？: #{reading_log.new_record?}"
+      # puts "📘 ReadingLog new?: #{reading_log.new_record?}, ID: #{reading_log.id}"
+      # puts "🧾 ログ：#{reading_log.inspect}"
+      # puts "🟢 新規？: #{reading_log.new_record?}"
       reading_log.assign_attributes(
         reading_status: status,
         comment: comment,
         citation: citation
       )
       reading_log.save!
+      # puts "✅ Saved ReadingLog ID: #{reading_log.id}"
 
       # 登録成功時には、create.turbo_stream.erbの中身を実行
       flash[:register_success_notice] = "#{@book.title} を登録しました！"

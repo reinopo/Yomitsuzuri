@@ -5,16 +5,16 @@
 
   <div class="l-section-body">
     <% if @google_books.present? %>
-      <ul class="c-works">
+      <ul class="c-works c-works--3columns">
         <% @google_books.each do |book| %>
-          <li class="c-works__item">
+          <li class="c-works__item c-works__item--3columns">
             <%# サムネ画像がない場合は代替画像を表示 %>
             <% image_url = book[:thumbnail_link] %>
-            <img class="c-works__image" src="<%= image_url.start_with?("http") ? image_url : asset_path(image_url) %>" alt="本の表紙画像">
+            <img class="c-works__image c-works__image--3columns" src="<%= image_url.start_with?("http") ? image_url : asset_path(image_url) %>" alt="<%= book[:title].to_s %> の表紙画像">
 
-            <div class="c-works__info">
+            <div class="c-works__info c-works__info--3columns">
               <div class="c-works__text">
-                <h3 class="c-works__title"><%= book[:title] %></h3>
+                <h3 class="c-works__title c-works__title--3columns"><%= book[:title] %></h3>
                 <p class="c-works__author">
                   <%= book[:authors].join(", ") %>
                 </p>

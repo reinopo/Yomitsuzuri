@@ -6,7 +6,8 @@ class MypagesController < ApplicationController
   end
 
   def home
-    @reading_logs = current_user.reading_logs.includes(book: :authors)
+    # reading_logを作成した日が新しい順に表示
+    @reading_logs = current_user.reading_logs.includes(book: :authors).order(created_at: :desc)
   end
 
   def favorites
