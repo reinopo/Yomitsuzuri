@@ -1,3 +1,6 @@
+/* -------------------- */
+/* c-citation */
+/* -------------------- */
 .c-citation {
   background-color: var(--color-bg-gray);
   border-left: 4px solid var(--color-border-base--light);
@@ -18,5 +21,40 @@
     right: 12px;
     font-size: 12px;
     color: var(--color-font-gray);
+  }
+}
+
+/* -------------------- */
+/* c-citation-form */
+/* -------------------- */
+.c-citation-form {
+  margin-top: 32px;
+  padding: 0 32px;
+
+  &__field {
+    margin-bottom: 8px;
+  }
+
+  &__label {
+    display: block;
+    margin-bottom: 4px;
+    font-size: 14px;
+  }
+
+  &__textarea {
+    width: 100%;
+    border: 1px solid var(--color-border-base--light);
+    border-radius: 4px;
+    padding: 8px;
+    font-size: 14px;
+    resize: vertical;
+
+    &:focus {
+      border: 1px solid var(--color-border-base);
+    }
+  }
+
+  &__submit {
+    margin-top: 8px;
   }
 }

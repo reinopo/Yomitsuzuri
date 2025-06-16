@@ -50,6 +50,16 @@
         </blockquote>
       <% end %>
 
+      <div class="c-citation-form">
+        <%= form_with(model: [@reading_log, Citation.new], local: true, class: "c-citation-form__form") do |f| %>
+          <div class="c-citation-form__field">
+            <%= f.label :content, "引用を追加", class: "c-citation-form__label" %>
+            <%= f.text_area :content, rows: 3, placeholder: "心に残った文章を書き留めておきましょう", class: "c-citation-form__textarea" %>
+          </div>
+          <%= f.submit "追加する", class: "c-button c-button--x-small c-button--white c-citation-form__submit" %>
+        <% end %>
+      </div>
+
       <% if @reading_log.comment.present? %>
         <p class="book-detail__comment"><%= @reading_log.comment %></p>
         <time class="book-detail__comment-date">（更新日：<%= @reading_log.updated_at.strftime("%Y/%m/%d") %>）</time>

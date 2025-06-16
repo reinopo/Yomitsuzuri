@@ -13,6 +13,10 @@ Rails.application.routes.draw do
     get :citations  # /mypage/citations
   end
   resources :books, only: [:index, :show]
+  resources :reading_logs, only: [] do
+    resources :citations, only: [:create]
+  end
+
 
   # 静的ページ
   get 'static/terms' => "static#terms", as: :terms
