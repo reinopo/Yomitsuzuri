@@ -1,2 +1,19 @@
-<h1>Books#show</h1>
-<p>Find me in app/views/books/show.html.erb</p>
+<section class="book-detail">
+  <div class="book-detail__wrap l-container--s">
+    <img src="<%= @book.thumbnail_link.presence || asset_path('no-image.jpeg') %>" class="book-detail__image" alt="<%= @book.title %> の表紙画像">
+
+    <h1 class="c-title-level1 book-detail__title"><%= @book.title %></h1>
+    <p class="book-detail__author"><%= @book.authors.map(&:name).join(", ") %></p>
+    <p class="book-detail__published-date">出版日：<%= @book.published_date %></p>
+    <p class="book-detail__description">あらすじ：<%= @book.description %></p>
+
+    <% if @reading_log %>
+      <p class="book-detail__created-at">登録日：<%= @reading_log.created_at.to_date %></p>
+      <p class="book-detail__comment">コメント：<%= @reading_log.comment %></p>
+      <p class="book-detail__citation">引用メモ：<%= @reading_log.citation %></p>
+      <p class="book-detail__citation">読書状況：<%= @reading_log.reading_status_label %></p>
+    <% else %>
+      <p>この作品はまだ登録されていません。</p>
+    <% end %>
+  </div>
+</section>

@@ -12,6 +12,7 @@ Rails.application.routes.draw do
     get :favorites, path: 'favorite_authors'  # /mypage/favorite_authors
     get :citations  # /mypage/citations
   end
+  resources :books, only: [:index, :show]
 
   # 静的ページ
   get 'static/terms' => "static#terms", as: :terms
@@ -21,8 +22,6 @@ Rails.application.routes.draw do
   # その他カスタムルート
   get 'home/index' => 'home#index'
   get 'search/index' => 'search#index'
-  get 'books/index' => 'books#index'
-  get 'books/show' => 'books#show'
   get 'favorite_authors/create' => 'favorite_authors#create'
   get 'favorite_authors/destroy' => 'favorite_authors#destroy'
 

@@ -68,7 +68,17 @@
   }
 
   &__title--link {
+    display: inline-block;
     color: var(--color-font-accent);
+    border-bottom: 1px solid transparent;
+    padding-bottom: 1px;
+
+    @media (any-hover: hover) {
+      &:hover {
+        color: var(--color-font-accent--light);
+        border-bottom: solid 1px var(--color-font-accent--light);
+      }
+    }
   }
 
   &__author--3columns {
