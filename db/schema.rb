@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2025_06_15_135138) do
+ActiveRecord::Schema[7.1].define(version: 2025_06_16_075801) do
   create_table "authors", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
     t.string "name"
     t.text "description"
@@ -37,6 +37,14 @@ ActiveRecord::Schema[7.1].define(version: 2025_06_15_135138) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["google_id"], name: "index_books_on_google_id", unique: true
+  end
+
+  create_table "citations", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
+    t.bigint "reading_log_id", null: false
+    t.text "content"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["reading_log_id"], name: "index_citations_on_reading_log_id"
   end
 
   create_table "favorite_authors", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
@@ -75,6 +83,7 @@ ActiveRecord::Schema[7.1].define(version: 2025_06_15_135138) do
 
   add_foreign_key "authorships", "authors"
   add_foreign_key "authorships", "books"
+  add_foreign_key "citations", "reading_logs"
   add_foreign_key "favorite_authors", "authors"
   add_foreign_key "favorite_authors", "users"
   add_foreign_key "reading_logs", "books"

@@ -8,7 +8,7 @@ Rails.application.routes.draw do
   resources :search, only: [:index]
   resources :reading_logs, only: [:create, :update, :destroy]
   resource :mypage, only: [:show] do
-    get :home   # /mypage/home
+    get :home  # /mypage/home
     get :favorites, path: 'favorite_authors'  # /mypage/favorite_authors
     get :citations  # /mypage/citations
   end

@@ -9,8 +9,9 @@ class ReadingLogsController < ApplicationController
       # 1. JSでフォームから送られてきた値を取得
       google_id = params[:book_google_id].to_s.strip
       comment = params[:reading_log][:comment]
-      citation = params[:reading_log][:citation]
-      status = params[:reading_log][:reading_status]
+      # citation = params[:reading_log][:citation]
+      citation_param = params[:reading_log][:citation]
+      status = params[:reading_log][:reading_status].to_i
 
     # 2. 選択された本がすでにDBにあるかを google_id を元に確認し、なければインスタンス作成
       @book = Book.find_or_initialize_by(google_id: google_id)
@@ -46,17 +47,28 @@ class ReadingLogsController < ApplicationController
 
     # 4. ユーザーに紐づいた ReadingLog を作成
       # puts "📘 Book ID: #{@book.id}"
-      reading_log = current_user.reading_logs.find_or_initialize_by(book: @book)
-      # puts "📘 ReadingLog new?: #{reading_log.new_record?}, ID: #{reading_log.id}"
-      # puts "🧾 ログ：#{reading_log.inspect}"
-      # puts "🟢 新規？: #{reading_log.new_record?}"
-      reading_log.assign_attributes(
+      # reading_log = current_user.reading_logs.find_or_initialize_by(book: @book)
+      # # puts "📘 ReadingLog new?: #{reading_log.new_record?}, ID: #{reading_log.id}"
+      # # puts "🧾 ログ：#{reading_log.inspect}"
+      # # puts "🟢 新規？: #{reading_log.new_record?}"
+      # reading_log.assign_attributes(
+      #   reading_status: status,
+      #   comment: comment,
+      #   citation: citation
+      # )
+      # reading_log.save!
+      # # puts "✅ Saved ReadingLog ID: #{reading_log.id}"
+
+      reading_log = current_user.reading_logs.find_or_create_by!(book: @book)
+
+      # 読書状況とコメントは更新（すでに存在していれば更新、なければcreate時に入る）
+      reading_log.update!(
         reading_status: status,
-        comment: comment,
-        citation: citation
+        comment: comment
       )
-      reading_log.save!
-      # puts "✅ Saved ReadingLog ID: #{reading_log.id}"
+
+      # 引用メモ（複数）をcitationテーブルに追加（常に新規追加）
+      reading_log.citations.create!(content: citation_param) if citation_param.present?
 
       # 登録成功時には、create.turbo_stream.erbの中身を実行
       flash[:register_success_notice] = "#{@book.title} を登録しました！"

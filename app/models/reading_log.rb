@@ -1,8 +1,9 @@
 class ReadingLog < ApplicationRecord
   belongs_to :user
   belongs_to :book
+  has_many :citations, dependent: :destroy
 
-  enum reading_status: { read: 0, unread: 1, stock: 2 }
+  enum reading_status: { read: 0, unread: 1, stacked: 2 }
 
   def reading_status_label
     case reading_status
@@ -10,7 +11,7 @@ class ReadingLog < ApplicationRecord
       "既読"
     when "unread"
       "未読"
-    when "stock"
+    when "stacked"
       "積読"
     else
       "未設定"

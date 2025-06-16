@@ -1,9 +1,88 @@
 .book-detail {
   width: 100vw;
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
   background-color: var(--color-bg-base);
   padding: 56px 0;
-}
 
-.book-detail__wrap {
-  background-color: var(--color-bg-white);
+  &__wrap {
+    background-color: var(--color-bg-white);
+    padding: 32px;
+  }
+
+  &__info {
+    display: flex;
+    gap: 24px;
+  }
+
+  &__image {
+    width: 20%;
+    flex-shrink: 0;
+  }
+
+  &__image-img {
+    display: block;
+    width: 100%;
+  }
+
+  &__title {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+
+  &__status-label {
+    display: inline-block;
+    font-size: 14px;
+    font-weight: normal;
+    letter-spacing: 0.08em;
+    border-radius: 4px;
+    padding: 0 4px;
+
+    &--read {
+      color: var(--color-font-read);
+      border: 1px solid var(--color-font-read);
+    }
+
+    &--unread {
+      color: var(--color-font-unread);
+      border: 1px solid var(--color-font-unread);
+    }
+
+    &--stacked {
+      color: var(--color-font-stacked);
+      border: 1px solid var(--color-font-stacked);
+    }
+  }
+
+  &__description {
+    margin-top: 16px;
+  }
+
+  &__description-title {
+    display: block;
+    color: var(--color-font-gray);
+    font-size: 14px;
+    margin-bottom: 4px;
+  }
+
+  &__created-at {
+    font-size: 14px;
+    color: var(--color-font-gray);
+    text-align: right;
+    margin-top: 8px;
+  }
+
+
+  &__comment {
+  padding-left: 8px;
+  border-left: 2px solid var(--color-border-base);
+  margin-top: 24px;
+  }
+
+  &__comment-date {
+    font-size: 12px;
+    color: var(--color-font-gray);
+  }
 }

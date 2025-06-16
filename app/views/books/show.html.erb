@@ -1,19 +1,65 @@
 <section class="book-detail">
   <div class="book-detail__wrap l-container--s">
-    <img src="<%= @book.thumbnail_link.presence || asset_path('no-image.jpeg') %>" class="book-detail__image" alt="<%= @book.title %> の表紙画像">
+    <div class="book-detail__info">
+      <div class="book-detail__image">
+        <img src="<%= @book.thumbnail_link.presence || asset_path('no-image.jpeg') %>" class="book-detail__image-img" alt="<%= @book.title %> の表紙画像">
+      </div>
 
-    <h1 class="c-title-level1 book-detail__title"><%= @book.title %></h1>
-    <p class="book-detail__author"><%= @book.authors.map(&:name).join(", ") %></p>
-    <p class="book-detail__published-date">出版日：<%= @book.published_date %></p>
-    <p class="book-detail__description">あらすじ：<%= @book.description %></p>
+      <div class="book-detail__text">
+        <h1 class="c-title-level1 book-detail__title">
+          <%= @book.title %>
+          <%# 読書状況が設定されている場合は表示 %>
+          <% if @reading_log && @reading_log.reading_status.present? %>
+            <% status_class = case @reading_log.reading_status
+              when "read" then "read"
+              when "unread" then "unread"
+              when "stacked" then "stacked"
+              else nil
+            end %>
 
+            <% if status_class.present? %>
+              <span class="book-detail__status-label book-detail__status-label--<%= status_class %>">
+                <%= @reading_log.reading_status_label %>
+              </span>
+            <% end %>
+          <% end %>
+        </h1>
+        <p class="book-detail__author"><%= @book.authors.map(&:name).join(", ") %></p>
+        <% if @book.published_date.present? %>
+          <p class="book-detail__published-date"><%= @book.published_date.strftime("%Y/%m/%d") %></p>
+        <% end %>
+        <% if @book.description.present? %>
+          <p class="book-detail__description">
+            <span class="book-detail__description-title">あらすじ</span>
+            <%= @book.description %>
+          </p>
+        <% end %>
+        <% if @reading_log %>
+          <p class="book-detail__created-at">登録日：<%= @reading_log.created_at.strftime("%Y/%m/%d") %></p>
+        <% end %>
+      </div>
+    </div>
+  </div>
+
+  <div class="book-detail__wrap l-container--s">
     <% if @reading_log %>
-      <p class="book-detail__created-at">登録日：<%= @reading_log.created_at.to_date %></p>
-      <p class="book-detail__comment">コメント：<%= @reading_log.comment %></p>
-      <p class="book-detail__citation">引用メモ：<%= @reading_log.citation %></p>
-      <p class="book-detail__citation">読書状況：<%= @reading_log.reading_status_label %></p>
+      <% @reading_log.citations.each do |citation| %>
+        <blockquote class="c-citation">
+          <p class="c-citation__text">"<%= citation.content %>"</p>
+          <time class="c-citation__date"><%= citation.created_at.strftime("%Y/%m/%d") %></time>
+        </blockquote>
+      <% end %>
+
+      <% if @reading_log.comment.present? %>
+        <p class="book-detail__comment"><%= @reading_log.comment %></p>
+        <time class="book-detail__comment-date">（更新日：<%= @reading_log.updated_at.strftime("%Y/%m/%d") %>）</time>
+      <% end %>
     <% else %>
       <p>この作品はまだ登録されていません。</p>
     <% end %>
+  </div>
+
+  <div class="l-container--s">
+    <%= link_to "一覧へ戻る", home_mypage_path, class: "c-back-link" %>
   </div>
 </section>

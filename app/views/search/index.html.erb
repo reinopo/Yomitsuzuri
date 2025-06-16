@@ -13,12 +13,12 @@
             <img class="c-works__image c-works__image--3columns" src="<%= image_url.start_with?("http") ? image_url : asset_path(image_url) %>" alt="<%= book[:title].to_s %> の表紙画像">
 
             <div class="c-works__info c-works__info--3columns">
-              <div class="c-works__text">
+              <div class="c-works__text c-works__text--3columns">
                 <h3 class="c-works__title c-works__title--3columns"><%= book[:title] %></h3>
-                <p class="c-works__author">
+                <p class="c-works__author c-works__author--3columns">
                   <%= book[:authors].join(", ") %>
                 </p>
-                <p class="c-works__published_date">
+                <p class="c-works__published_date c-works__published_date--3columns">
                   <%= book[:published_date] %>
                 </p>
               </div>

@@ -1,0 +1,22 @@
+.c-citation {
+  background-color: var(--color-bg-gray);
+  border-left: 4px solid var(--color-border-base--light);
+  padding: 12px 16px;
+  margin: 16px 0;
+  border-radius: 4px;
+  position: relative;
+
+  &__text {
+    font-style: italic;
+    font-size: 14px;
+    color: car(--color-font-black);
+  }
+
+  &__date {
+    position: absolute;
+    bottom: 8px;
+    right: 12px;
+    font-size: 12px;
+    color: var(--color-font-gray);
+  }
+}
