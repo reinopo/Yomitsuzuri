@@ -14,7 +14,7 @@ Rails.application.routes.draw do
     get :favorites, path: 'favorite_authors'  # /mypage/favorite_authors
     get :citations  # /mypage/citations
   end
-  resources :books, only: [:index, :show]
+  resources :books, only: [:index, :show, :update]
   resources :reading_logs, only: [] do
     resources :citations, only: [:create]
   end

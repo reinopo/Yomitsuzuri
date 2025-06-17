@@ -83,9 +83,24 @@
           </div>
         </div>
 
+        <%# 出版日 %>
         <% if @book.published_date.present? %>
           <p class="book-detail__published-date"><%= @book.published_date.strftime("%Y/%m/%d") %></p>
+        <% else %>
+          <div class="book-detail__publish-form">
+            <%= form_with model: @book, url: book_path(@book), method: :patch, local: true do |f| %>
+              <%= f.label :published_date, "出版年を入力", class: "book-detail__label" %><br>
+              
+              <%= select_tag "published_date_year", options_for_select((1800..Date.today.year).to_a.reverse, Date.today.year), include_blank: true %>
+              <%= select_tag "published_date_month", options_for_select((1..12).to_a), include_blank: "（任意）月" %>
+              <%= select_tag "published_date_day", options_for_select((1..31).to_a), include_blank: "（任意）日" %>
+
+              <%= f.submit "保存", class: "c-button c-button--small" %>
+            <% end %>
+          </div>
+
         <% end %>
+
         <% if @book.description.present? %>
           <p class="book-detail__description">
             <span class="book-detail__description-title">あらすじ</span>
