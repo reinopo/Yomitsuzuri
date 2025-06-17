@@ -73,3 +73,42 @@ document.addEventListener("turbo:load", () => {
     }
   });
 });
+
+// ------------------
+// 読書状況変更ボタン
+// ------------------
+document.addEventListener("turbo:load", () => {
+  const editBtn = document.querySelector(".book-detail__edit-icon");
+  const form = document.querySelector(".book-detail__status-form");
+
+  if (editBtn && form) {
+    editBtn.addEventListener("click", () => {
+      form.classList.toggle("book-detail__status-form--shown");
+    });
+  }
+});
+
+// ------------------------
+// コメント編集フォーム表示
+// ------------------------
+document.addEventListener("turbo:load", () => {
+  const editBtn = document.querySelector(".book-detail__edit-btn");
+  const form = document.querySelector(".book-detail__comment-form");
+
+  if (editBtn && form) {
+    editBtn.addEventListener("click", () => {
+      form.style.display = form.style.display === "block" ? "none" : "block";
+    });
+  }
+});
+
+// ----------------------
+// フラッシュ閉じるボタン
+// ----------------------
+document.addEventListener("turbo:load", () => {
+  document.querySelectorAll(".c-flash__close").forEach((btn) => {
+    btn.addEventListener("click", () => {
+      btn.closest(".c-flash").remove();
+    });
+  });
+});

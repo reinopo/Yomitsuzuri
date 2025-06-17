@@ -41,4 +41,8 @@ Rails.application.routes.draw do
 
   # Defines the root path route ("/")
   # root "posts#index"
+
+  patch 'reading_logs/:id/update_status', to: 'reading_logs#update_status', as: :update_reading_status
+  patch 'reading_logs/:id/update_comment', to: 'reading_logs#update_comment', as: :update_comment_reading_log
+
 end

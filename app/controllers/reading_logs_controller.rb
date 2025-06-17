@@ -84,6 +84,24 @@ class ReadingLogsController < ApplicationController
     redirect_back(fallback_location: root_path)
   end
 
+  def update_status
+    @reading_log = current_user.reading_logs.find(params[:id])
+    if @reading_log.update(reading_status: params[:reading_log][:reading_status])
+      redirect_to book_path(@reading_log.book), notice: "読書状況を更新しました！"
+    else
+      redirect_to book_path(@reading_log.book), alert: "更新に失敗しました。"
+    end
+  end
+
+  def update_comment
+    @reading_log = current_user.reading_logs.find(params[:id])
+    if @reading_log.update(comment: params[:reading_log][:comment])
+      redirect_to book_path(@reading_log.book), notice: "コメントを更新しました！"
+    else
+      redirect_to book_path(@reading_log.book), alert: "更新に失敗しました"
+    end
+  end
+
   def update
   end
 

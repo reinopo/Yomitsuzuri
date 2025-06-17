@@ -1,0 +1,18 @@
+.c-flash {
+  text-align: center;
+  position: relative;
+
+  &__close {
+    display: inline-block;
+    font-size: 20px;
+    position: absolute;
+    top: 8px;
+    right: 12px;
+
+    @media (any-hover: hover) {
+      &:hover {
+        color: var(--color-font-black);
+      }
+    }
+  }
+}
