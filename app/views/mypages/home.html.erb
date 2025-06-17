@@ -7,12 +7,12 @@
           <% book = log.book %>
           <li class="c-works__item c-works__item--4columns">
             <% image_url = book.thumbnail_link %>
-            <img class="c-works__image c-works__image--4columns" src="<%= image_url.present? && image_url.start_with?("http") ? image_url : asset_path("no-image.jpeg") %>" alt="<%= book.title %> の表紙画像">
+            <img width="120" class="c-works__image c-works__image--4columns" src="<%= image_url.present? && image_url.start_with?("http") ? image_url : asset_path("no-image.jpeg") %>" alt="<%= book.title %> の表紙画像">
 
             <div class="c-works__info c-works__info--4columns">
               <div class="c-works__text">
                 <%= link_to book.title, book_path(book), class: "c-works__title c-works__title--4columns c-works__title--link" %>
-                <p class="c-works__author c-works__author--4columns c-works__author--link">
+                <p class="c-works__author c-works__author--4columns">
                   <%= book.authors.map(&:name).join(", ") %>
                 </p>
               </div>

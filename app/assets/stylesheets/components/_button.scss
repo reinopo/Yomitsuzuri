@@ -47,10 +47,6 @@
   text-decoration: underline;
   text-underline-offset: 4px;
 
-  // &--inline-block {
-  //   display: inline-block;
-  // }
-
   @media (any-hover: hover) {
       &:hover {
         color: var(--color-font-black);

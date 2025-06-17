@@ -18,7 +18,8 @@ Rails.application.routes.draw do
   resources :reading_logs, only: [] do
     resources :citations, only: [:create]
   end
-
+  resources :authors, only: [:show]
+  resources :favorite_authors, only: [:create, :destroy]
 
   # 静的ページ
   get 'static/terms' => "static#terms", as: :terms
@@ -28,8 +29,6 @@ Rails.application.routes.draw do
   # その他カスタムルート
   get 'home/index' => 'home#index'
   get 'search/index' => 'search#index'
-  get 'favorite_authors/create' => 'favorite_authors#create'
-  get 'favorite_authors/destroy' => 'favorite_authors#destroy'
 
   # ルートパス
   root 'home#index'

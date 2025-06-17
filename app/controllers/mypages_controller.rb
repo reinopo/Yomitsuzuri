@@ -11,7 +11,20 @@ class MypagesController < ApplicationController
   end
 
   def favorites
+    sort = params[:sort]
+
+    @favorite_authors = current_user.favorite_authors.includes(:author)
+
+    @favorite_authors = case sort
+                      when "name"
+                        @favorite_authors.sort_by { |fa| fa.author.name }
+                      when "recent"
+                        @favorite_authors.order(created_at: :desc)
+                      else
+                        @favorite_authors.order(:id) # デフォルト
+                      end
   end
+
 
   def citations
     @citations = current_user.reading_logs.includes(:book, :citations)

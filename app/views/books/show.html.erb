@@ -57,7 +57,32 @@
           <% end %>
         </h1>
 
-        <p class="book-detail__author"><%= @book.authors.map(&:name).join(", ") %></p>
+        
+        <%# 著者 %>
+        <p class="book-detail__author">
+          <% @book.authors.each_with_index do |author, index| %>
+            <% if current_user.favorite_authors.exists?(author_id: author.id) %>
+              <%= link_to author.name, author_path(author), class: "c-works__author--link book-detail__author-link" %>
+            <% else %>
+              <a href="#" class="c-works__author--link book-detail__author-link c-fav-author-modal__open" data-author-id="<%= author.id %>" data-author-name="<%= author.name %>"><%= author.name %></a>
+            <% end %>
+            <%# 著者が複数いるときはカンマ区切り（最後の著者以外） %>
+            <%= ", " unless index == @book.authors.size - 1 %>
+          <% end %>
+        </p>
+
+        <%# 著者お気に入り登録モーダル %>
+        <div class="c-fav-author-modal">
+          <div class="c-fav-author-modal__content">
+            <p class="l-mb-16"><span id="authorName"></span> をお気に入りに追加しますか？</p>
+            <%= form_with url: favorite_authors_path, method: :post, local: true, id: "favAuthorForm", class: "l-mb-16" do |f| %>
+              <%= hidden_field_tag :author_id, nil, id: "modalAuthorId" %>
+              <%= f.submit "追加する", class: "c-button c-button--small c-button--white c-button--center" %>
+            <% end %>
+            <button class="c-fav-author-modal__close">閉じる</button>
+          </div>
+        </div>
+
         <% if @book.published_date.present? %>
           <p class="book-detail__published-date"><%= @book.published_date.strftime("%Y/%m/%d") %></p>
         <% end %>
@@ -125,5 +150,6 @@
   <div class="l-container--s">
     <div><%= link_to "読んだ本一覧へ戻る", home_mypage_path, class: "c-back-link" %></div>
     <div><%= link_to "引用メモ一覧へ戻る", citations_mypage_path, class: "c-back-link" %></div>
+    <div><%= link_to "お気に入り著者一覧へ戻る", favorites_mypage_path, class: "c-back-link" %></div>
   </div>
 </section>

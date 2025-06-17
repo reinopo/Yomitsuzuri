@@ -1,0 +1,10 @@
+<h1>Authors#show</h1>
+<p>Find me in app/views/authors/show.html.erb</p>
+
+<%# フラッシュ %>
+    <% flash.each do |type, message| %>
+      <div class="c-flash c-flash--<%= type %> book-detail__wrap l-container--s">
+        <span><%= message %></span>
+        <button type="button" class="c-flash__close" aria-label="閉じる">&times;</button>
+      </div>
+    <% end %>

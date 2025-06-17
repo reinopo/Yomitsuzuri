@@ -71,13 +71,13 @@
 
   &__title--link {
     display: inline-block;
-    color: var(--color-font-accent);
+    color: var(--color-font-accent--light);
     text-decoration: none;
     padding-bottom: 1px;
 
     @media (any-hover: hover) {
       &:hover {
-        color: var(--color-font-accent--light);
+        color: var(--color-font-accent);
         text-decoration: underline;
       }
     }
@@ -97,7 +97,17 @@
   }
 
   &__author--link {
-    color: var(--color-font-accent);
+    display: inline-block;
+    color: var(--color-font-accent--light);
+    text-decoration: none;
+    padding-bottom: 1px;
+
+    @media (any-hover: hover) {
+      &:hover {
+        color: var(--color-font-accent);
+        text-decoration: underline;
+      }
+    }
   }
 
   &__published_date {

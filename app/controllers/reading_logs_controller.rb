@@ -71,7 +71,7 @@ class ReadingLogsController < ApplicationController
       reading_log.citations.create!(content: citation_param) if citation_param.present?
 
       # 登録成功時には、create.turbo_stream.erbの中身を実行
-      flash[:register_success_notice] = "#{@book.title} を登録しました！"
+      flash.now[:register_success_notice] = "#{@book.title} を登録しました！"
       respond_to do |format|
         format.turbo_stream
       end
