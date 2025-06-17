@@ -11,7 +11,6 @@
 
   &__text {
     font-style: italic;
-    font-size: 14px;
     color: car(--color-font-black);
   }
 
@@ -21,5 +20,9 @@
     right: 12px;
     font-size: 12px;
     color: var(--color-font-gray);
+  }
+
+  &__book-link {
+    font-size: 14px;
   }
 }

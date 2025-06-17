@@ -14,5 +14,8 @@ class MypagesController < ApplicationController
   end
 
   def citations
+    @citations = current_user.reading_logs.includes(:book, :citations)
+                      .flat_map(&:citations)
+                      .sort_by(&:created_at).reverse
   end
 end

@@ -44,12 +44,16 @@
 
 .c-back-link {
   font-size: 14px;
-  border-bottom: solid 1px var(--color-border-base);
+  text-decoration: underline;
+  text-underline-offset: 4px;
+
+  // &--inline-block {
+  //   display: inline-block;
+  // }
 
   @media (any-hover: hover) {
       &:hover {
         color: var(--color-font-black);
-        border-bottom: solid 1px var(--color-border-black);
       }
     }
 }
