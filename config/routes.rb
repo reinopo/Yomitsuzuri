@@ -1,7 +1,9 @@
 
 Rails.application.routes.draw do
   # 認証
-  devise_for :users
+  devise_for :users, controllers: {
+    sessions: 'users/sessions'
+  }
 
   # リソース
   resources :users, only: [:show]
