@@ -8,7 +8,8 @@ scriptタグの中身は、Turbo Stream で差し込まれたあとに即時実�
     <%# 作品登録用モーダルを閉じる %>
     const registerModal = document.querySelector(".c-register-modal");
     if (registerModal) {
-      registerModal.style.display = "none";
+      registerModal.classList.remove("is-shown-flex");
+      registerModal.classList.add("is-hidden");
     }
 
     <%# 作品登録完了モーダルのボタンにイベントリスナーを再登録 %>

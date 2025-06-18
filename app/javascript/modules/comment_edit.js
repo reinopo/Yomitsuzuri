@@ -5,27 +5,39 @@ document.addEventListener("turbo:load", () => {
   const editBtn = document.querySelector(".book-detail__edit-btn");
   const form = document.querySelector(".book-detail__comment-form");
 
-  if (editBtn && form) {
-    editBtn.addEventListener("click", () => {
-      form.style.display = form.style.display === "block" ? "none" : "block";
-    });
+  if (!editBtn || !form) return;
 
-    // フォームの外側をクリックで閉じる
-    document.addEventListener("click", (e) => {
-      if (
-        form.style.display === "block" &&
-        !form.contains(e.target) &&
-        !editBtn.contains(e.target)
-      ) {
-        form.style.display = "none";
-      }
-    });
+  const toggleForm = () => {
+    form.classList.toggle("is-hidden");
+    form.classList.toggle("is-shown-block");
+  };
 
-    // Escキーで閉じる
-    document.addEventListener("keydown", (e) => {
-      if (e.key === "Escape" && form.style.display === "block") {
-        form.style.display = "none";
-      }
-    });
-  }
+  const closeForm = () => {
+    form.classList.remove("is-shown-block");
+    form.classList.add("is-hidden");
+  };
+
+  // ボタンクリックで表示切り替え
+  editBtn.addEventListener("click", (e) => {
+    e.stopPropagation(); // 外側クリックのトリガー防止
+    toggleForm();
+  });
+
+  // 外側クリックで非表示
+  document.addEventListener("click", (e) => {
+    if (
+      form.classList.contains("is-shown-block") &&
+      !form.contains(e.target) &&
+      !editBtn.contains(e.target)
+    ) {
+      closeForm();
+    }
+  });
+
+  // Escキーで非表示
+  document.addEventListener("keydown", (e) => {
+    if (e.key === "Escape" && form.classList.contains("is-shown-block")) {
+      closeForm();
+    }
+  });
 });

@@ -22,7 +22,8 @@ document.addEventListener("turbo:load", () => {
       console.log("登録ボタンが押された:", bookId);
       // モーダルフォーム内にある hidden field (name='book_google_id') に、上で取得した book_google_id を代入
       bookIdInput.value = bookId;
-      registerModal.style.display = "flex";
+      registerModal.classList.remove("is-hidden");
+      registerModal.classList.add("is-shown-flex");
 
       // ボタンに埋め込んだ本の情報（data属性）を取得
       const bookTitle = btn.dataset.bookTitle;
@@ -48,7 +49,8 @@ document.addEventListener("turbo:load", () => {
 
   if (registerModalCloseBtn) {
     registerModalCloseBtn.addEventListener("click", () => {
-      registerModal.style.display = "none";
+      registerModal.classList.remove("is-shown-flex");
+      registerModal.classList.add("is-hidden");
     });
   }
 
@@ -56,15 +58,20 @@ document.addEventListener("turbo:load", () => {
   if (registerModal) {
     registerModal.addEventListener("click", (e) => {
       if (e.target === registerModal) {
-        registerModal.style.display = "none";
+        registerModal.classList.remove("is-shown-flex");
+        registerModal.classList.add("is-hidden");
       }
     });
   }
 
   // Escキーで閉じる
-  document.addEventListener("keydown", (e) => {
-    if (e.key === "Escape" && registerModal.style.display === "flex") {
-      registerModal.style.display = "none";
-    }
-  });
+  if (!registerModal.dataset.listenerAdded) {
+    document.addEventListener("keydown", (e) => {
+      if (e.key === "Escape" && registerModal.classList.contains("is-shown-flex")) {
+        registerModal.classList.remove("is-shown-flex");
+        registerModal.classList.add("is-hidden");
+      }
+    });
+    registerModal.dataset.listenerAdded = "true";
+  }
 });

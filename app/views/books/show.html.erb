@@ -42,7 +42,7 @@
                 </button>
 
                 <%# 読書状況変更セレクトボックス %>
-                <%= form_with model: @reading_log, url: update_reading_status_path(@reading_log), method: :patch, class: "book-detail__status-form", local: true do |f| %>
+                <%= form_with model: @reading_log, url: update_reading_status_path(@reading_log), method: :patch, class: "book-detail__status-form is-hidden", local: true do |f| %>
                   <div class="c-register-modal__select-wrap">
                     <%= f.select :reading_status, [
                       ["既読", "read"],
@@ -72,7 +72,7 @@
         </p>
 
         <%# 著者お気に入り登録モーダル %>
-        <div class="c-fav-author-modal">
+        <div class="c-fav-author-modal is-hidden">
           <div class="c-fav-author-modal__content">
             <p class="l-mb-16"><span id="authorName"></span> をお気に入りに追加しますか？</p>
             <%= form_with url: favorite_authors_path, method: :post, local: true, id: "favAuthorForm", class: "l-mb-16" do |f| %>
@@ -156,7 +156,7 @@
         編集する
       </button>
 
-      <div class="c-edit-form book-detail__comment-form">
+      <div class="c-edit-form book-detail__comment-form is-hidden">
         <%= form_with model: @reading_log, url: update_comment_reading_log_path(@reading_log), method: :patch, class: "c-edit-form__form", local: true do |f| %>
           <div class="c-edit-form__field">
             <%= f.text_area :comment, rows: 3, placeholder: "コメントを編集", class: "c-edit-form__textarea" %>
