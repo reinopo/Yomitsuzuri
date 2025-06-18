@@ -15,23 +15,6 @@ class BooksController < ApplicationController
   year  = params[:published_date_year].presence&.to_i
   month = params[:published_date_month].presence&.to_i
 
-  # if year.present?
-  #   begin
-  #     date = if params[:published_date_month].blank?
-  #             Date.new(year)
-  #           elsif params[:published_date_day].blank?
-  #             Date.new(year, month)
-  #           else
-  #             Date.new(year, month, day)
-  #           end
-
-  #     @book.published_date = date
-  #   rescue ArgumentError
-  #     flash[:alert] = "無効な日付です"
-  #     return redirect_to @book
-  #   end
-  # end
-
   if year.zero? || month.zero?
     flash.now[:alert] = "出版年と月は必須です。"
     render :show and return
