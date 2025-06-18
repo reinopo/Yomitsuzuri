@@ -114,6 +114,46 @@
     }
   }
 
+  // 出版年入力フォーム
+  &__published-date-label {
+    display: inline-block;
+    color: var(--color-font-gray);
+    font-size: 14px;
+    margin: 8px 0 4px 0;
+  }
+
+  &__published-date-selects {
+    display: flex;
+    align-items: flex-end;
+    gap: 8px;
+  }
+
+  &__published-date-select {
+    font-size: 12px;
+    border: 1px solid var(--color-border-base--light);
+    border-radius: 4px;
+    cursor: pointer;
+    padding: 2px 8px;
+
+    @media (any-hover: hover) {
+      &:hover {
+        border: 1px solid var(--color-border-base);
+      }
+    }
+  }
+
+  &__published-date-submit {
+    font-size: 12px;
+    border-bottom: 1px solid var(--color-border-base);
+
+    @media (any-hover: hover) {
+      &:hover {
+        color: var(--color-font-black);
+        border-bottom: 1px solid var(--color-font-black);
+      }
+    }
+  }
+
   &__description {
     margin-top: 16px;
   }

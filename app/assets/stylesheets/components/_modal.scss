@@ -176,8 +176,8 @@
   z-index: 9999;
 
   &__content {
-    background: white;
-    padding: 30px;
+    background: var(--color-bg-white);
+    padding: 40px 30px 30px 30px;
     border-radius: 10px;
     text-align: center;
   }

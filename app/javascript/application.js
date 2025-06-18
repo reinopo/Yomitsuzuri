@@ -88,20 +88,6 @@ document.addEventListener("turbo:load", () => {
   }
 });
 
-// ------------------------
-// コメント編集フォーム表示
-// ------------------------
-document.addEventListener("turbo:load", () => {
-  const editBtn = document.querySelector(".book-detail__edit-btn");
-  const form = document.querySelector(".book-detail__comment-form");
-
-  if (editBtn && form) {
-    editBtn.addEventListener("click", () => {
-      form.style.display = form.style.display === "block" ? "none" : "block";
-    });
-  }
-});
-
 // ------------------
 // 著者お気に入り登録
 // ------------------
@@ -123,6 +109,54 @@ document.addEventListener("turbo:load", () => {
   document.querySelector(".c-fav-author-modal__close")?.addEventListener("click", () => {
     modal.style.display = "none";
   });
+
+  // モーダルの外側クリックでモーダルを閉じる
+  if (modal) {
+    modal.addEventListener("click", (e) => {
+      if (e.target === modal) {
+        modal.style.display = "none";
+      }
+    });
+  }
+
+  // Escキーでモーダルを閉じる
+  document.addEventListener("keydown", (e) => {
+    if (e.key === "Escape" && modal.style.display === "flex") {
+      modal.style.display = "none";
+    }
+  });
+});
+
+// ----------------------
+// 出版年バリデーション
+// ----------------------
+document.addEventListener("turbo:load", () => {
+  const form = document.querySelector(".book-detail__published-date-form");
+  if (!form) return;
+
+  form.addEventListener("submit", (e) => {
+    const year = document.querySelector("select[name='published_date_year']").value;
+    const month = document.querySelector("select[name='published_date_month']").value;
+
+    if (!year || !month) {
+      e.preventDefault();
+      alert("出版年と月は必須です");
+    }
+  });
+});
+
+// ------------------------
+// コメント編集フォーム表示
+// ------------------------
+document.addEventListener("turbo:load", () => {
+  const editBtn = document.querySelector(".book-detail__edit-btn");
+  const form = document.querySelector(".book-detail__comment-form");
+
+  if (editBtn && form) {
+    editBtn.addEventListener("click", () => {
+      form.style.display = form.style.display === "block" ? "none" : "block";
+    });
+  }
 });
 
 // ----------------------
