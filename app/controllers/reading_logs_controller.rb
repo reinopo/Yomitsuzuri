@@ -33,13 +33,14 @@ class ReadingLogsController < ApplicationController
       # 1冊の本の情報をbookテーブルに追加 → 2人の著者の情報をauthorテーブルに追加 → 2つの組み合わせの情報をauthorshipテーブルに追加
 
       puts "🟡 ここから ReadingLog を保存"
-      reading_log = current_user.reading_logs.find_or_create_by!(book: @book)
+      reading_log = current_user.reading_logs.find_or_initialize_by(book: @book)
 
-      # 読書状況とコメントは更新（すでに存在していれば更新、なければcreate時に入る）
-      reading_log.update!(
-        reading_status: status,
-        comment: comment
-      )
+      status = params[:reading_status]
+      status = nil if status.blank? || !%w[0 1 2].include?(status)
+
+      reading_log.reading_status = status if status.present?
+      reading_log.comment = comment
+      reading_log.save!
 
       # 引用メモ（複数）をcitationテーブルに追加（常に新規追加）
       reading_log.citations.create!(content: citation_param) if citation_param.present?
@@ -49,6 +50,7 @@ class ReadingLogsController < ApplicationController
       respond_to do |format|
         format.turbo_stream
       end
+
     end
 
   # 登録失敗時の処理

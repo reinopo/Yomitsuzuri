@@ -90,8 +90,8 @@
             <%= f.label :reading_status, "読書状況", class: "c-register-modal__textarea-label" %>
             <div class="c-register-modal__select-wrap">
               <%= f.select :reading_status,
-                            [["選択してください", nil], ["既読", 0], ["未読", 1], ["積読", 2]],
-                            { include_blank: false },
+                            [["既読", 0], ["未読", 1], ["積読", 2]],
+                            { prompt: "選択してください" },
                             class: "c-register-modal__status" %>
             </div>
           </div>
