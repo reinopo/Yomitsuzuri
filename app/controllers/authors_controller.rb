@@ -24,6 +24,11 @@ class AuthorsController < ApplicationController
     end
 
     @books_without_year = books.reject { |b| b.published_date.present? }.sort_by(&:created_at).reverse
+
+    # 各 book に対する current_user の reading_log をハッシュ形式で取得
+    @reading_logs_by_book_id = current_user.reading_logs
+                                            .where(book_id: books.map(&:id))
+                                            .index_by(&:book_id)
   end
 
 end

@@ -21,9 +21,8 @@
 
   &__year-group {
     display: flex;
-    margin-bottom: 2rem;
-    border-top: 1px solid #ccc;
-    padding-top: 1rem;
+    border-top: 1px solid var(--color-border-base--light);
+    padding: 16px 0;
   }
 
   &__year {
@@ -40,55 +39,50 @@
   }
 
   &__book-item {
+    width: 100%;
     display: flex;
     align-items: center;
-    justify-content: space-between;
-    gap: 12px;
-    padding: 8px 0;
-  }
-
-  &__year-label {
-    width: 40px;
-    font-size: 0.9rem;
-    color: #555;
-  }
-
-  &__thumbnail img {
-    width: 40px;
-    height: auto;
-    border: 1px solid #ccc;
-    border-radius: 4px;
+    gap: 16px;
   }
 
   &__info {
-    flex-grow: 1;
     display: flex;
-    flex-direction: column;
-    gap: 4px;
+    align-items: center;
+    width: 40%;
+    gap: 16px;
+  }
+
+  &__thumbnail-img {
+    display: block;
+    width: 60px;
+    height: auto;
+    border-radius: 4px;
   }
 
   &__title {
-    font-size: 1rem;
-    font-weight: bold;
-    color: #333;
-    text-decoration: none;
-
-    &:hover {
-      text-decoration: underline;
-    }
+    width: calc(100% - 76px);
   }
 
   &__status {
-    font-size: 0.8rem;
-    color: #666;
+    min-width: 100px;
+    flex: 0 0 20%;
   }
 
-  &__registered-at {
-    font-size: 0.75rem;
-    color: #aaa;
+  &__status-content {
+    width: 100%;
+  }
+
+  &__read-at {
+    font-size: 14px;
+    color: var(--color-font-gray);
     white-space: nowrap;
-    min-width: 80px;
+    width: 40%;
     text-align: right;
+
+    &--blank {
+      display: block;
+      visibility: hidden;
+    }
   }
 
   &__input-button {

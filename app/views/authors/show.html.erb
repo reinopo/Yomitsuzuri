@@ -10,30 +10,70 @@
   <div class="author__wrap l-container--s">
     <h1 class="author__name"><%= @author.name %></h1>
 
+    <%# 年別グループ %>
     <% @books_with_year.each do |year, books| %>
       <section class="author__year-group">
         <h2 class="author__year"><%= year %></h2>
         <ul class="author__book-list">
+
+          <%# 作品 %>
           <% books.each do |book| %>
             <li class="author__book-item">
-              <div class="author__thumbnail">
-                <%= image_tag book.thumbnail_link, size: "40x60" %>
-              </div>
+
+              <%# info(サムネ・タイトル) %>
               <div class="author__info">
-                <%= link_to book.title, book_path(book), class: "author__title" %>
-                <div class="author__status">
-                  <!-- 作品ページで使ってる表示を部分テンプレートで再利用 -->
-                  <%# <%= render partial: "shared/reading_status", locals: { book: book } %>
+                <div class="author__thumbnail">
+                  <%= image_tag book.thumbnail_link, size: "60x90", class: "author__thumbnail-img" %>
                 </div>
+
+                <%= link_to book.title, book_path(book), class: "c-works__title--link author__title" %>
               </div>
-              <div class="author__registered-at">
-                登録：<%= book.reading_logs.find_by(user: current_user)&.created_at&.strftime("%Y/%m/%d") %>
+              <%# info(タイトル) end %>
+
+              <%# 読書状況を表示 %>
+              <div class="author__status">
+                <% reading_log = @reading_logs_by_book_id[book.id] %>
+
+                <% if reading_log %>
+                  <% status_class = case reading_log.reading_status
+                    when "read" then "read"
+                    when "unread" then "unread"
+                    when "stacked" then "stacked"
+                    else nil
+                  end %>
+
+                  <div class="c-status-label__wrap author__status-content">
+                    <% if status_class.present? %>
+                      <span class="c-status-label__status c-status-label__status--<%= status_class %>">
+                        <%= reading_log.reading_status_label %>
+                      </span>
+                    <% else %>
+                      <span class="c-status-label__status c-status-label__status--unset">未設定</span>
+                    <% end %>
+                  </div>
+                <% end %>
               </div>
+              <%# 読書状況を表示 end %>
+
+              <%# 読了日 %>
+              <% reading_log = book.reading_logs.find_by(user: current_user) %>
+              <% if reading_log&.read? && reading_log.read_at.present? %>
+                <div class="author__read-at">
+                  読了日：<%= reading_log.read_at.strftime("%Y/%m/%d") %>
+                </div>
+              <% else %>
+                <span class="author__read-at author__read-at--blank">読了日なし</span>
+              <% end %>
+              <%# 読了日 end %>
+
             </li>
           <% end %>
+          <%# 作品 end %>
+
         </ul>
       </section>
     <% end %>
+    <%# 年別グループ end %>
 
     <% if @books_without_year.present? %>
       <section class="author__year-group author__year-group--unknown">

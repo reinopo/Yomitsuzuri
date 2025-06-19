@@ -2,8 +2,8 @@
 // 読書状況変更ボタン
 // ------------------
 document.addEventListener("turbo:load", () => {
-  const editBtn = document.querySelector(".book-detail__edit-icon");
-  const form = document.querySelector(".book-detail__status-form");
+  const editBtn = document.querySelector(".c-status-edit__icon");
+  const form = document.querySelector(".c-status-edit__form");
 
   if (editBtn && form) {
     // トグル開閉処理
