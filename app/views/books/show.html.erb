@@ -85,7 +85,7 @@
 
         <%# 出版年 %>
         <% if @book.published_date.present? %>
-          <p class="book-detail__published-date"><%= @book.published_date.strftime("%Y/%m") %></p>
+          <p class="book-detail__published-date"><%= Date.parse(@book.published_date).strftime("%Y/%m") %></p>
         <% else %>
           <div class="book-detail__published-date-form-wrap">
             <%= form_with model: @book,
