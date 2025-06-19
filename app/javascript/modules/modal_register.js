@@ -65,7 +65,7 @@ document.addEventListener("turbo:load", () => {
   }
 
   // Escキーで閉じる
-  if (!registerModal.dataset.listenerAdded) {
+  if (registerModal && !registerModal.dataset.listenerAdded) {
     document.addEventListener("keydown", (e) => {
       if (e.key === "Escape" && registerModal.classList.contains("is-shown-flex")) {
         registerModal.classList.remove("is-shown-flex");

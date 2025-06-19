@@ -1,10 +1,84 @@
-<h1>Authors#show</h1>
-<p>Find me in app/views/authors/show.html.erb</p>
+<section class="author">
+  <%# フラッシュ %>
+  <% flash.each do |type, message| %>
+    <div class="c-flash c-flash--<%= type %> author__wrap l-container--s">
+      <span><%= message %></span>
+      <button type="button" class="c-flash__close" aria-label="閉じる">&times;</button>
+    </div>
+  <% end %>
 
-<%# フラッシュ %>
-    <% flash.each do |type, message| %>
-      <div class="c-flash c-flash--<%= type %> book-detail__wrap l-container--s">
-        <span><%= message %></span>
-        <button type="button" class="c-flash__close" aria-label="閉じる">&times;</button>
-      </div>
+  <div class="author__wrap l-container--s">
+    <h1 class="author__name"><%= @author.name %></h1>
+
+    <% @books_with_year.each do |year, books| %>
+      <section class="author__year-group">
+        <h2 class="author__year"><%= year %></h2>
+        <ul class="author__book-list">
+          <% books.each do |book| %>
+            <li class="author__book-item">
+              <div class="author__thumbnail">
+                <%= image_tag book.thumbnail_link, size: "40x60" %>
+              </div>
+              <div class="author__info">
+                <%= link_to book.title, book_path(book), class: "author__title" %>
+                <div class="author__status">
+                  <!-- 作品ページで使ってる表示を部分テンプレートで再利用 -->
+                  <%# <%= render partial: "shared/reading_status", locals: { book: book } %>
+                </div>
+              </div>
+              <div class="author__registered-at">
+                登録：<%= book.reading_logs.find_by(user: current_user)&.created_at&.strftime("%Y/%m/%d") %>
+              </div>
+            </li>
+          <% end %>
+        </ul>
+      </section>
     <% end %>
+
+    <% if @books_without_year.present? %>
+      <section class="author__year-group author__year-group--unknown">
+        <h2 class="author__year">出版年未登録</h2>
+        <ul class="author__book-list">
+          <% @books_without_year.each do |book| %>
+            <li class="author__book-item">
+              <div class="book-detail__published-date-form-wrap">
+                <%= form_with model: book,
+                              url: book_path(book),
+                              method: :patch,
+                              local: true,
+                              class: "book-detail__published-date-form" do |f| %>
+                  <%= f.label :published_date, "出版年を入力", class: "book-detail__published-date-label" %><br>
+                  
+                  <div class="book-detail__published-date-selects">
+                    <%= select_tag "published_date_year",
+                        options_for_select((1800..Date.today.year).to_a.reverse),
+                        include_blank: "年",
+                        class: "book-detail__published-date-select" %>
+                    <%= select_tag "published_date_month",
+                        options_for_select((1..12).to_a),
+                        include_blank: "月",
+                        class: "book-detail__published-date-select" %>
+                    <%= f.submit "保存", class: "book-detail__published-date-submit" %>
+                  </div>
+                <% end %>
+              </div>
+              <div class="author__thumbnail">
+                <%= image_tag book.thumbnail_link, size: "40x60" %>
+              </div>
+              <div class="author__info">
+                <%= link_to book.title, book_path(book), class: "author__title" %>
+                <div class="author__status">
+                  <%# <%= render partial: "shared/reading_status", locals: { book: book } %>
+                </div>
+              </div>
+              <div class="author__registered-at">
+                登録：<%= book.reading_logs.find_by(user: current_user)&.created_at&.strftime("%Y/%m/%d") %>
+              </div>
+            </li>
+          <% end %>
+        </ul>
+      </section>
+    <% end %>
+
+  </div>
+</section>

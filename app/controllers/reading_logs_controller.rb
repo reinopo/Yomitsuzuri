@@ -3,31 +3,45 @@ class ReadingLogsController < ApplicationController
 
   def create
     # puts "📘 createアクション入った！"
+    puts "🔍 params[:book_published_date] = #{params[:book_published_date].inspect}"
     book = nil
 
     ActiveRecord::Base.transaction do
       # 1. JSでフォームから送られてきた値を取得
       google_id = params[:book_google_id].to_s.strip
       comment = params[:reading_log][:comment]
-      # citation = params[:reading_log][:citation]
       citation_param = params[:reading_log][:citation]
       status = params[:reading_log][:reading_status].to_i
 
     # 2. 選択された本がすでにDBにあるかを google_id を元に確認し、なければインスタンス作成
-      @book = Book.find_or_initialize_by(google_id: google_id)
+      # モーダルボタンに仕込んだdata属性から本の情報をJSが取得してhidden fieldに入れて送信。その送信された値をまとめて代入して DB に保存
 
-      # 選択された本が DB にない場合
-      unless @book.persisted?
-        # モーダルボタンに仕込んだdata属性から本の情報をJSが取得してhidden fieldに入れて送信。その送信された値をまとめて代入して DB に保存
-        @book.assign_attributes(
-          isbn: params[:book_isbn],
-          title: params[:book_title],
-          published_date: params[:book_published_date],
-          thumbnail_link: params[:book_image_url],
-          description: params[:book_description]
-        )
-        @book.save!
-      end
+      # 🔽 Bookは必ず存在する前提（search時に登録済み）
+      @book = Book.find_by!(google_id: google_id)
+      # # 既存の本があるかどうか確認（この1回でOK）
+      # existing_book = Book.find_by(google_id: google_id)
+
+      # # もし存在すればその本を使う（保存はしない）
+      # if existing_book
+      #   puts "🧪 既存のBookを使用：#{existing_book.title}"
+      #   @book = existing_book
+      # else
+      #   puts "✅ 新規Bookを保存します"
+      #   # なければ新規作成（parsed_date含めて）
+      #   puts "✅"
+      #   @book = Book.new(
+      #     google_id: google_id,
+      #     isbn: params[:book_isbn],
+      #     title: params[:book_title],
+      #     published_date: parsed_date,
+      #     thumbnail_link: params[:book_image_url],
+      #     description: params[:book_description]
+      #   )
+      #   @book.save!
+      #   puts "✅ Book saved: #{@book.title}"
+
+      #   puts "✅ published_date after save: #{@book.published_date.inspect}"
+      # end
 
     # 3. 著者情報を保存
       if params[:book_authors].present?
@@ -44,21 +58,6 @@ class ReadingLogsController < ApplicationController
       # 1冊の本の情報をbookテーブルに追加 → 2人の著者の情報をauthorテーブルに追加 → 2つの組み合わせの情報をauthorshipテーブルに追加
 
       puts "🟡 ここから ReadingLog を保存"
-
-    # 4. ユーザーに紐づいた ReadingLog を作成
-      # puts "📘 Book ID: #{@book.id}"
-      # reading_log = current_user.reading_logs.find_or_initialize_by(book: @book)
-      # # puts "📘 ReadingLog new?: #{reading_log.new_record?}, ID: #{reading_log.id}"
-      # # puts "🧾 ログ：#{reading_log.inspect}"
-      # # puts "🟢 新規？: #{reading_log.new_record?}"
-      # reading_log.assign_attributes(
-      #   reading_status: status,
-      #   comment: comment,
-      #   citation: citation
-      # )
-      # reading_log.save!
-      # # puts "✅ Saved ReadingLog ID: #{reading_log.id}"
-
       reading_log = current_user.reading_logs.find_or_create_by!(book: @book)
 
       # 読書状況とコメントは更新（すでに存在していれば更新、なければcreate時に入る）
