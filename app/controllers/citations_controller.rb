@@ -13,6 +13,6 @@ class CitationsController < ApplicationController
   private
 
   def citation_params
-    params.require(:citation).permit(:content)
+    params.require(:citation).permit(:content, :page_number)
   end
 end

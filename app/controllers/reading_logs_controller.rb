@@ -29,6 +29,8 @@ class ReadingLogsController < ApplicationController
         end
       end
 
+      puts "🟡 citations: #{params[:reading_log][:citations].inspect}"
+
       # 2人で書いた1冊の本の情報を保存する時の流れ↓
       # 1冊の本の情報をbookテーブルに追加 → 2人の著者の情報をauthorテーブルに追加 → 2つの組み合わせの情報をauthorshipテーブルに追加
 
@@ -42,14 +44,21 @@ class ReadingLogsController < ApplicationController
       reading_log.comment = comment
       reading_log.save!
 
-      # 引用メモ（複数）をcitationテーブルに追加（常に新規追加）
-      reading_log.citations.create!(content: citation_param) if citation_param.present?
-
-      # 登録成功時には、create.turbo_stream.erbの中身を実行
+      # 引用メモ（複数）を citation テーブルに追加（常に新規追加）
+      citation = params[:reading_log][:citations]
+      if citation.present? && citation["content"].present?
+        reading_log.citations.create!(
+          content: citation["content"],
+          page_number: citation["page_number"]
+        )
+      end
+      
+      # 登録成功時には create.turbo_stream.erb の中身を実行
       flash.now[:register_success_notice] = "#{@book.title} を登録しました！"
       respond_to do |format|
         format.turbo_stream
       end
+
 
     end
 
@@ -76,6 +85,14 @@ class ReadingLogsController < ApplicationController
     else
       redirect_to book_path(@reading_log.book), flash: { reading_log_alert: "更新に失敗しました。" }
     end
+  end
+
+  def reading_log_params
+    params.require(:reading_log).permit(
+      :comment,
+      :reading_status,
+      citations_attributes: [:content, :page_number]
+    )
   end
 
   def update

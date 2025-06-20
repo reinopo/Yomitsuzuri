@@ -1,5 +1,4 @@
 .c-edit-form {
-  margin-top: 32px;
   padding: 0 32px;
 
   &__field {
@@ -19,6 +18,30 @@
     padding: 8px;
     font-size: 14px;
     resize: vertical;
+
+    &:focus {
+      border: 1px solid var(--color-border-base);
+    }
+  }
+
+  &__flex {
+    display: flex;
+    align-items: flex-end;
+    gap: 24px;
+
+    .c-edit-form__field {
+      margin-bottom: 0;
+    }
+  }
+
+  &__input {
+    width: 160px;
+    border: 1px solid var(--color-border-base--light);
+    border-radius: 4px;
+    padding: 8px;
+    font-size: 14px;
+    resize: vertical;
+    cursor: pointer;
 
     &:focus {
       border: 1px solid var(--color-border-base);

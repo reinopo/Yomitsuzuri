@@ -63,6 +63,8 @@
 
       <div class="c-register-modal__content">
         <img class="c-register-modal__book-image" src="" alt="本の表紙画像" />
+
+        <%# 登録フォーム %>
         <%= form_with url: reading_logs_path,
                       method: :post,
                       local: false,
@@ -78,16 +80,25 @@
           <%= hidden_field_tag :isbn %>
 
           <div class="c-register-modal__textarea-wrap">
-            <%= f.label :comment, "コメント", class: "c-register-modal__textarea-label" %>
+            <%= f.label :comment, "コメント", class: "c-register-modal__label" %>
             <%= f.text_area :comment, id: "comment", placeholder: "あなたの考えを記しておきましょう", class: "c-register-modal__textarea" %>
             <%# scopeにreading_logを設定しているので、name="reading_log[comment]"と同じ %>
           </div>
-          <div class="c-register-modal__textarea-wrap">
-            <%= f.label :citation, "引用メモ", class: "c-register-modal__textarea-label" %>
-            <%= f.text_area :citation, id: "citation", placeholder: "心に残った文章を書き留めておきましょう", class: "c-register-modal__textarea" %>
-          </div>
+
+          <%= f.fields_for :citations do |cf| %>
+            <div class="c-register-modal__textarea-wrap">
+              <%= cf.label :content, "引用メモ", class: "c-register-modal__label" %>
+              <%= cf.text_area :content, id: "content", placeholder: "心に残った文章を書き留めておきましょう", class: "c-register-modal__textarea" %>
+
+              <div class="c-register-modal__input-wrap">
+                <%= cf.label :page_number, "ページ番号", class: "c-register-modal__label" %>
+                <%= cf.text_field :page_number, id: "page_number", placeholder: "例：p.123 または 45-46", class: "c-register-modal__input" %>
+              </div>
+            </div>
+          <% end %>
+
           <div>
-            <%= f.label :reading_status, "読書状況", class: "c-register-modal__textarea-label" %>
+            <%= f.label :reading_status, "読書状況", class: "c-register-modal__label" %>
             <div class="c-register-modal__select-wrap">
               <%= f.select :reading_status,
                             [["既読", 0], ["未読", 1], ["積読", 2]],
@@ -97,6 +108,8 @@
           </div>
           <%= f.submit "登録する", class: "c-register-modal__submit c-button c-button--medium c-button--center c-button--white" %>
         <% end %>
+        <%# 登録フォーム end %>
+
       </div>
       <button type="button" class="c-register-modal__close">閉じる</button>
     </div>
