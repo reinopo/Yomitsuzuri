@@ -53,3 +53,15 @@
       }
     }
 }
+
+.c-delete-link {
+  font-size: 14px;
+  text-decoration: underline;
+  text-underline-offset: 4px;
+
+  @media (any-hover: hover) {
+      &:hover {
+        color: var(--color-font-black);
+      }
+    }
+}

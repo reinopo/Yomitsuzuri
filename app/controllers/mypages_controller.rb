@@ -2,7 +2,7 @@ class MypagesController < ApplicationController
   layout "mypage"
   
   def show
-    redirect_to mypage_home_path
+    redirect_to home_mypage_path
   end
 
   def home

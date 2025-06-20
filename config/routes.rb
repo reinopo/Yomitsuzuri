@@ -28,7 +28,6 @@ Rails.application.routes.draw do
 
   # その他カスタムルート
   get 'home/index' => 'home#index'
-  get 'search/index' => 'search#index'
 
   # ルートパス
   root 'home#index'

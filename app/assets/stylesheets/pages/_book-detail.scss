@@ -86,12 +86,10 @@
   &__comment-form {
     margin-top: 8px;
   }
-}
 
-.book-detail__publish-form {
-  margin-top: 8px;
-  display: flex;
-  align-items: center;
-  gap: 8px;
-  font-size: 14px;
+  &__link-wrap {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+  }
 }

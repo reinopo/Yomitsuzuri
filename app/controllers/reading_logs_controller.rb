@@ -98,6 +98,13 @@ class ReadingLogsController < ApplicationController
   def update
   end
 
+  def mypage
+    @reading_logs = current_user.reading_logs.includes(:book)
+  end
+
   def destroy
+    reading_log = current_user.reading_logs.find(params[:id])
+    reading_log.destroy
+    redirect_to mypage_path, notice: "登録を削除しました。"
   end
 end
