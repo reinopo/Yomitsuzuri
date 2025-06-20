@@ -2,6 +2,10 @@
 /* home-search */
 /* -------------------- */
 .home-search {
+  &__inner {
+    text-align: center;
+  }
+  
   &__search {
     justify-content: center;
   }

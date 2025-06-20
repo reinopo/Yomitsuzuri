@@ -2,7 +2,7 @@ class SearchController < ApplicationController
   # ビューからリクエストを受け取り、空文字ならエラーを返し、そうでなければBookSearchServiceを呼び出す
   def index
     if params[:q].blank?
-      flash.now[:danger] = '検索ワードを入力してください'
+      flash.now[:search_error] = '！入力してください'
       @google_books = []
     else
       @google_books = BookSearchService.new(params[:q]).call

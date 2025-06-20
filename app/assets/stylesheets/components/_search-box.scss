@@ -3,6 +3,66 @@
   align-items: center;
   height: 40px;
 
+  &--center {
+    justify-content: center;
+  }
+
+  &__wrap {
+    display: inline-block;
+    position: relative; //.c-search__warning-wrapに対して
+  }
+
+  &__warning-wrap {
+    position: absolute; //.c-search__wrapに対して
+    left: -148px;
+    top: 50%;
+    transform: translateY(-50%);
+  }
+
+  &__warning {
+    position: relative;
+    display: inline-block;
+    width: 120px;
+    margin-right: 16px;
+    padding: 4px;
+    border: 1px solid var(--color-font-caution);
+    border-radius: 4px;
+    background-color: var(--color-bg-white);
+    text-align: center;
+    font-size: 12px;
+    font-weight: 400;
+    line-height: 1.5;
+    color: var(--color-font-caution);
+    transition: opacity 0.5s ease;
+    opacity: 1;
+
+    &::before {
+      content: "";
+      position: absolute;
+      top: 50%;
+      right: 0;
+      border-style: solid;
+      border-width: 4px 0 4px 16px;
+      border-color: transparent transparent transparent var(--color-font-caution);
+      translate: 100% -50%;
+    }
+
+    &::after {
+      content: "";
+      position: absolute;
+      top: 50%;
+      right: 0;
+      border-style: solid;
+      border-width: 3px 0 3px 11.9px;
+      border-color: transparent transparent transparent var(--color-border-white);
+      translate: 100% -50%;
+    }
+
+    &.is-fading-out {
+      opacity: 0;
+    }
+  }
+
   &__text-field {
     display: block;
     width: 300px;
