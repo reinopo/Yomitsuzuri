@@ -1,14 +1,26 @@
 <section class="author">
   <%# フラッシュ %>
-  <% flash.each do |type, message| %>
-  <div class="c-flash c-flash--<%= type %> author__wrap l-container--s">
-    <span><%= message %></span>
-    <button type="button" class="c-flash__close" aria-label="閉じる">&times;</button>
-  </div>
+  <% if flash[:favorite_notice] %>
+    <div class="c-flash author__wrap l-container--s">
+      <span><%= flash[:favorite_notice] %></span>
+      <button type="button" class="c-flash__close" aria-label="閉じる">&times;</button>
+    </div>
   <% end %>
+  <%# フラッシュ end %>
 
   <div class="author__wrap l-container--s">
     <h1 class="author__name"><%= @author.name %></h1>
+
+    <%# 読了率 %>
+    <div class="author__progress-bar">
+      <div class="author__progress-label">
+        読了率：<%= @read_ratio %>%（<%= @read_books_count %> / <%= @total_books %> 冊）
+      </div>
+      <div class="author__progress-track">
+        <div class="author__progress-fill" style="--progress-width: <%= @read_ratio %>%"></div>
+      </div>
+    </div>
+    <%# 読了率 end %>
 
       <%# 年別グループ %>
       <% @books_with_year.each do |year, books| %>

@@ -1,11 +1,19 @@
 <section class="book-detail">
   <%# フラッシュ %>
-    <% flash.each do |type, message| %>
-    <div class="c-flash c-flash--<%= type %> book-detail__wrap l-container--s">
-      <span><%= message %></span>
+  <% if flash[:reading_log_notice] %>
+    <div class="c-flash c-flash--notice book-detail__wrap l-container--s">
+      <span><%= flash[:reading_log_notice] %></span>
       <button type="button" class="c-flash__close" aria-label="閉じる">&times;</button>
     </div>
-    <% end %>
+  <% end %>
+
+  <% if flash[:reading_log_alert] %>
+    <div class="c-flash c-flash--alert book-detail__wrap l-container--s">
+      <span><%= flash[:reading_log_alert] %></span>
+      <button type="button" class="c-flash__close" aria-label="閉じる">&times;</button>
+    </div>
+  <% end %>
+  <%# フラッシュ end %>
 
   <div class="book-detail__wrap l-container--s">
     <%# 作品情報 %>

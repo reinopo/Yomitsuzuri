@@ -1,8 +1,23 @@
 class AuthorsController < ApplicationController
   def show
     @author = Author.find(params[:id])
-    books = @author.books.includes(:reading_logs).where(reading_logs: { user_id: current_user.id })
+    books = @author.books
+                  .includes(:reading_logs)
+                  .where(reading_logs: { user_id: current_user.id })
 
+    # 読了率
+    @total_books = books.count
+    @read_books_count = books.select { |book|
+      book.reading_logs.find_by(user_id: current_user)&.reading_status == "read"
+    }.count
+
+    @read_ratio = if @total_books > 0
+                    (@read_books_count.to_f / @total_books * 100).round
+                  else
+                    0
+                  end
+
+    # 年別表示
     books_with_date = books.select { |b| b.published_date.present? }
 
     # 日付変換できるものだけに絞り、日付で並べる
