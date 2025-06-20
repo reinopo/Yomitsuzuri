@@ -22,17 +22,23 @@
   &__year-group {
     display: flex;
     border-top: 1px solid var(--color-border-base--light);
-    padding: 16px 0;
+    padding: 16px 24px;
   }
 
   &__year {
-    width: 100px;
-    font-size: 20px;
-    font-weight: bold;
+    width: 140px;
+    font-family: var(--font-family-number);
+    font-size: 24px;
+    font-weight: 400;
+
+    &--unknown {
+      font-family: var(--font-family-base);
+      font-size: 16px;
+    }
   }
 
   &__book-list {
-    width: calc(100% - 100px);
+    width: calc(100% - 140px);
     display: flex;
     flex-direction: column;
     gap: 12px;
@@ -47,8 +53,8 @@
 
   &__info {
     display: flex;
-    align-items: center;
-    width: 40%;
+    align-items: flex-start;
+    width: 50%;
     gap: 16px;
   }
 
@@ -64,19 +70,36 @@
   }
 
   &__status {
-    min-width: 100px;
-    flex: 0 0 20%;
+    width: 10%;
   }
 
   &__status-content {
     width: 100%;
+    justify-content: center;
+  }
+
+  &__citation-count {
+    width: 20%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 2px;
+  }
+
+  &__citation-text {
+    font-size: 14px;
+
+    &--blank {
+      display: block;
+      color: var(--color-font-gray);
+      font-size: 12px;
+    }
   }
 
   &__read-at {
     font-size: 14px;
-    color: var(--color-font-gray);
     white-space: nowrap;
-    width: 40%;
+    width: 20%;
     text-align: right;
 
     &--blank {

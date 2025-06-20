@@ -20,6 +20,8 @@ class MypagesController < ApplicationController
                         @favorite_authors.sort_by { |fa| fa.author.name }
                       when "recent"
                         @favorite_authors.order(created_at: :desc)
+                      when "old"
+                        @favorite_authors.order(created_at: :asc)
                       else
                         @favorite_authors.order(:id) # デフォルト
                       end

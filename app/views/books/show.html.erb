@@ -1,22 +1,24 @@
 <section class="book-detail">
   <%# フラッシュ %>
     <% flash.each do |type, message| %>
-      <div class="c-flash c-flash--<%= type %> book-detail__wrap l-container--s">
-        <span><%= message %></span>
-        <button type="button" class="c-flash__close" aria-label="閉じる">&times;</button>
-      </div>
+    <div class="c-flash c-flash--<%= type %> book-detail__wrap l-container--s">
+      <span><%= message %></span>
+      <button type="button" class="c-flash__close" aria-label="閉じる">&times;</button>
+    </div>
     <% end %>
 
   <div class="book-detail__wrap l-container--s">
+    <%# 作品情報 %>
     <div class="book-detail__info">
       <div class="book-detail__image">
         <img src="<%= @book.thumbnail_link.presence || asset_path('no-image.jpeg') %>" class="book-detail__image-img" alt="<%= @book.title %> の表紙画像">
       </div>
 
+      <%# 作品テキスト部分 %>
       <div class="book-detail__text">
         <h1 class="c-title-level1 book-detail__title">
           <%= @book.title %>
-          <%# 読書状況が設定されている場合は表示 %>
+          <%# 読書状況 %>
           <% if @reading_log %>
             <% status_class = case @reading_log.reading_status
               when "read" then "read"
@@ -25,51 +27,56 @@
               else nil
             end %>
 
-            <div class="c-status-label__wrap">
-              <% if status_class.present? %>
-                <span class="c-status-label__status c-status-label__status--<%= status_class %>">
-                  <%= @reading_log.reading_status_label %>
-                </span>
-              <% else %>
-                <span class="c-status-label__status c-status-label__status--unset">
-                  未設定
-                </span>
+          <div class="c-status-label__wrap">
+            <% if status_class.present? %>
+            <span class="c-status-label__status c-status-label__status--<%= status_class %>">
+              <%= @reading_log.reading_status_label %>
+            </span>
+            <% else %>
+            <span class="c-status-label__status c-status-label__status--unset">未設定</span>
+            <% end %>
+
+            <%# 読書状況変更 %>
+            <div class="c-status-edit__wrap">
+              <button type="button" class="c-status-edit__icon" aria-label="編集">
+                <svg class="c-status-edit__icon-svg" role="img" xmlns="http://www.w3.org/2000/svg" width="20px" height="20px" viewBox="0 0 24 24" aria-labelledby="newIconTitle" stroke="#3e3e3e" stroke-width="1" stroke-linecap="square" stroke-linejoin="miter" fill="none" color="#3e3e3e"> <title id="newIconTitle">編集</title> <path d="M19 14V22H2.99997V4H13"/> <path d="M17.4608 4.03921C18.2418 3.25817 19.5082 3.25816 20.2892 4.03921L20.9608 4.71079C21.7418 5.49184 21.7418 6.75817 20.9608 7.53921L11.5858 16.9142C11.2107 17.2893 10.702 17.5 10.1716 17.5L7.5 17.5L7.5 14.8284C7.5 14.298 7.71071 13.7893 8.08579 13.4142L17.4608 4.03921Z"/> <path d="M16.25 5.25L19.75 8.75"/> </svg>
+              </button>
+
+              <%= form_with model: @reading_log,
+                            url: update_reading_status_path(@reading_log),
+                            method: :patch,
+                            class: "c-status-edit__form is-hidden",
+                              local: true do |f| %>
+                <div class="c-register-modal__select-wrap">
+                  <%= f.select :reading_status, [
+                    ["既読", "read"],
+                    ["未読", "unread"],
+                    ["積読", "stacked"]
+                  ], {}, class: "c-register-modal__status c-status-edit__select" %>
+                </div>
+                <%= f.submit "保存", class: "c-status-edit__submit" %>
               <% end %>
-
-              <div class="c-status-edit__wrap">
-                <button type="button" class="c-status-edit__icon" aria-label="編集">
-                  <svg class="c-status-edit__icon-svg" role="img" xmlns="http://www.w3.org/2000/svg" width="20px" height="20px" viewBox="0 0 24 24" aria-labelledby="newIconTitle" stroke="#3e3e3e" stroke-width="1" stroke-linecap="square" stroke-linejoin="miter" fill="none" color="#3e3e3e"> <title id="newIconTitle">編集</title> <path d="M19 14V22H2.99997V4H13"/> <path d="M17.4608 4.03921C18.2418 3.25817 19.5082 3.25816 20.2892 4.03921L20.9608 4.71079C21.7418 5.49184 21.7418 6.75817 20.9608 7.53921L11.5858 16.9142C11.2107 17.2893 10.702 17.5 10.1716 17.5L7.5 17.5L7.5 14.8284C7.5 14.298 7.71071 13.7893 8.08579 13.4142L17.4608 4.03921Z"/> <path d="M16.25 5.25L19.75 8.75"/> </svg>
-                </button>
-
-                <%# 読書状況変更セレクトボックス %>
-                <%= form_with model: @reading_log, url: update_reading_status_path(@reading_log), method: :patch, class: "c-status-edit__form is-hidden", local: true do |f| %>
-                  <div class="c-register-modal__select-wrap">
-                    <%= f.select :reading_status, [
-                      ["既読", "read"],
-                      ["未読", "unread"],
-                      ["積読", "stacked"]
-                    ], {}, class: "c-register-modal__status c-status-edit__select" %>
-                  </div>
-                  <%= f.submit "保存", class: "c-status-edit__submit" %>
-                <% end %>
-              </div>
             </div>
+            <%# 読書状況変更 end %>
+          </div>
           <% end %>
+          <%# 読書状況 end %>
         </h1>
 
         
         <%# 著者 %>
         <p class="book-detail__author">
           <% @book.authors.each_with_index do |author, index| %>
-            <% if current_user.favorite_authors.exists?(author_id: author.id) %>
-              <%= link_to author.name, author_path(author), class: "c-works__author--link book-detail__author-link" %>
-            <% else %>
-              <a href="#" class="c-works__author--link book-detail__author-link c-fav-author-modal__open" data-author-id="<%= author.id %>" data-author-name="<%= author.name %>"><%= author.name %></a>
-            <% end %>
-            <%# 著者が複数いるときはカンマ区切り（最後の著者以外） %>
-            <%= ", " unless index == @book.authors.size - 1 %>
+          <% if current_user.favorite_authors.exists?(author_id: author.id) %>
+          <%= link_to author.name, author_path(author), class: "c-works__author--link book-detail__author-link" %>
+          <% else %>
+          <a href="#" class="c-works__author--link book-detail__author-link c-fav-author-modal__open" data-author-id="<%= author.id %>" data-author-name="<%= author.name %>"><%= author.name %></a>
+          <% end %>
+          <%# 著者が複数いるときはカンマ区切り（最後の著者以外） %>
+          <%= ", " unless index == @book.authors.size - 1 %>
           <% end %>
         </p>
+        <%# 著者 %>
 
         <%# 著者お気に入り登録モーダル %>
         <div class="c-fav-author-modal is-hidden">
@@ -82,95 +89,109 @@
             <button class="c-fav-author-modal__close">閉じる</button>
           </div>
         </div>
+        <%# 著者お気に入り登録モーダル end %>
 
         <%# 出版年 %>
         <% if @book.published_date.present? %>
-          <p class="book-detail__published-date"><%= Date.parse(@book.published_date).strftime("%Y/%m") %></p>
+        <p class="book-detail__published-date"><%= Date.parse(@book.published_date).strftime("%Y/%m") %></p>
         <% else %>
-          <div class="book-detail__published-date-form-wrap">
-            <%= form_with model: @book,
-                          url: book_path(@book),
-                          method: :patch,
-                          local: true,
-                          class: "book-detail__published-date-form" do |f| %>
-              <%= f.label :published_date, "出版年を入力", class: "book-detail__published-date-label" %><br>
-              
-              <div class="book-detail__published-date-selects">
-                <%= select_tag "published_date_year",
-                    options_for_select((1800..Date.today.year).to_a.reverse),
-                    include_blank: "年",
-                    class: "book-detail__published-date-select" %>
-                <%= select_tag "published_date_month",
-                    options_for_select((1..12).to_a),
-                    include_blank: "月",
-                    class: "book-detail__published-date-select" %>
-                <%= f.submit "保存", class: "book-detail__published-date-submit" %>
-              </div>
-            <% end %>
-          </div>
+        <div class="c-published-date__form-wrap">
+          <%= form_with model: @book,
+                        url: book_path(@book),
+                        method: :patch,
+                        local: true,
+                        class: "c-published-date__form" do |f| %>
+            <%= f.label :published_date, "出版年を入力", class: "c-published-date__label" %><br>
+            
+            <div class="c-published-date__selects">
+              <%= select_tag "published_date_year",
+                  options_for_select((1800..Date.today.year).to_a.reverse),
+                  include_blank: "年",
+                  class: "c-published-date__select" %>
+              <%= select_tag "published_date_month",
+                  options_for_select((1..12).to_a),
+                  include_blank: "月",
+                  class: "c-published-date__select" %>
+              <%= f.submit "保存", class: "c-published-date__submit" %>
+            </div>
+          <% end %>
+        </div>
         <% end %>
+        <%# 出版年 end %>
 
+        <%# あらすじ %>
         <% if @book.description.present? %>
           <p class="book-detail__description">
             <span class="book-detail__description-title">あらすじ</span>
             <%= @book.description %>
           </p>
         <% end %>
-      </div>
-    </div>
+        <%# あらすじ end %>
 
+      </div>
+      <%# 作品テキスト部分 end %>
+
+    </div>
+    <%# 作品情報 end %>
+
+    <%# 読了日・登録日 %>
     <% if @reading_log %>
-          <div class="book-detail__date-wrap">
-            <% if @reading_log&.read? && @reading_log.read_at.present? %>
-              <p class="book-detail__date">読了日：<%= @reading_log.read_at.strftime("%Y/%m/%d") %></p>
-            <% end %>
-            <p class="book-detail__date">登録日：<%= @reading_log.created_at.strftime("%Y/%m/%d") %></p>
-          </div>
+      <div class="book-detail__date-wrap">
+        <% if @reading_log&.read? && @reading_log.read_at.present? %>
+        <p class="book-detail__date">読了日：<%= @reading_log.read_at.strftime("%Y/%m/%d") %></p>
         <% end %>
+        <p class="book-detail__date">登録日：<%= @reading_log.created_at.strftime("%Y/%m/%d") %></p>
+      </div>
+    <% end %>
+    <%# 読了日・登録日 end %>
   </div>
 
   <div class="book-detail__wrap l-container--s">
     <% if @reading_log %>
-      <% @reading_log.citations.each do |citation| %>
-        <blockquote class="c-citation">
-          <p class="c-citation__text">"<%= citation.content %>"</p>
-          <time class="c-citation__date"><%= citation.created_at.strftime("%Y/%m/%d") %></time>
-        </blockquote>
+    <%# 引用 %>
+    <% @reading_log.citations.each do |citation| %>
+      <blockquote class="c-citation">
+        <p class="c-citation__text">"<%= citation.content %>"</p>
+        <time class="c-citation__date"><%= citation.created_at.strftime("%Y/%m/%d") %></time>
+      </blockquote>
+    <% end %>
+    <%# 引用 end %>
+
+    <%# 引用追加フォーム %>
+    <div class="c-edit-form">
+      <%= form_with(model: [@reading_log, Citation.new], local: true, class: "c-edit-form__form") do |f| %>
+        <div class="c-edit-form__field">
+          <%= f.label :content, "引用を追加", class: "c-edit-form__label" %>
+          <%= f.text_area :content, rows: 3, placeholder: "心に残った文章を書き留めておきましょう", class: "c-edit-form__textarea" %>
+        </div>
+        <%= f.submit "追加する", class: "c-button c-button--x-small c-button--white c-edit-form__submit" %>
       <% end %>
+    </div>
+    <%# 引用追加フォーム end %>
 
-      <%# 引用編集フォーム %>
-      <div class="c-edit-form">
-        <%= form_with(model: [@reading_log, Citation.new], local: true, class: "c-edit-form__form") do |f| %>
-          <div class="c-edit-form__field">
-            <%= f.label :content, "引用を追加", class: "c-edit-form__label" %>
-            <%= f.text_area :content, rows: 3, placeholder: "心に残った文章を書き留めておきましょう", class: "c-edit-form__textarea" %>
-          </div>
-          <%= f.submit "追加する", class: "c-button c-button--x-small c-button--white c-edit-form__submit" %>
-        <% end %>
-      </div>
-      <%# 引用編集フォーム end %>
+    <%# コメント %>
+    <% if @reading_log.comment.present? %>
+      <p class="book-detail__comment"><%= @reading_log.comment %></p>
+      <time class="book-detail__comment-date">（更新日：<%= @reading_log.updated_at.strftime("%Y/%m/%d") %>）</time>
+    <% else %>
+      <p class="book-detail__comment">コメントはまだありません。</p>
+    <% end %>
+    <%# コメント end %>
 
-      <% if @reading_log.comment.present? %>
-        <p class="book-detail__comment"><%= @reading_log.comment %></p>
-        <time class="book-detail__comment-date">（更新日：<%= @reading_log.updated_at.strftime("%Y/%m/%d") %>）</time>
-      <% else %>
-        <p class="book-detail__comment">コメントはまだありません。</p>
+    <%# コメント編集フォーム %>
+    <button type="button" class="book-detail__edit-btn" aria-label="コメント編集">
+      編集する
+    </button>
+
+    <div class="c-edit-form book-detail__comment-form is-hidden">
+      <%= form_with model: @reading_log, url: update_comment_reading_log_path(@reading_log), method: :patch, class: "c-edit-form__form", local: true do |f| %>
+        <div class="c-edit-form__field">
+          <%= f.text_area :comment, rows: 3, placeholder: "コメントを編集", class: "c-edit-form__textarea" %>
+        </div>
+        <%= f.submit "保存する", class: "c-button c-button--x-small c-button--white c-edit-form__submit" %>
       <% end %>
-
-      <%# コメント編集フォーム %>
-      <button type="button" class="book-detail__edit-btn" aria-label="コメント編集">
-        編集する
-      </button>
-
-      <div class="c-edit-form book-detail__comment-form is-hidden">
-        <%= form_with model: @reading_log, url: update_comment_reading_log_path(@reading_log), method: :patch, class: "c-edit-form__form", local: true do |f| %>
-          <div class="c-edit-form__field">
-            <%= f.text_area :comment, rows: 3, placeholder: "コメントを編集", class: "c-edit-form__textarea" %>
-          </div>
-          <%= f.submit "保存する", class: "c-button c-button--x-small c-button--white c-edit-form__submit" %>
-        <% end %>
-      </div>
-      <%# コメント編集フォーム end %>
+    </div>
+    <%# コメント編集フォーム end %>
 
     <% else %>
       <p>この作品はまだ登録されていません。</p>

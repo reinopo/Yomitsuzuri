@@ -1,7 +1,8 @@
 <div class="mypage__contents mypage__fav-authors">
   <div class="mypage__fav-authors__sort-links">
     <%= link_to "名前順", favorites_mypage_path(sort: "name"), class: "mypage__fav-authors__sort-link" %>
-    <%= link_to "登録順", favorites_mypage_path(sort: "recent"), class: "mypage__fav-authors__sort-link" %>
+    <%= link_to "新しい順", favorites_mypage_path(sort: "recent"), class: "mypage__fav-authors__sort-link" %>
+    <%= link_to "古い順", favorites_mypage_path(sort: "old"), class: "mypage__fav-authors__sort-link" %>
   </div>
 
 

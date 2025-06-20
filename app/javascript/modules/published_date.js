@@ -2,7 +2,7 @@
 // 出版年バリデーション
 // ----------------------
 document.addEventListener("turbo:load", () => {
-  const form = document.querySelector(".book-detail__published-date-form");
+  const form = document.querySelector(".c-published-date__form");
   if (!form) return;
 
   form.addEventListener("submit", (e) => {
