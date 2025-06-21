@@ -236,13 +236,23 @@
     </div>
 
     <%# 本削除ボタン %>
-    <% if @reading_log %>
-    <%= button_to "本を削除する",
-                  reading_log_path(@reading_log),
-                  method: :delete,
-                  data: { confirm: "本当に削除しますか？" },
-                  class: "c-delete-link" %>
-    <%# 本削除ボタン end %>
-    <% end %>
+    <!-- 削除ボタン（モーダル開くだけ） -->
+    <button type="button" class="c-delete-link c-delete-book-modal__open" data-reading-log-id="<%= @reading_log.id %>">
+      本を削除する
+    </button>
   </div>
 </section>
+
+<%# 削除確認モーダル %>
+<div class="c-delete-book-modal is-hidden">
+  <div class="c-delete-book-modal__content">
+    <p>本当に削除しますか？</p>
+    <form class="c-delete-book-modal__form" method="post">
+      <input type="hidden" name="_method" value="delete">
+      <input type="hidden" name="authenticity_token" value="<%= form_authenticity_token %>">
+      <button type="submit" class="c-button c-button--danger">OK</button>
+      <button type="button" class="c-delete-book-modal__close">キャンセル</button>
+    </form>
+  </div>
+</div>
+<%# 削除確認モーダル end %>
