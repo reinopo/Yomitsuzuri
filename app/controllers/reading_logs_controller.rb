@@ -105,6 +105,6 @@ class ReadingLogsController < ApplicationController
   def destroy
     reading_log = current_user.reading_logs.find(params[:id])
     reading_log.destroy
-    redirect_to mypage_path,  flash: { reading_log_deleted_notice: "「#{reading_log.book.title}」を削除しました。" }
+    redirect_to mypage_path, flash: { reading_log_deleted_notice: "「#{reading_log.book.title}」を削除しました。" }
   end
 end

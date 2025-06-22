@@ -203,4 +203,36 @@
       <%# 出版年不明 end %>
 
   </div>
+
+  <div class="l-container--s book-detail__link-wrap">
+    <div class="book-detail__link">
+      <div><%= link_to "読んだ本一覧へ戻る", home_mypage_path, class: "c-back-link" %></div>
+      <div><%= link_to "お気に入り著者一覧へ戻る", favorites_mypage_path, class: "c-back-link" %></div>
+    </div>
+
+    <%# 本削除ボタン %>
+    <!-- 削除ボタン（モーダル開くだけ） -->
+    <% if @favorite_author %>
+      <button type="button"
+              class="c-delete-link c-delete-modal__open--author"
+              data-favorite-author-id="<%= @favorite_author.id %>">
+        著者をお気に入りから削除する
+      </button>
+    <% end %>
+  </div>
 </section>
+
+<%# 削除確認モーダル %>
+<div class="c-delete-modal c-delete-modal--author is-hidden">
+  <div class="c-delete-modal__content">
+    <p class="c-delete-modal__text">本当に削除しますか？</p>
+    <p class="c-delete-modal__text c-delete-modal__text--small">※作品ページから再度お気に入りに登録できます。</p>
+    <form class="c-delete-modal__form c-delete-modal__form--author" method="post">
+      <input type="hidden" name="_method" value="delete">
+      <input type="hidden" name="authenticity_token" value="<%= form_authenticity_token %>">
+      <button type="submit" class="c-delete-modal__btn">OK</button>
+      <button type="button" class="c-delete-modal__btn c-delete-modal__close-btn--author">キャンセル</button>
+    </form>
+  </div>
+</div>
+<%# 削除確認モーダル end %>

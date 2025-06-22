@@ -1,8 +1,8 @@
 document.addEventListener("turbo:load", () => {
-  const openButtons = document.querySelectorAll(".c-delete-book-modal__open");
-  const modal = document.querySelector(".c-delete-book-modal");
-  const closeBtn = document.querySelector(".c-delete-book-modal__btn--close");
-  const form = document.querySelector(".c-delete-book-modal__form");
+  const openButtons = document.querySelectorAll(".c-delete-modal__open--book");
+  const modal = document.querySelector(".c-delete-modal--book");
+  const closeBtn = document.querySelector(".c-delete-modal__close-btn--book");
+  const form = document.querySelector(".c-delete-modal__form--book");
 
   const closeModal = () => {
     modal.classList.remove("is-shown-flex");

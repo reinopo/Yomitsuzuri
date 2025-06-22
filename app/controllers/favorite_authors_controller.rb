@@ -5,5 +5,8 @@ class FavoriteAuthorsController < ApplicationController
   end
 
   def destroy
+    favorite_author = current_user.favorite_authors.find(params[:id])
+    favorite_author.destroy
+    redirect_to mypage_path, flash: { reading_log_deleted_notice: "#{favorite_author.author.name}をお気に入りから削除しました。" }
   end
 end

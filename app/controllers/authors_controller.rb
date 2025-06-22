@@ -1,6 +1,8 @@
 class AuthorsController < ApplicationController
   def show
     @author = Author.find(params[:id])
+    @favorite_author = current_user.favorite_authors.find_by(author_id: @author.id)
+    
     books = @author.books
                   .includes(:reading_logs)
                   .where(reading_logs: { user_id: current_user.id })
