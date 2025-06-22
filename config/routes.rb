@@ -16,7 +16,7 @@ Rails.application.routes.draw do
   end
   resources :books, only: [:index, :show, :update]
   resources :reading_logs, only: [] do
-    resources :citations, only: [:create]
+    resources :citations, only: [:create, :destroy]
   end
   resources :authors, only: [:show]
   resources :favorite_authors, only: [:create, :destroy]

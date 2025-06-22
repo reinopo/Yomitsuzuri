@@ -164,15 +164,29 @@
     <% if @reading_log.citations.any? %>
       <div class="l-mb-32">
         <% @reading_log.citations.each do |citation| %>
-          <blockquote class="c-citation">
-            <p class="c-citation__text">"<%= citation.content %>"</p>
-            <div class="c-citation__info">
-              <% if citation.page_number.present? %>
-                <span class="c-citation__page"><%= citation.page_number %></span>
-              <% end %>
-              <time class="c-citation__date"><%= citation.created_at.strftime("%Y/%m/%d") %></time>
-            </div>
-          </blockquote>
+          <div class="c-citation">
+            <blockquote class="c-citation__content">
+              <p class="c-citation__text">"<%= citation.content %>"</p>
+              <div class="c-citation__info">
+                <% if citation.page_number.present? %>
+                  <span class="c-citation__page"><%= citation.page_number %></span>
+                <% end %>
+                <time class="c-citation__date"><%= citation.created_at.strftime("%Y/%m/%d") %></time>
+              </div>
+            </blockquote>
+
+            <%# 引用削除ボタン %>
+            <%= form_with url: reading_log_citation_path(reading_log_id: @reading_log.id, id: citation.id),
+                          method: :delete,
+                          class: "c-citation__delete-form",
+                          data: { confirm: "この引用を削除しますか？" } do %>
+              <button type="submit" class="c-citation__delete-btn" aria-label="引用を削除">
+                <svg class="c-citation__delete-svg" role="img" xmlns="http://www.w3.org/2000/svg" width="24px" height="24px" viewBox="0 0 24 24" aria-labelledby="binIconTitle" stroke="#3e3e3e" stroke-width="1" stroke-linecap="square" stroke-linejoin="miter" fill="none" color="#3e3e3e"> <title id="binIconTitle">削除</title> <path d="M19 6L5 6M14 5L10 5M6 10L6 20C6 20.6666667 6.33333333 21 7 21 7.66666667 21 11 21 17 21 17.6666667 21 18 20.6666667 18 20 18 19.3333333 18 16 18 10"/> </svg>
+              </button>
+            <% end %>
+            <%# 引用削除ボタン end %>
+
+          </div>
         <% end %>
       </div>
     <% end %>

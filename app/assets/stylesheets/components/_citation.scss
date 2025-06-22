@@ -2,12 +2,19 @@
 /* c-citation */
 /* -------------------- */
 .c-citation {
-  background-color: var(--color-bg-gray);
-  border-left: 4px solid var(--color-border-base--light);
-  padding: 12px 100px 12px 16px;
+  display: flex;
+  justify-content: center;
+  gap: 4px;
   margin: 16px 0;
-  border-radius: 4px;
-  position: relative;
+
+  &__content {
+    width: calc(100% - 28px);
+    background-color: var(--color-bg-gray);
+    border-left: 4px solid var(--color-border-base--light);
+    padding: 12px 100px 12px 16px;
+    border-radius: 4px;
+    position: relative;
+  }
 
   &__text {
     font-style: italic;
@@ -31,6 +38,28 @@
   &__date {
     font-size: 12px;
     color: var(--color-font-gray);
+  }
+
+  &__delete-form {
+    width: 24px;
+    display: grid;
+    align-items: center;
+  }
+
+  &__delete-btn {
+    display: block;
+  }
+
+  &__delete-svg {
+    display: block;
+
+    @media (any-hover: hover) {
+      &:hover {
+        stroke-width: 1.5;
+        stroke: var(--color-font-black);
+        color: var(--color-font-black);
+      }
+    }
   }
 
   &__book-link {

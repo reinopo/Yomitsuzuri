@@ -1,13 +1,20 @@
 <div class="mypage__contents mypage__citations">
   <% if @citations.any? %>
     <% @citations.each do |citation| %>
-      <blockquote class="c-citation">
-        <p class="c-citation__text">"<%= citation.content %>"</p>
-        <time class="c-citation__date"><%= citation.created_at.strftime("%Y/%m/%d") %></time>
-        <p class="c-citation__book-title">
-          ー <%= link_to citation.reading_log.book.title, book_path(citation.reading_log.book), class: "c-citation__book-link c-works__title--link" %>
-        </p>
-      </blockquote>
+      <div class="c-citation">
+        <blockquote class="c-citation__content">
+          <p class="c-citation__text">"<%= citation.content %>"</p>
+          <div class="c-citation__info">
+            <% if citation.page_number.present? %>
+              <span class="c-citation__page"><%= citation.page_number %></span>
+            <% end %>
+            <time class="c-citation__date"><%= citation.created_at.strftime("%Y/%m/%d") %></time>
+          </div>
+          <p class="c-citation__book-title">
+            ー <%= link_to citation.reading_log.book.title, book_path(citation.reading_log.book), class: "c-citation__book-link c-works__title--link" %>
+          </p>
+        </blockquote>
+      </div>
     <% end %>
   <% else %>
     <p>まだ引用メモが登録されていません。</p>
