@@ -37,7 +37,13 @@
         <div class="mypage__wrap">
           <section class="mypage__profile">
             <%# プロフィール画像とユーザー名表示 %>
+            <h2><%= current_user.nickname %> さんのマイページ</h2>
             <%= link_to "アカウント情報編集", edit_user_registration_path %>
+            <%= button_to "ログアウト",
+                destroy_user_session_path,
+                method: :delete,
+                form: { data: { turbo: false } }
+              %>
           </section>
 
           <section class="mypage__contents-wrap">

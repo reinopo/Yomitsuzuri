@@ -7,6 +7,18 @@
 
       <div class="field">
         <%= f.label(
+              :nickname,
+              class: "c-devise__input-title"
+            ) %>
+        <%= f.text_field(
+              :nickname,
+              autofocus: true,
+              class: "c-devise__input"
+            ) %>
+      </div>
+
+      <div class="field">
+        <%= f.label(
               :email,
               class: "c-devise__input-title"
             ) %>
