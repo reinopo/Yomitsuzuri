@@ -246,12 +246,14 @@
 <%# 削除確認モーダル %>
 <div class="c-delete-book-modal is-hidden">
   <div class="c-delete-book-modal__content">
-    <p>本当に削除しますか？</p>
+    <p class="c-delete-book-modal__text">本当に削除しますか？</p>
+    <p class="c-delete-book-modal__text">この本の引用やコメントは全て削除されます。</p>
+    <p class="c-delete-book-modal__text--small">※この操作は取り消せません。</p>
     <form class="c-delete-book-modal__form" method="post">
       <input type="hidden" name="_method" value="delete">
       <input type="hidden" name="authenticity_token" value="<%= form_authenticity_token %>">
-      <button type="submit" class="c-button c-button--danger">OK</button>
-      <button type="button" class="c-delete-book-modal__close">キャンセル</button>
+      <button type="submit" class="c-delete-book-modal__btn">OK</button>
+      <button type="button" class="c-delete-book-modal__btn c-delete-book-modal__btn--close">キャンセル</button>
     </form>
   </div>
 </div>

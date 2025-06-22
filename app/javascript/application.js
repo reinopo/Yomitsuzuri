@@ -2,7 +2,7 @@ import "@hotwired/turbo-rails"
 
 import "modules/comment_edit"
 import "modules/favorite_author"
-import "modules/flash_close"
+import "modules/flash"
 import "modules/modal_delete"
 import "modules/modal_register"
 import "modules/published_date"

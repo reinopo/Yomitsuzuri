@@ -149,14 +149,14 @@
 /* -------------------- */
 .c-register-success-modal {
   display: flex;
+  align-items: center;
+  justify-content: center;
   position: fixed;
   top: 0;
   left: 0;
   width: 100%;
   height: 100%;
   background-color: var(--color-bg-modal);
-  align-items: center;
-  justify-content: center;
   z-index: 9999;
 
   &__content {
@@ -192,9 +192,6 @@
   align-items: center;
   justify-content: center;
   z-index: 9999;
-  display: flex;
-  align-items: center;
-  justify-content: center;
 
   &__content {
     background: var(--color-bg-white);
@@ -221,14 +218,14 @@
 /* c-delete-book-modal */
 /* -------------------- */
 .c-delete-book-modal {
+  align-items: center;
+  justify-content: center;
   position: fixed;
   top: 0;
   left: 0;
   width: 100%;
   height: 100%;
   background-color: var(--color-bg-modal);
-  align-items: center;
-  justify-content: center;
   z-index: 9999;
 
   &__content {
@@ -238,13 +235,19 @@
     text-align: center;
   }
 
-  &__form {
-
+  &__text--small {
+    font-size: 14px;
+    margin-top: 4px;
   }
 
-  &__close {
-    font-size: 14px;
-    margin-top: 8px;
+  &__form {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    margin-top: 12px;
+  }
+
+  &__btn {
 
     @media (any-hover: hover) {
       &:hover {
