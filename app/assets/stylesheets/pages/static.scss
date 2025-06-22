@@ -1,0 +1,31 @@
+.article-legal {
+
+
+  &__list {
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+    margin-top: 24px;
+  }
+
+  &__item {
+
+  }
+
+  &__item-title {
+    font-size: 18px;
+    font-weight: normal;
+    margin-bottom: 8px;
+  }
+
+  &__item-text {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+    padding-left: 40px;
+  }
+
+  &__item-span {
+    display: block;
+  }
+}

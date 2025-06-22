@@ -29,8 +29,19 @@
     margin-bottom: 8px;
   }
 
+  &__book-info {
+    display: flex;
+    align-items: flex-end;
+    gap: 16px;
+    margin: 16px 0;
+  }
+
   &__book-title {
-    font-size: 18px;
+    font-size: 20px;
+  }
+
+  &__book-authors {
+
   }
 
   &__content {

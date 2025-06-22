@@ -6,11 +6,16 @@ main {
 /* container */
 /* -------------------- */
 .l-container {
+  &--xs,
   &--s,
   &--m,
   &--l {
     width: 90%;
     margin: 0 auto;
+  }
+
+  &--xs {
+    max-width: var(--width-content-xs);
   }
 
   &--s {
@@ -41,11 +46,11 @@ main {
 /* article */
 /* -------------------- */
 .l-article {
-  padding: 32px 16px;
+  padding: 40px 16px;
 }
 
 .l-article-body {
-  padding: 16px 0;
+  padding-top: 32px;
 }
 
 /* -------------------- */
