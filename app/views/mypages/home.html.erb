@@ -1,7 +1,6 @@
 <div class="mypage__contents mypage__home">
-  <h2 class="c-title-level2 l-mb-16">登録した本</h2>
-
   <% if @reading_logs.present? %>
+    <h2 class="c-title-level2 l-mb-16">登録した本</h2>
       <ul class="c-works c-works--4columns">
         <% @reading_logs.each do |log| %>
           <% book = log.book %>
@@ -22,8 +21,8 @@
           </li>
         <% end %>
       </ul>
-    <% else %>
-      <p>まだ作品が登録されていません。</p>
-    <% end %>
+  <% else %>
+    <p>まだ作品が登録されていません。</p>
+  <% end %>
 </div>
 

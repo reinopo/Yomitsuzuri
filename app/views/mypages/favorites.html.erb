@@ -1,43 +1,45 @@
 <div class="mypage__contents mypage__fav-authors">
-  <div class="mypage__fav-authors__sort-links">
-    <%= link_to "名前順", favorites_mypage_path(sort: "name"), class: "mypage__fav-authors__sort-link" %>
-    <%= link_to "新しい順", favorites_mypage_path(sort: "recent"), class: "mypage__fav-authors__sort-link" %>
-    <%= link_to "古い順", favorites_mypage_path(sort: "old"), class: "mypage__fav-authors__sort-link" %>
-  </div>
+  <% if @favorite_authors.any? %>
+    <div class="mypage__fav-authors__sort-links">
+      <%= link_to "名前順", favorites_mypage_path(sort: "name"), class: "mypage__fav-authors__sort-link" %>
+      <%= link_to "新しい順", favorites_mypage_path(sort: "recent"), class: "mypage__fav-authors__sort-link" %>
+      <%= link_to "古い順", favorites_mypage_path(sort: "old"), class: "mypage__fav-authors__sort-link" %>
+    </div>
 
 
-  <ul class="mypage__fav-authors__list">
-    <% @favorite_authors.each do |fav| %>
-      <% author = fav.author %>
-      <% logs = current_user.reading_logs.joins(book: :authors).where(authors: { id: author.id }) %>
-      <% read_count = logs.read.count %>
-      <% unread_count = logs.unread.count %>
-      <% stacked_count = logs.stacked.count %>
-      <% total_count = logs.count %>
-      <% recent_title = logs.order(created_at: :desc).first&.book&.title %>
+    <ul class="mypage__fav-authors__list">
+      <% @favorite_authors.each do |fav| %>
+        <% author = fav.author %>
+        <% logs = current_user.reading_logs.joins(book: :authors).where(authors: { id: author.id }) %>
+        <% read_count = logs.read.count %>
+        <% unread_count = logs.unread.count %>
+        <% stacked_count = logs.stacked.count %>
+        <% total_count = logs.count %>
+        <% recent_title = logs.order(created_at: :desc).first&.book&.title %>
 
-      <li class="mypage__fav-authors__item">
-        <%= link_to fav.author.name, author_path(fav.author), class: "c-works__author--link" %>
-        <div class="mypage__fav-authors__meta">
-          登録作品数：<%= total_count %>｜
-          既読：<%= read_count %>｜
-          未読：<%= unread_count %>｜
-          積読：<%= stacked_count %>
-        </div>
-
-        <% if recent_title.present? %>
-        <% recent_log = logs.order(created_at: :desc).first %>
-        <% recent_book = recent_log&.book %>
-        <% if recent_book.present? %>
-          <div class="mypage__fav-authors__recent">
-            最近登録した本：
-            <%= link_to "『#{recent_book.title}』", book_path(recent_book), class: "c-works__title--link" %>
+        <li class="mypage__fav-authors__item">
+          <%= link_to fav.author.name, author_path(fav.author), class: "c-works__author--link" %>
+          <div class="mypage__fav-authors__meta">
+            登録作品数：<%= total_count %>｜
+            既読：<%= read_count %>｜
+            未読：<%= unread_count %>｜
+            積読：<%= stacked_count %>
           </div>
+
+          <% if recent_title.present? %>
+          <% recent_log = logs.order(created_at: :desc).first %>
+          <% recent_book = recent_log&.book %>
+          <% if recent_book.present? %>
+            <div class="mypage__fav-authors__recent">
+              最近登録した本：
+              <%= link_to "『#{recent_book.title}』", book_path(recent_book), class: "c-works__title--link" %>
+            </div>
+          <% end %>
         <% end %>
+        </li>
       <% end %>
-      </li>
-    <% end %>
-  </ul>
-
-
+    </ul>
+  <% else %>
+    <p>まだお気に入り著者が登録されていません。</p>
+  <% end %>
   </div>

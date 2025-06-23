@@ -1,3 +1,6 @@
+/* -------------------- */
+/* c-flash */
+/* -------------------- */
 .c-flash {
   background-color: var(--color-bg-white);
   text-align: center;
@@ -23,5 +26,26 @@
         color: var(--color-font-black);
       }
     }
+  }
+}
+
+/* -------------------- */
+/* c-profile-flash */
+/* -------------------- */
+.c-profile-flash {
+  position: fixed;
+  bottom: 32px;
+  left: 32px;
+  background-color: var(--color-bg-flash);
+  color: var(--color-font-white);
+  padding: 16px 24px;
+  border-radius: 4px;
+  font-size: 14px;
+  z-index: 9999;
+  opacity: 1;
+  transition: opacity 0.5s ease;
+
+  &.is-fading-out {
+    opacity: 0;
   }
 }

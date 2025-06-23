@@ -1,7 +1,22 @@
 # frozen_string_literal: true
 
 class Users::RegistrationsController < Devise::RegistrationsController
+  layout "application"
   before_action :configure_permitted_parameters
+
+  def update
+    self.resource = resource_class.to_adapter.get!(send(:"current_#{resource_name}").to_key)
+
+    # アカウント更新に必要なパラメータを渡して更新
+    if resource.update_with_password(account_update_params)
+      flash[:profile_notice] = "プロフィールを更新しました！"
+      bypass_sign_in resource, scope: resource_name
+      redirect_to home_mypage_path, status: :see_other
+    else
+      clean_up_passwords resource
+      render :edit, status: :unprocessable_entity
+    end
+  end
 
   protected
 

@@ -26,6 +26,7 @@
     <main class="mypage">
     
     <div class="mypage__index">
+
     <%# フラッシュ %>
     <% if flash[:reading_log_deleted_notice] %>
       <div class="c-flash c-flash--notice l-mb-40">
@@ -34,6 +35,15 @@
       </div>
     <% end %>
     <%# フラッシュ end %>
+
+    <%# プロフィール更新フラッシュ %>
+    <% if flash[:profile_notice] %>
+      <div class="c-profile-flash">
+        <%= flash[:profile_notice] %>
+      </div>
+    <% end %>
+    <%# プロフィール更新フラッシュ end %>
+
         <div class="mypage__wrap">
           <section class="mypage__profile">
             <%# プロフィール画像とユーザー名表示 %>
