@@ -1,5 +1,6 @@
 import "@hotwired/turbo-rails"
 
+import "modules/avatar_preview"
 import "modules/comment_edit"
 import "modules/devise_password"
 import "modules/favorite_author"

@@ -7,8 +7,7 @@ class Users::RegistrationsController < Devise::RegistrationsController
   def update
     self.resource = resource_class.to_adapter.get!(send(:"current_#{resource_name}").to_key)
 
-    # アカウント更新に必要なパラメータを渡して更新
-    if resource.update_with_password(account_update_params)
+    if update_resource(resource, account_update_params)
       flash[:profile_notice] = "プロフィールを更新しました！"
       bypass_sign_in resource, scope: resource_name
       redirect_to home_mypage_path, status: :see_other
@@ -24,12 +23,24 @@ class Users::RegistrationsController < Devise::RegistrationsController
     redirect_to root_path
   end
 
-
   protected
 
   def configure_permitted_parameters
-    devise_parameter_sanitizer.permit(:sign_up, keys: [:nickname])
-    devise_parameter_sanitizer.permit(:account_update, keys: [:nickname])
+    devise_parameter_sanitizer.permit(:sign_up, keys: [:nickname, :avatar])
+    devise_parameter_sanitizer.permit(:account_update, keys: [:nickname, :avatar])
+  end
+
+  # プロフィール変更のみパスワードなしで可能
+  def update_resource(resource, params)
+    if params[:password].present?
+      super
+    else
+      resource.update_without_password(params.except(:current_password))
+    end
+  end
+
+  def after_update_path_for(resource)
+    home_mypage_path
   end
   
   # before_action :configure_sign_up_params, only: [:create]

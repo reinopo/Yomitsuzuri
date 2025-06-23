@@ -17,9 +17,79 @@
 
   &__profile {
     width: 300px;
-    height: 400px;
+    height: 300px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+    text-align: center;
     border-right: solid 1px var(--color-border-base--light);
     border-bottom: solid 1px var(--color-border-base--light);
+    padding: 48px 16px;
+  }
+
+  &__profile-info {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+  }
+
+  &__avatar-wrap {
+    position: relative;
+  }
+
+  &__avatar {
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 2px solid var(--color-border-base--light);
+  }
+
+  &__avatar-input {
+    display: none;
+  }
+
+  &__avatar-upload {
+    position: absolute;
+    right: 0;
+    bottom: 0;
+    cursor: pointer;
+  }
+
+  &__avatar-upload-icon {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 30px;
+    height: 30px;
+    background-color: var(--color-bg-white);
+    border: 1px solid var(--color-border-white);
+    border-radius: 50%;
+  }
+
+  &__avatar-upload-svg {
+    display: block;
+    width: 30px;
+    height: 30px;
+
+    @media (any-hover: hover) {
+      &:hover {
+        color: var(--color-font-black);
+        stroke: var(--color-font-black);
+        stroke-width: 1.2;
+      }
+    }
+  }
+
+  &__name {
+    font-size: 20px;
+  }
+
+  &__actions {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
   }
 
   &__contents-wrap {
@@ -64,6 +134,66 @@
     margin: 24px;
   }
 }
+
+.avatar-preview-modal {
+  position: fixed;
+  inset: 0;
+  background: var(--color-bg-modal);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 9999;
+
+  &__content {
+    background: var(--color-bg-white);
+    border-radius: 12px;
+    text-align: center;
+    max-width: 300px;
+    padding: 32px;
+  }
+
+  &__img {
+    width: 140px;
+    height: 140px;
+    object-fit: cover;
+    border-radius: 50%;
+    margin: 16px 0;
+  }
+
+  &__actions {
+    display: flex;
+    justify-content: center;
+    gap: 16px;
+  }
+
+  &__button {
+    font-size: 14px;
+    border: 1px solid var(--color-border-base);
+    border-radius: 4px;
+    cursor: pointer;
+    padding: 4px 16px;
+    transition: 0.3s;
+  }
+
+  &__button--confirm {
+
+    @media (any-hover: hover) {
+      &:hover {
+        background-color: var(--color-bg-primary--light);
+      }
+    }
+  }
+  
+  &__button--cancel {
+
+    @media (any-hover: hover) {
+      &:hover {
+        background-color: var(--color-bg-gray);
+      }
+    }
+  }
+}
+
 
 /* -------------------- */
 /* mypage: home */

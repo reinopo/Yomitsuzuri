@@ -45,16 +45,66 @@
     <%# プロフィール更新フラッシュ end %>
 
         <div class="mypage__wrap">
+
+          <%# プロフィール %>
           <section class="mypage__profile">
             <%# プロフィール画像とユーザー名表示 %>
-            <h2><%= current_user.nickname %> さんのマイページ</h2>
-            <%= link_to "アカウント情報編集", edit_user_registration_path %>
-            <%= button_to "ログアウト",
-                destroy_user_session_path,
-                method: :delete,
-                form: { data: { turbo: false } }
-              %>
+            <div class="mypage__profile-info">
+              <div class="mypage__avatar-wrap">
+                <img
+                  id="avatar-preview"
+                  class="mypage__avatar"
+                  src="<%= current_user.avatar.attached? ? url_for(current_user.avatar.variant(resize_to_fill: [100, 100])) : asset_path('icon-default-avatar.svg') %>"
+                  alt="<%= current_user.nickname %>のプロフィール画像"
+                />
+
+                <%= form_with  url: user_registration_path,
+                              method: :patch,
+                              local: true,
+                              data: { turbo: false },
+                              html: { multipart: true, class: "mypage__avatar-form" } do |f| %>
+                  <%= f.file_field :avatar,
+                        name: "user[avatar]",
+                        class: "mypage__avatar-input",
+                        accept: "image/*",
+                        id: "avatar_upload_input",
+                        onchange: "handleFileChange(event)" %>
+
+                  <label for="avatar_upload_input" class="mypage__avatar-upload">
+                    <span class="mypage__avatar-upload-icon">
+                      <svg class="mypage__avatar-upload-svg" role="img" xmlns="http://www.w3.org/2000/svg" width="30px" height="30px" viewBox="0 0 24 24" aria-labelledby="addIconTitle" stroke="#3e3e3e" stroke-width="1" stroke-linecap="square" stroke-linejoin="miter" fill="none" color="#3e3e3e"> <title id="addIconTitle">追加</title> <path d="M17 12L7 12M12 17L12 7"/> <circle cx="12" cy="12" r="10"/> </svg>
+                    </span>
+                  </label>
+                <% end %>
+              </div>
+
+              <h2 class="mypage__name"><%= current_user.nickname %></h2>
+            </div>
+
+            <%# 画像プレビューモーダル %>
+            <div class="avatar-preview-modal is-hidden">
+              <div class="avatar-preview-modal__content">
+                <p>この画像でプロフィールを更新しますか？</p>
+                <img class="avatar-preview-modal__img" src="" alt="プレビュー画像" />
+                <div class="avatar-preview-modal__actions">
+                  <button class="avatar-preview-modal__button avatar-preview-modal__button--confirm" type="button">OK</button>
+                  <button class="avatar-preview-modal__button avatar-preview-modal__button--cancel" type="button">キャンセル</button>
+                </div>
+              </div>
+            </div>
+            <%# 画像プレビューモーダル end %>
+
+            <div class="mypage__actions">
+              <%= link_to "アカウント情報編集", edit_user_registration_path, class: "c-link" %>
+              <%= button_to "ログアウト",
+                  destroy_user_session_path,
+                  method: :delete,
+                  form: { data: { turbo: false } },
+                  class: "c-link"
+                %>
+            </div>
           </section>
+          <%# プロフィール end %>
 
           <section class="mypage__contents-wrap">
             <ul class="mypage__nav">
