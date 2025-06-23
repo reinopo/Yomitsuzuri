@@ -1,38 +1,38 @@
 /* -------------------- */
 /* c-flash */
 /* -------------------- */
+// .c-flash {
+//   background-color: var(--color-bg-white);
+//   text-align: center;
+//   position: relative;
+//   padding: 32px;
+//   transition: opacity 0.5s ease, transform 0.5s ease;
+//   opacity: 1;
+
+//   &.is-fading-out {
+//     opacity: 0;
+//     // transform: translateY(-10px);
+//   }
+
+//   &__close {
+//     display: inline-block;
+//     font-size: 20px;
+//     position: absolute;
+//     top: 8px;
+//     right: 12px;
+
+//     @media (any-hover: hover) {
+//       &:hover {
+//         color: var(--color-font-black);
+//       }
+//     }
+//   }
+// }
+
+/* -------------------- */
+/* c-flash */
+/* -------------------- */
 .c-flash {
-  background-color: var(--color-bg-white);
-  text-align: center;
-  position: relative;
-  padding: 32px;
-  transition: opacity 0.5s ease, transform 0.5s ease;
-  opacity: 1;
-
-  &.is-fading-out {
-    opacity: 0;
-    transform: translateY(-10px);
-  }
-
-  &__close {
-    display: inline-block;
-    font-size: 20px;
-    position: absolute;
-    top: 8px;
-    right: 12px;
-
-    @media (any-hover: hover) {
-      &:hover {
-        color: var(--color-font-black);
-      }
-    }
-  }
-}
-
-/* -------------------- */
-/* c-profile-flash */
-/* -------------------- */
-.c-profile-flash {
   position: fixed;
   bottom: 32px;
   left: 32px;

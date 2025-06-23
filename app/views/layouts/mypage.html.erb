@@ -29,16 +29,15 @@
 
     <%# フラッシュ %>
     <% if flash[:reading_log_deleted_notice] %>
-      <div class="c-flash c-flash--notice l-mb-40">
-        <span><%= flash[:reading_log_deleted_notice] %></span>
-        <button type="button" class="c-flash__close" aria-label="閉じる">&times;</button>
+      <div class="c-flash">
+        <%= flash[:reading_log_deleted_notice] %>
       </div>
     <% end %>
     <%# フラッシュ end %>
 
     <%# プロフィール更新フラッシュ %>
     <% if flash[:profile_notice] %>
-      <div class="c-profile-flash">
+      <div class="c-flash">
         <%= flash[:profile_notice] %>
       </div>
     <% end %>
