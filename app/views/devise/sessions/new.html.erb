@@ -3,6 +3,7 @@
 
   <div class="c-devise__inner">
     <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
+      <%# メールアドレス %>
       <div class="field">
         <%= f.label(
               :email,
@@ -10,23 +11,38 @@
             ) %>
         <%= f.email_field(
               :email,
+              required: true,
               autofocus: true,
               autocomplete: "email",
               class: "c-devise__input"
             ) %>
       </div>
+      <%# メールアドレス end %>
 
+      <%# パスワード %>
       <div class="field">
         <%= f.label(
               :password,
               class: "c-devise__input-title"
             ) %>
-        <%= f.password_field(
-              :password,
-              autocomplete: "current-password",
-              class: "c-devise__input"
-            ) %>
+        <div class="c-devise__password-wrap">
+          <%= f.password_field(
+                :password,
+                id: "login_password",
+                required: true,
+                autocomplete: "current-password",
+                class: "c-devise__input"
+              ) %>
+          <button type="button"
+                  class="c-devise__toggle-password"
+                  data-target="login_password"
+                  aria-label="パスワードを表示">
+            <svg class="c-devise__svg c-devise__icon-eye" width="24px" height="24px" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" aria-labelledby="eyeIconTitle" stroke="#3e3e3e" stroke-width="1" stroke-linecap="square" stroke-linejoin="miter" fill="none" color="#3e3e3e"> <title id="eyeIconTitle">表示する</title> <path d="M22 12C22 12 19 18 12 18C5 18 2 12 2 12C2 12 5 6 12 6C19 6 22 12 22 12Z"/> <circle cx="12" cy="12" r="3"/> </svg>
+            <svg class="c-devise__svg c-devise__icon-eye-off is-hidden" width="24px" height="24px" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" aria-labelledby="eyeCrossedIconTitle" stroke="#3e3e3e" stroke-width="1" stroke-linecap="square" stroke-linejoin="miter" fill="none" color="#3e3e3e"> <title id="eyeCrossedIconTitle">隠す</title> <path d="M22 12C22 12 19 18 12 18C5 18 2 12 2 12C2 12 5 6 12 6C19 6 22 12 22 12Z"/> <circle cx="12" cy="12" r="3"/> <path d="M3 21L20 4"/> </svg>
+          </button>
+        </div>
       </div>
+      <%# パスワード end %>
 
       <% if devise_mapping.rememberable? %>
         <div class="field c-devise__remember-me">

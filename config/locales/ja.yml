@@ -8,3 +8,9 @@ ja:
     errors:
       messages:
         record_invalid: "バリデーションに失敗しました: %{errors}"
+
+    models:
+      user:
+        attributes:
+          nickname:
+            blank: "を入力してください"

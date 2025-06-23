@@ -30,8 +30,33 @@
     height: 40px;
     border: 1px solid var(--color-border-base--light);
     border-radius: 4px;
-    padding: 8px;
+    padding: 8px 40px 8px 8px;
     margin-bottom: 16px;
+  }
+
+  &__password-wrap {
+    position: relative;
+  }
+
+  &__toggle-password {
+    position: absolute;
+    right: 8px;
+    top: 8px;
+    // transform: translateY(-50%);
+    background: none;
+    border: none;
+    cursor: pointer;
+  }
+
+  &__svg {
+    display: block;
+
+    @media (any-hover: hover) {
+      &:hover {
+        color: var(--color-font-black);
+        stroke: var(--color-font-black);
+      }
+    }
   }
 
   &__remember-me {
