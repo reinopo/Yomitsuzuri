@@ -97,4 +97,10 @@
       }
     }
   }
+
+  &__error-message {
+    color: var(--color-font-caution);
+    font-size: 14px;
+    margin-bottom: 16px;
+  }
 }

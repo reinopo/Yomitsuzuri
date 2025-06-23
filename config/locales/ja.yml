@@ -1,16 +1,29 @@
 ja:
   activerecord:
+    models:
+      user:
+        one: "ユーザー"
+
     attributes:
       user:
         nickname: "ニックネーム"
         email: "メールアドレス"
 
+    
     errors:
+      models:
+        user:
+          attributes:
+            email:
+              taken: "はすでに使用されています。"
+
+  errors:
       messages:
         record_invalid: "バリデーションに失敗しました: %{errors}"
+        not_saved:
+          one: "%{resource} が1件のエラーのため保存できませんでした。"
+          other: "%{resource} が%{count}件のエラーのため保存できませんでした。"
 
-    models:
-      user:
-        attributes:
-          nickname:
-            blank: "を入力してください"
+  devise:
+    failure:
+      invalid: "メールアドレスまたはパスワードが正しくありません。"

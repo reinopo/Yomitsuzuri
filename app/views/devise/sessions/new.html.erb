@@ -3,6 +3,10 @@
 
   <div class="c-devise__inner">
     <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
+
+      <%# エラーメッセージ表示 %>
+      <%= render "devise/shared/error_messages", resource: resource %>
+
       <%# メールアドレス %>
       <div class="field">
         <%= f.label(

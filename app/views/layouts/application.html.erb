@@ -22,6 +22,15 @@
   <%= tag.body data: { user_id: current_user&.id } do %>
     <div id="modals"></div>
 
+    <%# プロフィール更新フラッシュ %>
+    <% if flash[:profile_notice] %>
+      <div class="c-profile-flash">
+        <%= flash[:profile_notice] %>
+      </div>
+    <% end %>
+    <%# プロフィール更新フラッシュ end %>
+
+
     <%= render "shared/header" %>
     <main><%= yield %></main>
     <%= render "shared/footer" %>

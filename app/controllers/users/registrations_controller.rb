@@ -18,6 +18,13 @@ class Users::RegistrationsController < Devise::RegistrationsController
     end
   end
 
+  def destroy
+    resource.destroy
+    flash[:profile_notice] = "アカウントを削除しました。"
+    redirect_to root_path
+  end
+
+
   protected
 
   def configure_permitted_parameters
