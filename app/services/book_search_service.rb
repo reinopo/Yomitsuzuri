@@ -16,7 +16,7 @@ class BookSearchService
     uri.query = URI.encode_www_form({
       q: @query,
       key: @api_key,
-      maxResults: 20,
+      maxResults: 40,
       langRestrict: 'ja'
     })
 
