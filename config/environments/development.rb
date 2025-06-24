@@ -38,8 +38,19 @@ Rails.application.configure do
 
   # Don't care if the mailer can't send.
   config.action_mailer.raise_delivery_errors = false
-
   config.action_mailer.perform_caching = false
+
+  # Deviseなどで必要になるURLホスト設定
+  # TODO 本番環境ではここのホスト名を変える必要あり
+  config.action_mailer.default_url_options = { host: 'localhost', port: 3000 }
+  Rails.application.routes.default_url_options[:host] = 'localhost:3000'
+
+  # letter_openerでブラウザにメールを表示（開発用）
+  config.action_mailer.delivery_method = :letter_opener
+  config.action_mailer.perform_deliveries = true
+  config.action_mailer.delivery_method = :letter_opener_web
+  config.action_mailer.perform_deliveries = true
+
 
   # Print deprecation notices to the Rails logger.
   config.active_support.deprecation = :log

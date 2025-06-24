@@ -77,3 +77,8 @@ gem "puma", "~> 6.6"
 gem 'sassc-rails'
 
 gem 'active_storage_validations', '~> 0.9.6'
+
+group :development do
+  gem 'letter_opener'
+  gem 'letter_opener_web'
+end

@@ -18,6 +18,10 @@ class User < ApplicationRecord
   has_many :favorite_authors, dependent: :destroy
   has_many :authors, through: :favorite_authors
 
+  def send_password_change_notification?
+    true
+  end
+
   private
 
   def avatar_format

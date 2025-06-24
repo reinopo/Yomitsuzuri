@@ -1,25 +1,78 @@
-<h2>パスワード再設定</h2>
+<div class="c-devise__container l-container--s">
+  <h2 class="c-devise__title">パスワード再設定</h2>
 
-<%= form_for(resource, as: resource_name, url: password_path(resource_name), html: { method: :put }) do |f| %>
-  <%= render "devise/shared/error_messages", resource: resource %>
-  <%= f.hidden_field :reset_password_token %>
+  <div class="c-devise__inner">
+    <%= form_for(resource, as: resource_name, url: password_path(resource_name), html: { method: :put }) do |f| %>
+      <%= render "devise/shared/error_messages", resource: resource %>
+      <%= f.hidden_field :reset_password_token %>
 
-  <div class="field">
-    <%= f.label :password, "新しいパスワード" %><br />
-    <% if @minimum_password_length %>
-      <em>(<%= @minimum_password_length %>文字以上)</em><br />
+      <%# 新しいパスワード %>
+      <div class="field">
+        <%= f.label(
+              :password,
+              "新しいパスワード",
+              class: "c-devise__input-title"
+            ) %>
+        <% if @minimum_password_length %>
+          <span>(<%= @minimum_password_length %>文字以上)</span>
+        <% end %>
+
+        <div class="c-devise__password-wrap">
+          <%= f.password_field(
+                :password,
+                id: "forgotten_new_password",
+                autofocus: true,
+                autocomplete: "new-password",
+                minlength: @minimum_password_length,
+                title: "#{@minimum_password_length}文字以上で入力してください",
+                class: "c-devise__input"
+              ) %>
+          
+          <button type="button"
+                  class="c-devise__toggle-password"
+                  data-target="forgotten_new_password"
+                  aria-label="パスワードを表示">
+            <svg class="c-devise__svg c-devise__icon-eye" width="24px" height="24px" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" aria-labelledby="eyeIconTitle" stroke="#3e3e3e" stroke-width="1" stroke-linecap="square" stroke-linejoin="miter" fill="none" color="#3e3e3e"> <title id="eyeIconTitle">表示する</title> <path d="M22 12C22 12 19 18 12 18C5 18 2 12 2 12C2 12 5 6 12 6C19 6 22 12 22 12Z"/> <circle cx="12" cy="12" r="3"/> </svg>
+            <svg class="c-devise__svg c-devise__icon-eye-off is-hidden" width="24px" height="24px" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" aria-labelledby="eyeCrossedIconTitle" stroke="#3e3e3e" stroke-width="1" stroke-linecap="square" stroke-linejoin="miter" fill="none" color="#3e3e3e"> <title id="eyeCrossedIconTitle">隠す</title> <path d="M22 12C22 12 19 18 12 18C5 18 2 12 2 12C2 12 5 6 12 6C19 6 22 12 22 12Z"/> <circle cx="12" cy="12" r="3"/> <path d="M3 21L20 4"/> </svg>
+          </button>
+        </div>
+      </div>
+      <%# 新しいパスワード end %>
+
+      <%# 新しいパスワード確認 %>
+      <div class="field">
+        <%= f.label(
+              :password_confirmation,
+              "新しいパスワード（確認用）",
+              class: "c-devise__input-title"
+            ) %>
+        <div class="c-devise__password-wrap">
+          <%= f.password_field(
+                  :password_confirmation,
+                  id: "forgotten_new_password_confirmation",
+                  autocomplete: "new-password",
+                  class: "c-devise__input",
+                  oninput: "this.setCustomValidity(this.value !== document.getElementById('user_password').value ? 'パスワードが一致しません' : '')"
+              ) %>
+          <button type="button"
+                  class="c-devise__toggle-password"
+                  data-target="forgotten_new_password_confirmation"
+                  aria-label="パスワードを表示">
+            <svg class="c-devise__svg c-devise__icon-eye" width="24px" height="24px" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" aria-labelledby="eyeIconTitle" stroke="#3e3e3e" stroke-width="1" stroke-linecap="square" stroke-linejoin="miter" fill="none" color="#3e3e3e"> <title id="eyeIconTitle">表示する</title> <path d="M22 12C22 12 19 18 12 18C5 18 2 12 2 12C2 12 5 6 12 6C19 6 22 12 22 12Z"/> <circle cx="12" cy="12" r="3"/> </svg>
+            <svg class="c-devise__svg c-devise__icon-eye-off is-hidden" width="24px" height="24px" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" aria-labelledby="eyeCrossedIconTitle" stroke="#3e3e3e" stroke-width="1" stroke-linecap="square" stroke-linejoin="miter" fill="none" color="#3e3e3e"> <title id="eyeCrossedIconTitle">隠す</title> <path d="M22 12C22 12 19 18 12 18C5 18 2 12 2 12C2 12 5 6 12 6C19 6 22 12 22 12Z"/> <circle cx="12" cy="12" r="3"/> <path d="M3 21L20 4"/> </svg>
+          </button>
+        </div>
+      </div>
+      <%# 新しいパスワード確認 end %>
+
+      <div class="actions">
+        <%= f.submit(
+              "パスワードを更新する",
+              class: "c-button c-button--medium c-button--white c-button--center"
+            ) %>
+      </div>
     <% end %>
-    <%= f.password_field :password, autofocus: true, autocomplete: "new-password" %>
-  </div>
 
-  <div class="field">
-    <%= f.label :password_confirmation, "新しいパスワード（確認用）" %><br />
-    <%= f.password_field :password_confirmation, autocomplete: "new-password" %>
+    <%= render "devise/shared/links" %>
   </div>
-
-  <div class="actions">
-    <%= f.submit "パスワードを更新する" %>
-  </div>
-<% end %>
-
-<%= render "devise/shared/links" %>
+</div>
