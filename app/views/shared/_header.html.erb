@@ -1,7 +1,9 @@
 <header class="header">
   <div class="header__inner">
     <div class="header__logo">
-      <%= link_to "Yomitsuzuri", root_path, class: "header__logo-link" %>
+      <%= link_to root_path, class: "header__logo-link" do %>
+        <%= render "shared/icon_logo_svg" %>
+      <% end %>
     </div>
 
     <nav aria-label="グローバルナビゲーション" class="header__nav">
