@@ -1,22 +1,49 @@
-<div class="home-kv">
-  <%= image_tag "img-home-kv.jpg", class: "home-kv__img", alt: "" %>
-</div>
+<% provide :body_class, "is-home" %>
+<% provide :in_main_footer, render("shared/footer") %>
 
-<section class="home__about l-container--m">
-  <div class="home-about__inner l-section">
+
+<%# home-kv %>
+<div class="home-kv home-scroll-snap">
+  <div class="home-kv__inner">
+    <%= image_tag "img-home-kv.jpg", class: "home-kv__img", alt: "" %>
+
+    <div class="home-kv__overlay">
+      <h1 class="home-kv__title">読綴<span class="home-kv__subtitle">-Yomitsuzuri-</span></h1>
+      <p class="home-kv__catch-copy">ことばに、わたしが映る。</p>
+    </div>
+  </div>
+</div>
+<%# home-kv end %>
+
+<%# home-about %>
+<section class="home-about home-scroll-snap">
+  <div class="home-about__inner l-container--m">
     <h2 class="c-title-level1 c-title-level1--center">
-      About
+      わたしだけの読書録
     </h2>
+    <p class="home-about__intro">
+      Yomitsuzuriは、誰にも見せることなく、<br>
+      自分の読書を、静かに記録していく場所です。
+    </p>
+
+    <ul class="home-about__list">
+      <li class="home-about__item">著者ごとに、作品を年表のように眺められる</li>
+      <li class="home-about__item">読書中に浮かんだ思考を、誰の目も気にせず綴れる</li>
+      <li class="home-about__item">心に残ったことばを、好きなだけ書きとめておける</li>
+      <li class="home-about__item">コレクションするように、自分だけの本棚を育てていく</li>
+    </ul>
   </div>
 </section>
+<%# home-about end %>
 
-<section class="home-search l-container--m">
-  <div class="home-search__inner l-section">
+<%# home-search %>
+<section class="home-search home-scroll-snap">
+  <div class="home-search__inner l-container--m">
     <h2 class="c-title-level1 c-title-level1--center">
       探してみる
     </h2>
 
-    <div class="l-section-body">
+    
       <%# 検索フォーム %>
       <div class="c-search__wrap">
         <%= form_with url: search_index_path,
@@ -35,7 +62,10 @@
         <% end %>
       </div>
       <%# 検索フォーム end %>
-    </div>
 
+      <div class="home-footer">
+        <%= yield :in_main_footer %>
+      </div>
   </div>
 </section>
+<%# home-search end %>

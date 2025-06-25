@@ -1,5 +1,9 @@
 main {
-  padding-top: var(--header-height);
+  margin-top: var(--header-height);
+  height: auto;
+  overflow: visible;
+  scroll-snap-type: none;
+  scroll-behavior: auto;
 }
 
 /* -------------------- */
@@ -39,6 +43,7 @@ main {
 }
 
 .l-section-body {
+  height: 100%;
   padding: 24px 0;
 }
 

@@ -9,7 +9,7 @@
     <%# google font %>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Kameron:wght@400..700&family=Zen+Kaku+Gothic+New&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Kameron:wght@400..700&family=Noto+Serif+JP:wght@200..900&family=Zen+Kaku+Gothic+New&display=swap" rel="stylesheet">
 
     <%# style %>
     <link rel="stylesheet" href="https://unpkg.com/ress/dist/ress.min.css">
@@ -19,7 +19,8 @@
     <%= javascript_importmap_tags %>
   </head>
 
-  <%= tag.body data: { user_id: current_user&.id } do %>
+  <%= tag.body class: content_for?(:body_class) ? yield(:body_class) : nil,
+            data: { user_id: current_user&.id } do %>
     <div id="modals"></div>
 
     <%# プロフィール更新フラッシュ %>
@@ -32,8 +33,12 @@
 
 
     <%= render "shared/header" %>
-    <main><%= yield %></main>
-    <%= render "shared/footer" %>
+    <main>
+      <%= yield %>
+    </main>
+    <% unless content_for(:in_main_footer).present? %>
+      <%= render "shared/footer" %>
+    <% end %>
   <% end %>
   
 
