@@ -25,10 +25,12 @@ Rails.application.routes.draw do
   # 静的ページ
   get 'static/terms' => "static#terms", as: :terms
   get 'static/privacy' => "static#privacy", as: :privacy
-  get 'static/contact' => "static#contact", as: :contact
+  get 'static/contact' => "static#contact"
 
   # その他カスタムルート
   get 'home/index' => 'home#index'
+  get  'contact',      to: 'contacts#new', as: :contact
+  post 'contact/send', to: 'contacts#create'
 
   # ルートパス
   root 'home#index'
