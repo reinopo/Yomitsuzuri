@@ -1,11 +1,10 @@
 <% provide :body_class, "is-home" %>
 <% provide :in_main_footer, render("shared/footer") %>
 
-
 <%# home-kv %>
 <div class="home-kv home-scroll-snap">
   <div class="home-kv__inner">
-    <%= image_tag "img-home-kv.jpg", class: "home-kv__img", alt: "" %>
+    <%= image_tag "img-home-kv.jpg", class: "home-kv__img", alt: "コンクリート壁の静かげな空間で1冊の見開きの本が置かれている写真" %>
 
     <div class="home-kv__overlay">
       <h1 class="home-kv__title">読綴<span class="home-kv__subtitle">-Yomitsuzuri-</span></h1>
@@ -16,56 +15,103 @@
 <%# home-kv end %>
 
 <%# home-about %>
-<section class="home-about home-scroll-snap">
+<section class="home-about home-scroll-snap js-fade-in">
   <div class="home-about__inner l-container--m">
-    <h2 class="c-title-level1 c-title-level1--center">
+    <h2 class="c-title-home">
       わたしだけの読書録
     </h2>
     <p class="home-about__intro">
-      Yomitsuzuriは、誰にも見せることなく、<br>
-      自分の読書を、静かに記録していく場所です。
+      <span class="home-about__span">読綴は、自分自身と静かに向き合うための読書アプリです。</span>
+      <span class="home-about__span">好きな著者の作品を、好きなだけ。</span>
+      <span class="home-about__span">うまく書こうとしなくていい。きれいじゃなくていい。</span>
+      <span class="home-about__span">心に残ったことばを、わたしの感性で、ありのままに綴る。</span>
+      <span class="home-about__span">読書の本質に、そっと寄り添うようなツールを目指しました。</span>
     </p>
-
-    <ul class="home-about__list">
-      <li class="home-about__item">著者ごとに、作品を年表のように眺められる</li>
-      <li class="home-about__item">読書中に浮かんだ思考を、誰の目も気にせず綴れる</li>
-      <li class="home-about__item">心に残ったことばを、好きなだけ書きとめておける</li>
-      <li class="home-about__item">コレクションするように、自分だけの本棚を育てていく</li>
-    </ul>
   </div>
 </section>
 <%# home-about end %>
 
-<%# home-search %>
-<section class="home-search home-scroll-snap">
-  <div class="home-search__inner l-container--m">
-    <h2 class="c-title-level1 c-title-level1--center">
-      探してみる
+<%# home-how-to %>
+<section class="home-how-to home-scroll-snap js-fade-in">
+  <div class="home-how-to__inner l-container--m">
+    <h2 class="c-title-home">
+      わたしと本のための機能たち
     </h2>
 
-    
-      <%# 検索フォーム %>
-      <div class="c-search__wrap">
-        <%= form_with url: search_index_path,
-                      method: :get,
-                      local: true,
-                      class: "c-search__form" do |form| %>
-          <div class="c-search c-search--center">
-            <%= form.text_field :q, placeholder: "タイトル・著者名など", class: "c-search__text-field" %>
-            <div class="c-search__warning-wrap">
-              <div class="c-search__warning is-hidden">！入力してください</div>
-            </div>
-            <%= button_tag(type: "submit", class: "c-search__submit-btn") do %>
-              <svg role="img" xmlns="http://www.w3.org/2000/svg" width="32px" height="32px" viewBox="0 0 24 24" aria-labelledby="searchIconTitle" stroke="#3e3e3e" stroke-width="1.5" stroke-linecap="square" stroke-linejoin="miter" fill="none" color="#3e3e3e"> <title id="searchIconTitle">検索</title> <path d="M14.4121122,14.4121122 L20,20"/> <circle cx="10" cy="10" r="6"/> </svg>
-            <% end %>
-          </div>
-        <% end %>
-      </div>
-      <%# 検索フォーム end %>
+    <ul class="home-how-to__list">
+      <li class="home-how-to__item">
+        <h3 class="home-how-to__title">
+          本と向き合う
+        </h3>
+        <%= image_tag "pic-home-how-to-book", class: "home-how-to__img", alt: "作品ページのスクリーンショット。本の情報が表示され、引用やコメントなどを登録できます。" %>
+        <p class="home-how-to__description">
+          <span class="home-how-to__span">読んだ本の記録を、わたしのために綴る。</span>
+          <span class="home-how-to__span">引用も、感想も、気負わずそっと残せる。</span>
+        </p>
+      </li>
+      <li class="home-how-to__item">
+        <h3 class="home-how-to__title">
+          著者と向き合う
+        </h3>
+        <%= image_tag "pic-home-how-to-author", class: "home-how-to__img", alt: "著者ページのスクリーンショット。登録した作品の読了率がバーで表示され、作品が年代ごとに並びます。" %>
+        <p class="home-how-to__description">
+          <span class="home-how-to__span">好きな著者の作品が年表のように並ぶ。</span>
+          <span class="home-how-to__span">制覇率・既読／未読がひと目でわかる。</span>
+        </p>
+      </li>
+      <li class="home-how-to__item">
+        <h3 class="home-how-to__title">
+          ことばと向き合う
+        </h3>
+        <%= image_tag "pic-home-how-to-citation", class: "home-how-to__img", alt: "引用一覧ページのスクリーショット。登録した全ての引用を一覧で見ることができます。" %>
+        <p class="home-how-to__description">
+          <span class="home-how-to__span">ふと読み返したくなる、ことばたちが並ぶ。</span>
+          <span class="home-how-to__span">あのときの感覚が、そっとよみがえる。</span>
+        </p>
+      </li>
+    </ul>
+  </div>
+</section>
+<%# home-how-to end %>
 
-      <div class="home-footer">
-        <%= yield :in_main_footer %>
-      </div>
+<%# home-search %>
+<section class="home-search home-scroll-snap js-fade-in">
+  <div class="home-search__inner l-container--m">
+    <h2 class="c-title-home">
+      好きな本を探してみる
+    </h2>
+    
+    <%# 検索フォーム %>
+    <div class="c-search__wrap">
+      <%= form_with url: search_index_path,
+                    method: :get,
+                    local: true,
+                    class: "c-search__form" do |form| %>
+        <div class="c-search c-search--center">
+          <%= form.text_field :q, placeholder: "タイトル・著者名など", class: "c-search__text-field" %>
+          <div class="c-search__warning-wrap">
+            <div class="c-search__warning is-hidden">！入力してください</div>
+          </div>
+          <%= button_tag(type: "submit", class: "c-search__submit-btn") do %>
+            <svg role="img" xmlns="http://www.w3.org/2000/svg" width="32px" height="32px" viewBox="0 0 24 24" aria-labelledby="searchIconTitle" stroke="#3e3e3e" stroke-width="1.5" stroke-linecap="square" stroke-linejoin="miter" fill="none" color="#3e3e3e"> <title id="searchIconTitle">検索</title> <path d="M14.4121122,14.4121122 L20,20"/> <circle cx="10" cy="10" r="6"/> </svg>
+          <% end %>
+        </div>
+      <% end %>
+    </div>
+    <%# 検索フォーム end %>
+
+    <p class="home-search__lead">
+      <span class="home-search__span">気になる本が見つかったら、</span>
+      <span class="home-search__span">あなたの読書録を始めてみませんか。</span>
+    </p>
+
+    <div class="home-search__cta-wrap">
+      <%= link_to "記録を始める", new_user_registration_path, class: "home-search__cta" %>
+    </div>
+  </div>
+
+  <div class="home-footer">
+    <%= yield :in_main_footer %>
   </div>
 </section>
 <%# home-search end %>

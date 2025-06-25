@@ -1,5 +1,5 @@
 const setupObserver = () => {
-  const targets = document.querySelectorAll(".home-about");
+  const targets = document.querySelectorAll(".js-fade-in");
 
   if (targets.length === 0) return;
 
@@ -7,7 +7,7 @@ const setupObserver = () => {
     (entries) => {
       entries.forEach((entry) => {
         if (entry.isIntersecting) {
-          entry.target.classList.add("home-about--active");
+          entry.target.classList.add("is-active");
         }
       });
     },
@@ -17,6 +17,5 @@ const setupObserver = () => {
   targets.forEach((target) => observer.observe(target));
 };
 
-// Turbo対応（通常のDOMContentLoadedに加えて、ページ遷移後も発火）
 document.addEventListener("turbo:load", setupObserver);
 document.addEventListener("DOMContentLoaded", setupObserver);

@@ -1,3 +1,6 @@
+/* -------------------- */
+/* scroll-snap */
+/* -------------------- */
 body.is-home main {
   scroll-snap-type: y mandatory;
   scroll-behavior: smooth;
@@ -14,6 +17,21 @@ body.is-home main {
   height: calc(100vh - 64px);
   scroll-snap-align: start;
   scroll-snap-stop: always;
+}
+
+/* -------------------- */
+/* fade-in */
+/* -------------------- */
+.js-fade-in {
+  opacity: 0;
+  transform: rotateX(-10deg) translateY(40px);
+  transform-origin: top center;
+  transition: all 1.2s ease;
+
+  &.is-active {
+    opacity: 1;
+    transform: rotateX(0deg) translateY(0);
+  }
 }
 
 /* -------------------- */
@@ -88,48 +106,81 @@ body.is-home main {
   font-family: var(--font-family-serif);
   background-color: var(--color-bg-dark);
   color: var(--color-font-white);
-  opacity: 0;
-  transform: rotateX(-10deg) translateY(40px);
-  transform-origin: top center;
-  transition: all 1.2s ease;
-
-  &--active {
-    opacity: 1;
-    transform: rotateX(0deg) translateY(0);
-  }
 
   &__inner {
     height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 24px;
   }
 
   &__intro {
-    font-size: 1rem;
-    line-height: 1.8;
-    margin-bottom: 2.5rem;
+    font-size: 18px;
+    letter-spacing: 0.1em;
+    line-height: 2.0;
     text-align: center;
-    opacity: 0.9;
+  }
+
+  &__span {
+    display: block;
+  }
+}
+
+/* -------------------- */
+/* home-how-to */
+/* -------------------- */
+.home-how-to {
+  font-family: var(--font-family-serif);
+  background-color: var(--color-bg-gray);
+
+  &__inner {
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 40px;
   }
 
   &__list {
-    max-width: 640px;
-    margin: 0 auto;
-    list-style: none;
-    padding: 0;
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
   }
 
   &__item {
-    font-size: 1rem;
+    width: 31%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 8px;
     line-height: 1.7;
-    margin-bottom: 1rem;
-    position: relative;
-    padding-left: 1.2em;
+  }
 
-    &::before {
-      content: "—";
-      position: absolute;
-      left: 0;
-      color: #aaa;
-    }
+  &__title {
+    width: 100%;
+    font-size: 20px;
+    font-weight: normal;
+    text-align: center;
+  }
+
+  &__img {
+    display: block;
+    width: 100%;
+    height: auto;
+    margin-bottom: 8px;
+  }
+
+  &__description {
+    width: 100%;
+    text-align: center;
+  }
+
+  &__span {
+    display: block;
   }
 }
 
@@ -137,21 +188,85 @@ body.is-home main {
 /* home-search */
 /* -------------------- */
 .home-search {
-  // position: relative;
+  font-family: var(--font-family-serif);
+  background-color: var(--color-bg-gray);
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
 
   &__inner {
     height: 100%;
-    text-align: center;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 24px;
   }
   
   &__search {
     justify-content: center;
   }
+
+  &__lead {
+    letter-spacing: 0.1em;
+    margin-top: 24px;
+  }
+
+  &__span {
+    display: block;
+  }
+
+  &__cta-wrap {
+
+  }
+
+  &__cta {
+    font-size: 20px;
+    letter-spacing: 0.1em;
+    position: relative;
+    cursor: pointer;
+    padding-right: 50px;
+    transition: opacity 0.3s ease;
+
+    &::before,
+    &::after {
+      content: '';
+      position: absolute;
+      right: 0;
+      background-color: var(--color-font-base);
+      transition: transform 0.4s ease, opacity 0.4s ease;
+    }
+
+    &::before {
+      top: calc(50% - 4px);
+      width: 12px;
+      height: 1px;
+      transform: translateX(-8px) rotate(30deg);
+      opacity: 0;
+    }
+
+    &::after {
+      top: 50%;
+      width: 40px;
+      height: 1px;
+      transform: scaleX(0.3);
+      transform-origin: left center;
+      opacity: 0.3;
+    }
+
+    &:hover::after {
+      transform: scaleX(1);
+      opacity: 1;
+    }
+
+    &:hover::before {
+      opacity: 1;
+      transform: translateX(0) rotate(30deg);
+      transition-delay: 0.2s;
+    }
+  }
 }
 
-// .home-footer {
-//   position: absolute;
-//   bottom: 0;
-//   left: 50%;
-//   transform: translateX(-50%);
-// }
+.home-footer {
+  background-color: var(--color-bg-white);
+}
