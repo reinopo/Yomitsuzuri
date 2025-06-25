@@ -1,43 +1,74 @@
-# README
+# 読綴 -Yomitsuzuri-
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+## 🌱 こんなアプリです
 
-Things you may want to cover:
+**読綴 -Yomitsuzuri-** は、自分自身と静かに向き合うための読書記録アプリです。  
+好きな著者の作品を、好きなだけ。  
+SNS的な共有機能は一切排除し、ありのままの感性を綴ります。
 
-* Ruby version
+---
 
-* System dependencies
+## 📚 特徴
+#### 🔍 Google Books APIによる検索機能
+  書籍検索からワンクリックで作品を登録。
 
-* Configuration
+#### 👤 著者フォーカス型の読書整理
+  著者ごとの作品年表・制覇率・既読/未読/積読ステータスを管理。
 
-* Database creation
+#### 📝 引用メモ・感想の記録
+  他人の目を気にせず、自分だけの読書体験を蓄積。
 
-* Database initialization
+#### 🌱 お気に入り著者のコレクション
+  お気に入りの作家をマイページで管理し、著者ページにすぐアクセス。
 
-* How to run the test suite
+---
 
-* Services (job queues, cache servers, search engines, etc.)
+## 💡 製作背景
 
-* Deployment instructions
+---
 
-* ...
+## 🥚 主な機能
+- トップページから書籍検索
+- 引用・コメント・読書状況を添えて本を登録
+- 作品
+- 好きな著者をお気に入りに追加
+- 著者ごとの作品年表・読了率
 
-## Progress
-- Devise導入完了
-- Userモデル作成済み
-- トップページルーティング設定済み
+---
 
-## Next Steps
-- トップページのデザイン調整
-- ログイン/新規登録リンクの設置
+## 💻 使用技術
 
-- google books apiの導入
-- ヘッダーに検索インプットの挿入
-- マイページに保存するデータの紐付け
-- 
+- **フレームワーク**： Ruby on Rails 7
+- **バックエンド**： Ruby 3.4.3 / Rails 7.1.5.1
+- **フロントエンド**： HTML / SCSS / JavaScript (ES6, Turbo)
+- **DB**： MySQL
+- **認証機能**： Devise
+- **API**： Google Books API
+- **画像管理**： Active Storage + MiniMagick
+- **デプロイ環境**： 未定（ローカル開発中）
 
+---
 
+## 📊 テーブル設計・ER図
 
+---
 
+## 🕊️ 今後の実装予定
+- モバイル・タブレット対応
+- お気に入り著者を任意の順に並び替え
+- 著者プロフィール記載（MediaWiki API導入）
+- 検索結果における作品数増加
+- 本番環境へのデプロイ（Render予定）
 
+---
+
+## 📜 ライセンス
+このアプリケーションは MIT ライセンスのもとで公開されています。
+
+---
+
+## 👩🏻‍💻 製作者について
+Rei Ogasawara
+
+📚 本が好きな Web エンジニア志望  
+📫 GitHub / Portfolio（←あとで追加）
