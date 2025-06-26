@@ -1,10 +1,34 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>読綴 -Yomitsuzuri-</title>
-    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title><%= content_for?(:title) ? yield(:title) : "読綴 -Yomitsuzuri-" %></title>
+    <meta name="description" content="<%= content_for?(:description) ? yield(:description) : 'わたしの感性で、ありのままに綴る。読綴は、著者にフォーカスした静かな読書記録アプリです。' %>">
+    <meta name="format-detection" content="telephone=no">
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
+
+    <%# favicon %>
+    <link rel="icon" href="<%= asset_path 'favicon.png' %>" type="image/x-icon">
+
+    <%#Web Clip Icon %>
+    <link rel="apple-touch-icon" href="<%= asset_path 'apple-touch-icon.png' %>">
+
+    <%# OGP基本タグ %>
+    <meta property="og:title" content="<%= content_for?(:og_title) ? yield(:og_title) : '読綴 -Yomitsuzuri-' %>">
+    <meta property="og:description" content="<%= content_for?(:og_description) ? yield(:og_description) : 'わたしの感性で、ありのままに綴る。読綴は、著者にフォーカスした静かな読書記録アプリです。' %>">
+    <meta property="og:type" content="<%= content_for?(:og_type) ? yield(:og_type) : 'website' %>">
+    <meta property="og:url" content="<%= request.original_url %>">
+    <meta property="og:image" content="<%= asset_url('default_ogp.png') %>">
+    <meta property="og:site_name" content="読綴 -Yomitsuzuri-">
+    <meta property="og:locale" content="ja_JP">
+
+    <%# Twitterカード %>
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="<%= content_for?(:og_title) ? yield(:og_title) : '読綴 -Yomitsuzuri-' %>">
+    <meta name="twitter:description" content="<%= content_for?(:og_description) ? yield(:og_description) : 'わたしの感性で、ありのままに綴る。読綴は、著者にフォーカスした静かな読書記録アプリです。' %>">
+    <meta name="twitter:image" content="<%= content_for?(:og_image) ? yield(:og_image) : asset_url('default_ogp.png') %>">
 
     <%# google font %>
     <link rel="preconnect" href="https://fonts.googleapis.com">

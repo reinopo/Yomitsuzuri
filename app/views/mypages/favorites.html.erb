@@ -1,3 +1,9 @@
+<% content_for :title, "お気に入り著者 / #{current_user.nickname} - Yomitsuzuri" %>
+<% content_for :description, "登録したお気に入り著者を一覧で表示しています。" %>
+<% content_for :og_title, "お気に入り著者 / #{current_user.nickname} - Yomitsuzuri" %>
+<% content_for :og_description, "登録したお気に入り著者を一覧で表示しています。" %>
+<% content_for :og_type, "article" %>
+
 <div class="mypage__contents mypage__fav-authors">
   <% if @favorite_authors.any? %>
     <div class="mypage__fav-authors__sort-links">

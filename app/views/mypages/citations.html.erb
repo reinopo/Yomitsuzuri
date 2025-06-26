@@ -1,3 +1,9 @@
+<% content_for :title, "引用メモ / #{current_user.nickname} - Yomitsuzuri" %>
+<% content_for :description, "心に残ったことばを記録した、引用メモの一覧ページ。いつでも見返すことができます。" %>
+<% content_for :og_title, "引用メモ / #{current_user.nickname} - Yomitsuzuri" %>
+<% content_for :og_description, "心に残ったことばを記録した、引用メモの一覧ページ。いつでも見返すことができます。" %>
+<% content_for :og_type, "article" %>
+
 <div class="mypage__contents mypage__citations">
   <% if @citations.any? %>
     <% @citations.each do |citation| %>
