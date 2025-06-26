@@ -5,9 +5,9 @@
 <% content_for :og_type, "article" %>
 
 <div class="l-container--l l-section">
-  <h2 class="search-result__title">
+  <h1 class="search-result__title">
     「<%= params[:q] %>」の検索結果
-  </h2>
+  </h1>
 
   <div class="l-section-body">
     <% if @google_books.present? %>
@@ -20,7 +20,7 @@
 
             <div class="c-works__info c-works__info--3columns">
               <div class="c-works__text c-works__text--3columns">
-                <h3 class="c-works__title c-works__title--3columns"><%= book[:title] %></h3>
+                <h2 class="c-works__title c-works__title--3columns"><%= book[:title] %></h2>
                 <p class="c-works__author c-works__author--3columns">
                   <%= book[:authors].join(", ") %>
                 </p>
