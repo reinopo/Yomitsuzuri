@@ -181,6 +181,11 @@ body.is-home main {
 
   &__span {
     display: block;
+
+    &--small {
+      font-size: 12px;
+      margin-top: 4px;
+    }
   }
 }
 
