@@ -1,0 +1,127 @@
+diff --git a/Gemfile b/Gemfile
+index 55bf28e..59fc7e4 100644
+--- a/Gemfile
++++ b/Gemfile
+@@ -82,3 +82,5 @@ group :development do
+   gem 'letter_opener'
+   gem 'letter_opener_web'
+ end
++
++gem 'romaji'
+\ No newline at end of file
+diff --git a/Gemfile.lock b/Gemfile.lock
+index 564a499..7d3fe1b 100644
+--- a/Gemfile.lock
++++ b/Gemfile.lock
+@@ -194,6 +194,7 @@ GEM
+     net-smtp (0.5.1)
+       net-protocol
+     nio4r (2.7.4)
++    nkf (0.2.0)
+     nokogiri (1.18.8-aarch64-linux-gnu)
+       racc (~> 1.4)
+     nokogiri (1.18.8-aarch64-linux-musl)
+@@ -272,6 +273,9 @@ GEM
+       actionpack (>= 5.2)
+       railties (>= 5.2)
+     rexml (3.4.1)
++    romaji (0.3.0)
++      nkf (>= 0.2.0)
++      rake (>= 0.8.0)
+     ruby-vips (2.2.4)
+       ffi (~> 1.12)
+       logger
+@@ -352,6 +356,7 @@ DEPENDENCIES
+   mysql2 (~> 0.5)
+   puma (~> 6.6)
+   rails (~> 7.1.0)
++  romaji
+   sassc-rails
+   selenium-webdriver
+   sprockets-rails
+diff --git a/app/controllers/authors_controller.rb b/app/controllers/authors_controller.rb
+index ab32dde..9c4b381 100644
+--- a/app/controllers/authors_controller.rb
++++ b/app/controllers/authors_controller.rb
+@@ -1,6 +1,6 @@
+ class AuthorsController < ApplicationController
+   def show
+-    @author = Author.find(params[:id])
++    @author = Author.find_by!(slug: params[:id])
+     @favorite_author = current_user.favorite_authors.find_by(author_id: @author.id)
+     
+     books = @author.books
+diff --git a/app/models/author.rb b/app/models/author.rb
+index a7284a5..f911a5c 100644
+--- a/app/models/author.rb
++++ b/app/models/author.rb
+@@ -6,4 +6,37 @@ class Author < ApplicationRecord
+   # お気に入り著者との関連
+   has_many :favorite_authors, dependent: :destroy
+   has_many :users, through: :favorite_authors
++
++  before_validation :generate_slug
++
++  validates :slug, presence: true, uniqueness: true
++
++  def to_param
++    slug
++  end
++
++  private
++
++  require 'romaji'
++
++  def generate_slug
++    return if slug.present?
++
++    base = Romaji.kana2romaji(name.to_s).to_s.parameterize
++    base = "author" if base.blank?
++
++    candidate = base
++    counter = 2
++
++    while Author.where.not(id: id).exists?(slug: candidate)
++      candidate = "#{base}-#{counter}"
++      counter += 1
++    end
++
++    self.slug = candidate
++  end
++
++
++
++
+ end
+diff --git a/db/schema.rb b/db/schema.rb
+index dfd8015..b12bd9a 100644
+--- a/db/schema.rb
++++ b/db/schema.rb
+@@ -10,7 +10,7 @@
+ #
+ # It's strongly recommended that you check this file into your version control system.
+ 
+-ActiveRecord::Schema[7.1].define(version: 2025_06_23_061945) do
++ActiveRecord::Schema[7.1].define(version: 2025_06_26_071219) do
+   create_table "active_storage_attachments", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
+     t.string "name", null: false
+     t.string "record_type", null: false
+@@ -44,6 +44,8 @@ ActiveRecord::Schema[7.1].define(version: 2025_06_23_061945) do
+     t.text "description"
+     t.datetime "created_at", null: false
+     t.datetime "updated_at", null: false
++    t.string "slug"
++    t.index ["slug"], name: "index_authors_on_slug", unique: true
+   end
+ 
+   create_table "authorships", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
+@@ -64,7 +66,9 @@ ActiveRecord::Schema[7.1].define(version: 2025_06_23_061945) do
+     t.string "isbn"
+     t.datetime "created_at", null: false
+     t.datetime "updated_at", null: false
++    t.string "slug"
+     t.index ["google_id"], name: "index_books_on_google_id", unique: true
++    t.index ["slug"], name: "index_books_on_slug", unique: true
+   end
+ 
+   create_table "citations", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
