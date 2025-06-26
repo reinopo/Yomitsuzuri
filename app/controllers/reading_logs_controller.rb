@@ -36,11 +36,13 @@ class ReadingLogsController < ApplicationController
 
       puts "🟡 ここから ReadingLog を保存"
       reading_log = current_user.reading_logs.find_or_initialize_by(book: @book)
+      
+      status = params[:reading_log][:reading_status]
+      comment = params[:reading_log][:comment]
 
-      status = params[:reading_status]
-      status = nil if status.blank? || !%w[0 1 2].include?(status)
+      # ステータスが "0", "1", "2" のいずれかか確認して代入
+      reading_log.reading_status = %w[0 1 2].include?(status) ? status.to_i : nil
 
-      reading_log.reading_status = status if status.present?
       reading_log.comment = comment
       reading_log.save!
 
