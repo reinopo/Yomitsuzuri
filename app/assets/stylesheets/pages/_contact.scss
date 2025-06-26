@@ -1,7 +1,8 @@
 .contact {
   max-width: 600px;
+  background-color: var(--color-bg-white);
+  padding: 40px 32px;
   margin: 0 auto;
-  padding: 24px 16px;
 
   &__notice {
     background-color: #f0fdf4;
