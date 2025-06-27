@@ -32,6 +32,15 @@
 }
 
 /* -------------------- */
+/* font */
+/* -------------------- */
+:root {
+  --font-family-base: "Zen Kaku Gothic New", sans-serif;
+  --font-family-serif: "Noto Serif JP", serif;
+  --font-family-number: "Kameron", serif;
+}
+
+/* -------------------- */
 /* content width */
 /* -------------------- */
 :root {
@@ -42,13 +51,14 @@
 }
 
 /* -------------------- */
-/* font */
+/* breakpoints */
 /* -------------------- */
-:root {
-  --font-family-base: "Zen Kaku Gothic New", sans-serif;
-  --font-family-serif: "Noto Serif JP", serif;
-  --font-family-number: "Kameron", serif;
-}
+$breakpoints: (
+	"sp": "screen and (max-width: 767px)",
+	"tab": "screen and (min-width: 768px) and (max-width: 1019px)",
+	"pc": "screen and (min-width: 1020px)",
+  "tab-up": "screen and (min-width: 768px)",
+);
 
 /* -------------------- */
 /* height */

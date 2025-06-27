@@ -8,15 +8,23 @@ body.is-home main {
   overflow-y: scroll;
   overscroll-behavior-y: none;
   -webkit-overflow-scrolling: auto;
-  scroll-padding-top: 64px;
+  scroll-padding-top: 48px;
   margin-top: 0;
+
+  @include mq('tab-up') {
+    scroll-padding-top: 64px;
+  }
 }
 
 .home-scroll-snap {
   width: 100vw;
-  height: calc(100vh - 64px);
+  height: calc(100vh - 48px);
   scroll-snap-align: start;
   scroll-snap-stop: always;
+
+  @include mq('tab-up') {
+    height: calc(100vh - 64px);
+  }
 }
 
 /* -------------------- */
@@ -41,7 +49,11 @@ body.is-home main {
   font-family: var(--font-family-serif);
   color: var(--color-font-white);
   position: relative;
-  margin-top: 64px;
+  margin-top: 48px;
+
+  @include mq('tab-up') {
+    margin-top: 64px;
+  }
 
   &__inner {
     height: 100%;

@@ -1,9 +1,13 @@
 main {
-  margin-top: var(--header-height);
+  margin-top: 48px;
   height: auto;
   overflow: visible;
   scroll-snap-type: none;
   scroll-behavior: auto;
+
+  @include mq('tab-up') {
+    margin-top: 64px;
+  }
 }
 
 /* -------------------- */
