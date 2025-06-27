@@ -3,21 +3,24 @@
   
   &__inner {
   text-align: center;
-  padding: 32px 16px;
+  padding: 2.28rem 1.14rem;
 }
 
   &__nav {
-    margin-bottom: 16px;
+    margin-bottom: 1.14rem;
   }
 
   &__list {
     display: flex;
     flex-direction: column;
-    gap: 2px;
+    gap: 0.14rem;
   }
 
   &__link {
-    font-size: 14px;
+
+    @include mq('tab-up') {
+      font-size: 0.875rem;
+    }
     
     @media (any-hover: hover) {
       &:hover {

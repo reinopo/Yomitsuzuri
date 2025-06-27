@@ -1,10 +1,10 @@
 .c-search {
   display: flex;
   align-items: center;
-  height: 32px;
-  background-color: var(--color-bg-white);
-  font-family: var(--font-family-base);
   position: relative;
+  height: 32px;
+  font-family: var(--font-family-base);
+  background-color: var(--color-bg-white);
 
   @include mq('tab-up') {
     height: 40px;
@@ -24,12 +24,12 @@
   }
 
   &__inline-message {
-    color: var(--color-font-caution);
-    font-size: 0.85rem;
     position: absolute;
     top: 50%;
     transform: translateY(-50%);
     right: 48px;
+    font-size: 0.85rem;
+    color: var(--color-font-caution);
     transition: opacity 0.3s ease;
     opacity: 1;
 
@@ -46,21 +46,25 @@
   }
 
   &__warning {
-    position: relative;
     display: inline-block;
+    position: relative;
     width: 120px;
-    margin-right: 16px;
-    padding: 4px;
-    border: 1px solid var(--color-font-caution);
-    border-radius: 4px;
-    background-color: var(--color-bg-white);
-    text-align: center;
+    margin-right: 1.14rem;
+    padding: 0.29rem;
     font-size: 0.85rem;
     font-weight: 400;
     line-height: 1.5;
+    text-align: center;
     color: var(--color-font-caution);
+    background-color: var(--color-bg-white);
+    border: 1px solid var(--color-font-caution);
+    border-radius: 0.29rem;
     transition: opacity 0.5s ease;
     opacity: 1;
+
+    @include mq('tab-up') {
+      font-size: 0.75rem;
+    }
 
     &::before {
       content: "";
@@ -93,10 +97,10 @@
     display: block;
     width: 300px;
     height: 100%;
-    font-size: 12px;
+    padding: 0.25rem 0.5rem;
+    font-size: 0.75rem;
     border: solid 1px var(--color-border-base--light);
     border-right: none;
-    padding: 4px 8px;
 
     @include mq('sp') {
       width: 280px;
@@ -114,8 +118,8 @@
   &__submit-btn {
     display: block;
     height: 100%;
+    padding: 0 0.28rem;
     border: solid 1px var(--color-border-base--light);
-    padding: 0 4px;
     transition: background-color 0.5s ease, color 0.5s ease;
 
     @media (any-hover: hover) {

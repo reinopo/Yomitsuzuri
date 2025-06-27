@@ -2,14 +2,14 @@
 /* scroll-snap */
 /* -------------------- */
 body.is-home main {
+  height: 100vh;
+  margin-top: 0;
   scroll-snap-type: y mandatory;
   scroll-behavior: smooth;
-  height: 100vh;
+  scroll-padding-top: 48px;
   overflow-y: scroll;
   overscroll-behavior-y: none;
   -webkit-overflow-scrolling: auto;
-  scroll-padding-top: 48px;
-  margin-top: 0;
 
   @include mq('tab-up') {
     scroll-padding-top: 64px;
@@ -46,10 +46,10 @@ body.is-home main {
 /* home-kv */
 /* -------------------- */
 .home-kv {
-  font-family: var(--font-family-serif);
-  color: var(--color-font-white);
   position: relative;
   margin-top: 48px;
+  font-family: var(--font-family-serif);
+  color: var(--color-font-white);
 
   @include mq('tab-up') {
     margin-top: 64px;
@@ -68,21 +68,30 @@ body.is-home main {
 
   &__overlay {
     position: absolute;
-    top: 45%;
+    top: 40%;
     left: 50%;
     transform: translate(-50%, -50%);
     text-align: center;
     animation: fadein 1.8s ease-out forwards;
+
+    @include mq('tab-up') {
+      top: 45%;
+    }
   }
 
   &__title {
-    font-size: 48px;
+    margin-bottom: $rem-16;
+    font-size: $rem-40;
     font-weight: normal;
     letter-spacing: 0.1em;
-    padding-left: 0.1em;
-    margin-bottom: 8px;
     opacity: 0;
     animation: titleIn 1.2s ease-out 0.2s forwards;
+
+    @include mq('tab-up') {
+      margin-bottom: 0.5rem;
+      padding-left: 0.1em;
+      font-size: 3rem;
+    }
   }
 
   @keyframes titleIn {
@@ -91,16 +100,24 @@ body.is-home main {
   }
 
   &__subtitle {
-    display: inline-block;
-    font-size: 32px;
-    letter-spacing: 0;
-    padding-left: 8px;
+    display: block;
+    font-size: $rem-24;
+    letter-spacing: 0.08em;
+    line-height: 1.0;
+
+    @include mq('tab-up') {
+      display: inline-block;
+      padding-left: $rem-12;
+      font-size: 2rem;
+      line-height: 1.5;
+    }
   }
 
   &__catch-copy {
-    font-size: 20px;
-    letter-spacing: 0.1em;
     padding-left: 0.1em;
+    font-size: $rem-16;
+    letter-spacing: 0.1em;
+    text-wrap: nowrap;
     opacity: 0;
     animation: fadein 1.5s ease-out 1.2s forwards;
   }
@@ -116,22 +133,22 @@ body.is-home main {
 /* -------------------- */
 .home-about {
   font-family: var(--font-family-serif);
-  background-color: var(--color-bg-dark);
   color: var(--color-font-white);
+  background-color: var(--color-bg-dark);
 
   &__inner {
-    height: 100%;
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
     gap: 24px;
+    height: 100%;
   }
 
   &__intro {
     font-size: 18px;
-    letter-spacing: 0.1em;
     line-height: 2.0;
+    letter-spacing: 0.1em;
     text-align: center;
   }
 
@@ -148,27 +165,27 @@ body.is-home main {
   background-color: var(--color-bg-gray);
 
   &__inner {
-    height: 100%;
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
     gap: 40px;
+    height: 100%;
   }
 
   &__list {
-    width: 100%;
     display: flex;
     justify-content: space-between;
     align-items: flex-start;
+    width: 100%;
   }
 
   &__item {
-    width: 31%;
     display: flex;
     flex-direction: column;
     justify-content: center;
     gap: 8px;
+    width: 31%;
     line-height: 1.7;
   }
 
@@ -195,8 +212,8 @@ body.is-home main {
     display: block;
 
     &--small {
-      font-size: 12px;
       margin-top: 4px;
+      font-size: 12px;
     }
   }
 }
@@ -205,19 +222,19 @@ body.is-home main {
 /* home-search */
 /* -------------------- */
 .home-search {
-  font-family: var(--font-family-serif);
-  background-color: var(--color-bg-gray);
   display: flex;
   flex-direction: column;
   justify-content: space-between;
+  font-family: var(--font-family-serif);
+  background-color: var(--color-bg-gray);
 
   &__inner {
-    height: 100%;
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
     gap: 24px;
+    height: 100%;
   }
   
   &__search {
@@ -225,8 +242,8 @@ body.is-home main {
   }
 
   &__lead {
-    letter-spacing: 0.1em;
     margin-top: 24px;
+    letter-spacing: 0.1em;
   }
 
   &__span {
@@ -238,11 +255,11 @@ body.is-home main {
   }
 
   &__cta {
+    position: relative;
+    padding-right: 50px;
     font-size: 20px;
     letter-spacing: 0.1em;
-    position: relative;
     cursor: pointer;
-    padding-right: 50px;
     transition: opacity 0.3s ease;
 
     &::before,
