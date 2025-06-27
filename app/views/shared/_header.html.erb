@@ -1,6 +1,6 @@
 <header class="header">
   <div class="header__inner">
-    <div class="header__logo">
+    <div class="header__logo js-search-toggle-target">
       <%= link_to root_path, class: "header__logo-link" do %>
         <%= render "shared/icon_logo_svg" %>
       <% end %>
@@ -14,13 +14,16 @@
         <li class="header__item--search">
           <%# 検索フォーム %>
           <div class="c-search__wrap">
-            <%= form_with url: search_index_path,
-                          method: :get,
-                          local: true,
-                          data-mode="header",
-                          class: "c-search__form" do |form| %>
+            <%= form_with(
+                  url: search_index_path,
+                  method: :get,
+                  local: true,
+                  class: "c-search__form",
+                  data: { mode: "header" }
+                ) do |form| %>
               <div class="c-search c-search--center">
-                <%= form.text_field :q, placeholder: "タイトル・著者名など", class: "c-search__text-field" %>
+                <%= form.text_field :q, placeholder: "タイトル・著者名など", class: "c-search__text-field is-closed" %>
+                <div class="c-search__inline-message is-hidden">！入力してください</div>
                 <div class="c-search__warning-wrap">
                   <div class="c-search__warning is-hidden">！入力してください</div>
                 </div>
@@ -28,21 +31,24 @@
                   <svg role="img" xmlns="http://www.w3.org/2000/svg" width="32px" height="32px" viewBox="0 0 24 24" aria-labelledby="searchIconTitle" stroke="#3e3e3e" stroke-width="1.5" stroke-linecap="square" stroke-linejoin="miter" fill="none" color="#3e3e3e"> <title id="searchIconTitle">検索</title> <path d="M14.4121122,14.4121122 L20,20"/> <circle cx="10" cy="10" r="6"/> </svg>
                 <% end %>
               </div>
+              <button type="button" class="c-search__close-btn is-hidden js-search-close" aria-label="閉じる">
+                <svg class="c-search__close-svg" role="img" xmlns="http://www.w3.org/2000/svg" width="24px" height="24px" viewBox="0 0 24 24" aria-labelledby="closeIconTitle" stroke="#3e3e3e" stroke-width="1" stroke-linecap="square" stroke-linejoin="miter" fill="none" color="#3e3e3e"> <title id="closeIconTitle">閉じる</title> <path d="M6.34314575 6.34314575L17.6568542 17.6568542M6.34314575 17.6568542L17.6568542 6.34314575"/> </svg>
+              </button>
             <% end %>
           </div>
           <%# 検索フォーム end %>
         </li>
 
-        <li class="header__item">
+        <li class="header__item js-search-toggle-target">
           <%= link_to "マイページ", home_mypage_path, class: "header__item-link" %>
         </li>
         <%# ログイン時 end %>
         <% else %>
         <%# ログアウト時 %>
-        <li class="header__item">
+        <li class="header__item js-search-toggle-target">
           <%= link_to "ログイン", new_user_session_path, class: "header__item-link" %>
         </li>
-        <li class="header__item">
+        <li class="header__item js-search-toggle-target">
           <%= link_to "新規登録", new_user_registration_path, class: "header__item-link" %>
         </li>
         <%# ログアウト時 end %>

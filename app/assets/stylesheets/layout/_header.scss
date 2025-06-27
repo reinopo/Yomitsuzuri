@@ -20,6 +20,12 @@
     }
   }
 
+  &.is-search-only {
+    .header__inner {
+      justify-content: center;
+    }
+  }
+
   &__logo {
     height: 100%;
     display: flex;
@@ -70,6 +76,12 @@
   }
 
   &__item--search {
-    margin-right: 16px;
+    display: flex;
+    align-items: center;
+    margin: 0 0.57rem;
+
+    @include mq('tab-up') {
+      margin-right: 1rem;
+    }
   }
 }
