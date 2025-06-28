@@ -11,20 +11,20 @@
 
   <div class="l-section-body">
     <% if @google_books.present? %>
-      <ul class="c-works c-works--3columns">
+      <ul class="c-works c-works--5columns">
         <% @google_books.each do |book| %>
-          <li class="c-works__item c-works__item--3columns">
+          <li class="c-works__item c-works__item--5columns">
             <%# サムネ画像がない場合は代替画像を表示 %>
             <% image_url = book[:thumbnail_link] %>
-            <img class="c-works__image c-works__image--3columns" src="<%= image_url.start_with?("http") ? image_url : asset_path(image_url) %>" alt="<%= book[:title].to_s %> の表紙画像">
+            <img class="c-works__image c-works__image--5columns" src="<%= image_url.start_with?("http") ? image_url : asset_path(image_url) %>" alt="<%= book[:title].to_s %> の表紙画像">
 
-            <div class="c-works__info c-works__info--3columns">
-              <div class="c-works__text c-works__text--3columns">
-                <h2 class="c-works__title c-works__title--3columns"><%= book[:title] %></h2>
-                <p class="c-works__author c-works__author--3columns">
+            <div class="c-works__info c-works__info--5columns">
+              <div class="c-works__text c-works__text--5columns">
+                <h2 class="c-works__title c-works__title--5columns"><%= book[:title] %></h2>
+                <p class="c-works__author c-works__author--5columns">
                   <%= book[:authors].join(", ") %>
                 </p>
-                <p class="c-works__published_date c-works__published_date--3columns">
+                <p class="c-works__published_date c-works__published_date--5columns">
                   <%= book[:published_date] %>
                 </p>
               </div>
@@ -32,7 +32,7 @@
               <%# ログイン時は登録用モーダル、ログアウト時はログインページに遷移 %>
               <% if user_signed_in? %>
                 <%# DBに保存するデータをボタンに埋め込む %>
-                <button type="button" class="c-register-modal__open c-works__btn--3columns c-button c-button--small c-button--white"
+                <button type="button" class="c-register-modal__open c-works__btn--5columns c-button c-button--small c-button--white"
                         data-book-id="<%= book[:isbn] %>"
                         data-book-title="<%= book[:title] %>"
                         data-book-authors="<%= book[:authors].join(', ') %>"
@@ -43,7 +43,7 @@
                   作品を登録
                 </button>
               <% else %>
-                <%= link_to "作品を登録", new_user_session_path, class: "c-works__btn--3columns c-button c-button--small c-button--white" %>
+                <%= link_to "作品を登録", new_user_session_path, class: "c-works__btn--5columns c-button c-button--small c-button--white" %>
               <% end %>
             </div>
 

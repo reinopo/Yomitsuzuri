@@ -1,7 +1,8 @@
+// responsive done
 .c-works {
   display: grid;
 
-  &--3columns {
+  &--5columns {
     grid-template-columns: repeat(1, 1fr);
     gap: $rem-24;
 
@@ -35,7 +36,7 @@
     display: flex;
   }
 
-  &__item--3columns {
+  &__item--5columns {
     gap: $rem-12;
     position: relative;
 
@@ -68,9 +69,9 @@
     display: block;
   }
 
-  &__image--3columns {
+  &__image--5columns {
     width: 80px;
-    height: auto;
+    height: 120px;
     margin: 0 auto;
 
     @include mq('tab') {
@@ -79,8 +80,8 @@
     }
 
     @include mq('pc') {
-      width: 120px;
-      height: 190px;
+      width: 140px;
+      height: 200px;
     }
   }
 
@@ -103,7 +104,7 @@
     justify-content: space-between;
   }
 
-  &__info--3columns {
+  &__info--5columns {
     width: calc(100% - 88px);
     flex: 1;
 
@@ -135,7 +136,7 @@
     line-height: 1.0;
   }
 
-  &__title--3columns {
+  &__title--5columns {
     margin-bottom: $rem-8;
     font-size: $rem-16;
     line-height: 1.2;
@@ -176,12 +177,9 @@
     }
   }
 
-  &__author {
-
-  }
-
-  &__author--3columns {
+  &__author--5columns {
     margin-bottom: $rem-12;
+    line-height: 1.2;
 
     @include mq('tab') {
       margin-bottom: 0.5rem;
@@ -234,11 +232,7 @@
     }
   }
 
-  &__published_date {
-
-  }
-
-  &__published_date--3columns {
+  &__published_date--5columns {
     margin-bottom: $rem-16;
 
     @include mq('tab') {
@@ -250,7 +244,7 @@
     }
   }
 
-  &__btn--3columns {
+  &__btn--5columns {
     @include mq('tab') {
       margin: 0 auto;
     }
