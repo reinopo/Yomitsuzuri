@@ -2,23 +2,52 @@
   width: 100vw;
   display: flex;
   flex-direction: column;
-  gap: 24px;
-  background-color: var(--color-bg-base);
+  gap: $rem-24;
   padding: 56px 0;
+  background-color: var(--color-bg-base);
 
   &__wrap {
     background-color: var(--color-bg-white);
-    padding: 32px;
+    padding: $rem-32 $rem-16;
+
+    @include mq('tab-up') {
+      padding: 2rem;
+    }
   }
 
+  &__name {
+    padding-bottom: $rem-8;
+    margin-bottom: $rem-24;
+    font-family: var(--font-family-serif);
+    font-size: $rem-24;
+    font-weight: normal;
+    border-bottom: 2px solid var(--color-border-base);
+
+    @include mq('pc') {
+      font-size: 2rem;
+    }
+  }
+
+  // 読了率
   &__progress-bar {
-    padding: 0 32px;
-    margin: 16px 0 32px 0;
+    padding: 0 $rem-8;
+    margin: $rem-16 0 $rem-32 0;
+
+    @include mq('tab') {
+      padding: 0 1rem;
+    }
+
+    @include mq('pc') {
+      padding: 0 2rem;
+    }
   }
 
   &__progress-label {
-    font-size: 14px;
-    margin-bottom: 4px;
+    margin-bottom: $rem-4;
+
+    @include mq('tab-up') {
+      font-size: 0.875rem;
+    }
   }
 
   &__progress-track {
@@ -45,30 +74,30 @@
     }
   }
 
-  &__name {
-    font-family: var(--font-family-serif);
-    font-size: 32px;
-    font-weight: normal;
-    margin-bottom: 24px;
-    border-bottom: 2px solid var(--color-border-base);
-    padding-bottom: 8px;
-  }
-
+  // 作品一覧
   &__year-group {
     display: flex;
+    padding: $rem-16 $rem-24;
     border-top: 1px solid var(--color-border-base--light);
-    padding: 16px 24px;
   }
 
   &__year {
     width: 140px;
     font-family: var(--font-family-number);
-    font-size: 24px;
+    font-size: $rem-20;
     font-weight: 400;
+
+    @include mq('tab-up') {
+      font-size: 1.5rem;
+    }
 
     &--unknown {
       font-family: var(--font-family-base);
-      font-size: 16px;
+      font-size: $rem-14;
+
+      @include mq('tab-up') {
+        font-size: 1rem;
+      }
     }
   }
 
