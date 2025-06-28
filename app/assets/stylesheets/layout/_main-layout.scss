@@ -43,7 +43,7 @@ main {
 /* section */
 /* -------------------- */
 .l-section {
-  padding: 32px 16px;
+  padding: $rem-32 $rem-16;
 }
 
 .l-section--l {
@@ -52,31 +52,35 @@ main {
 
 .l-section-body {
   height: 100%;
-  padding: 24px 0;
+  padding: $rem-24 0;
 }
 
 /* -------------------- */
 /* article */
 /* -------------------- */
 .l-article {
-  padding: 40px 16px;
+  padding: $rem-40 $rem-16;
 }
 
 .l-article-body {
-  padding-top: 32px;
+  padding-top: $rem-24;
+
+  @include mq('tab-up') {
+    padding-top: 2rem;
+  }
 }
 
 /* -------------------- */
 /* margin, padding */
 /* -------------------- */
 .l-mb-16 {
-  margin-bottom: 16px;
+  margin-bottom: $rem-16;
 }
 
 .l-mb-32 {
-  margin-bottom: 32px;
+  margin-bottom: $rem-32;
 }
 
 .l-mb-40 {
-  margin-bottom: 40px;
+  margin-bottom: $rem-40;
 }
