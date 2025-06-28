@@ -141,19 +141,34 @@ body.is-home main {
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    gap: 24px;
+    gap: $rem-4;
     height: 100%;
+
+    @include mq('tab-up') {
+      gap: 0
+    }
   }
 
   &__intro {
-    font-size: 18px;
-    line-height: 2.0;
-    letter-spacing: 0.1em;
+    margin-top: $rem-16;
+  }
+
+  &__text {
     text-align: center;
+
+    @include mq('tab-up') {
+      font-size: 1.125rem;
+      letter-spacing: 0.1em;
+      line-height: 2.0;
+      text-align: center;
+    }
   }
 
   &__span {
-    display: block;
+
+    @include mq('sp') {
+      display: block;
+    }
   }
 }
 
@@ -248,10 +263,6 @@ body.is-home main {
 
   &__span {
     display: block;
-  }
-
-  &__cta-wrap {
-
   }
 
   &__cta {

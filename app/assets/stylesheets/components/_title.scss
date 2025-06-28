@@ -3,9 +3,13 @@
 /* -------------------- */
 .c-title-home {
   font-family: var(--font-family-serif);
-  font-size: 32px;
+  font-size: $rem-24;
   font-weight: normal;
   letter-spacing: 0.1em;
+
+  @include mq('tab-up') {
+    font-size: 2rem;
+  }
 }
 
 /* -------------------- */
