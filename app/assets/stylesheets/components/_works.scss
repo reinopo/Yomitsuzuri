@@ -3,12 +3,22 @@
 
   &--3columns {
     grid-template-columns: repeat(3, 1fr);
-    gap: 24px;
+    gap: $rem-24;
   }
 
   &--4columns {
-    grid-template-columns: repeat(4, 1fr);
-    gap: 16px;
+    grid-template-columns: repeat(1, 1fr);
+    gap: $rem-8;
+
+    @include mq('tab') {
+      grid-template-columns: repeat(5, 1fr);
+      gap: 1rem;
+    }
+
+    @include mq('pc') {
+      grid-template-columns: repeat(4, 1fr);
+      gap: 1rem;
+    }
   }
 
   &__item {
@@ -22,8 +32,17 @@
   }
 
   &__item--4columns {
-    flex-direction: column;
-    gap: 8px;
+    gap: $rem-12;
+
+    @include mq('tab') {
+      flex-direction: column;
+      gap: 0.5rem;
+    }
+
+    @include mq('pc') {
+      flex-direction: column;
+      gap: 0.5rem;
+    }
   }
 
   &__image {
@@ -35,8 +54,16 @@
   }
 
   &__image--4columns {
-    width: 120px;
+    width: 80px;
     margin: 0 auto;
+
+    @include mq('tab') {
+      width: 112px;
+    }
+
+    @include mq('pc') {
+      width: 120px;
+    }
   }
 
   &__info {
@@ -51,7 +78,15 @@
   }
 
   &__info--4columns {
-    width: 100%;
+    width: calc(100% - 88px);
+
+    @include mq('tab') {
+      width: 100%;
+    }
+
+    @include mq('pc') {
+      width: 100%;
+    }
   }
 
   &__text {
@@ -65,8 +100,18 @@
   }
 
   &__title--4columns {
-    font-size: 14px;
-    margin-bottom: 4px;
+    font-size: $rem-16;
+    margin-bottom: $rem-8;
+
+    @include mq('tab') {
+      font-size: 1rem;
+      margin-bottom: 0.25rem;
+    }
+
+    @include mq('pc') {
+      font-size: 1rem;
+      margin-bottom: 0.25rem;
+    }
   }
 
   &__title--link {
@@ -93,7 +138,17 @@
   }
 
   &__author--4columns {
-    font-size: 12px;
+    margin-bottom: $rem-12;
+
+    @include mq('tab') {
+      font-size: 0.75rem;
+      margin-bottom: 0.25rem;
+    }
+
+    @include mq('pc') {
+      font-size: 0.75rem;
+      margin-bottom: 0.25rem;
+    }
   }
 
   &__author--link {
@@ -107,6 +162,18 @@
         color: var(--color-font-accent);
         text-decoration: underline;
       }
+    }
+  }
+
+  &__read-at {
+    font-size: $rem-12;
+
+    @include mq('tab') {
+      display: none;
+    }
+
+    @include mq('pc') {
+      display: none;
     }
   }
 

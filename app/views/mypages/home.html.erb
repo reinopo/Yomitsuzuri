@@ -20,6 +20,11 @@
                 <p class="c-works__author c-works__author--4columns">
                   <%= book.authors.map(&:name).join(", ") %>
                 </p>
+                <% if log&.read? && log.read_at.present? %>
+                  <p class="c-works__read-at">
+                    読了日：<%= log.read_at.strftime("%Y/%m/%d") %>
+                  </p>
+                <% end %>
               </div>
 
               <%# <%= link_to "詳細を見る", book_path(book), class: "c-button c-button--small c-button--white c-button--center" %>
