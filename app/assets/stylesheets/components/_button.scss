@@ -20,6 +20,7 @@
 
   &--small {
     max-width: 100px;
+    height: 30px;
 
     @include mq('tab-up') {
       max-width: 128px;

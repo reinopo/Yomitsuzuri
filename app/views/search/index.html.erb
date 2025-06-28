@@ -32,7 +32,7 @@
               <%# ログイン時は登録用モーダル、ログアウト時はログインページに遷移 %>
               <% if user_signed_in? %>
                 <%# DBに保存するデータをボタンに埋め込む %>
-                <button type="button" class="c-register-modal__open c-button c-button--small c-button--center c-button--white"
+                <button type="button" class="c-register-modal__open c-works__btn--3columns c-button c-button--small c-button--white"
                         data-book-id="<%= book[:isbn] %>"
                         data-book-title="<%= book[:title] %>"
                         data-book-authors="<%= book[:authors].join(', ') %>"
@@ -43,7 +43,7 @@
                   作品を登録
                 </button>
               <% else %>
-                <%= link_to "作品を登録", new_user_session_path, class: "c-button c-button--small c-button--center c-button--white" %>
+                <%= link_to "作品を登録", new_user_session_path, class: "c-works__btn--3columns c-button c-button--small c-button--white" %>
               <% end %>
             </div>
 
