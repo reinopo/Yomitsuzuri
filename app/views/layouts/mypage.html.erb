@@ -137,10 +137,9 @@
                 <%= link_to "お気に入り著者", favorites_mypage_path, class: ["mypage__nav-link", ("is-active" if current_page?(favorites_mypage_path))].compact.join(" ") %>
               </li>
               <li class="mypage__nav-item">
-                <%= link_to "引用メモ", citations_mypage_path, class: ["mypage__nav-link", ("is-active" if current_page?(citations_mypage_path))].compact.join(" ") %>
+                <%= link_to "引用メモ", citations_mypage_path, class: ["mypage__nav-link mypage__nav-link--last", ("is-active" if current_page?(citations_mypage_path))].compact.join(" ") %>
               </li>
             </ul>
-
 
             <!-- ここからページ固有↓ -->
               <%= yield %>

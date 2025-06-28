@@ -7,8 +7,8 @@
 <div class="mypage__contents mypage__citations">
   <% if @citations.any? %>
     <% @citations.each do |citation| %>
-      <div class="c-citation">
-        <blockquote class="c-citation__content">
+      <div class="c-citation mypage__citation">
+        <blockquote class="c-citation__content mypage__citation__content">
           <p class="c-citation__text">"<%= citation.content %>"</p>
           <div class="c-citation__info">
             <% if citation.page_number.present? %>
