@@ -4,7 +4,7 @@
   width: 100vw;
   display: flex;
   flex-direction: column;
-  padding: 0 0 $rem-56 0;
+  padding: $rem-40 0;
   background-color: var(--color-bg-base);
 
   @include mq('tab-up') {
@@ -15,12 +15,12 @@
   &__wrap {
     background-color: var(--color-bg-white);
     position: relative;
+    padding: $rem-32 $rem-16;
     width: 100%;
-    padding: $rem-28 $rem-16;
 
     @include mq('tab-up') {
-      width: 90%;
       padding: 2rem;
+      width: 90%;
     }
 
     &:nth-child(2) {

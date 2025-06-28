@@ -37,63 +37,66 @@
           <% books.each do |book| %>
           <li class="author__book-item">
 
-            <%# info(サムネ・タイトル) %>
+            <%# サムネ %>
+            <div class="author__thumbnail">
+              <%= image_tag book.thumbnail_link, size: "60x90", class: "author__thumbnail-img" %>
+            </div>
+            <%# サムネ end %>
+            
+            <%# info %>
             <div class="author__info">
-              <div class="author__thumbnail">
-                <%= image_tag book.thumbnail_link, size: "60x90", class: "author__thumbnail-img" %>
-              </div>
-
               <%= link_to book.title, book_path(book), class: "c-works__title--link author__title" %>
-            </div>
-            <%# info(タイトル) end %>
 
-            <%# 読書状況を表示 %>
-            <div class="author__status">
-              <% reading_log = @reading_logs_by_book_id[book.id] %>
-
-              <% if reading_log %>
-              <% status_class = case reading_log.reading_status
-                when "read" then "read"
-                when "unread" then "unread"
-                when "stacked" then "stacked"
-                else nil
-              end %>
-
-              <div class="c-status-label__wrap author__status-content">
-                <% if status_class.present? %>
-                <span class="c-status-label__status c-status-label__status--<%= status_class %>">
-                  <%= reading_log.reading_status_label %>
-                </span>
+              <div class="author__meta">
+                <%# 読書状況を表示 %>
+                <div class="author__status">
+                  <% reading_log = @reading_logs_by_book_id[book.id] %>
+  
+                  <% if reading_log %>
+                  <% status_class = case reading_log.reading_status
+                    when "read" then "read"
+                    when "unread" then "unread"
+                    when "stacked" then "stacked"
+                    else nil
+                  end %>
+  
+                  <div class="c-status-label__wrap author__status-content">
+                    <% if status_class.present? %>
+                    <span class="c-status-label__status c-status-label__status--<%= status_class %>">
+                      <%= reading_log.reading_status_label %>
+                    </span>
+                    <% else %>
+                    <span class="c-status-label__status c-status-label__status--unset">未設定</span>
+                    <% end %>
+                  </div>
+                  <% end %>
+                </div>
+                <%# 読書状況を表示 end %>
+  
+                <%# 引用数 %>
+                <div class="author__citation-count">
+                <% if reading_log.citations.any? %>
+                  <svg class="author__citation-icon" role="img" xmlns="http://www.w3.org/2000/svg" width="20px" height="20px" viewBox="0 0 24 24" aria-labelledby="chatAltIconTitle" stroke="#3e3e3e" stroke-width="1" stroke-linecap="square" stroke-linejoin="miter" fill="none" color="#3e3e3e"> <title id="chatAltIconTitle">Chat</title> <path d="M13,17 L7,21 L7,17 L3,17 L3,4 L21,4 L21,17 L13,17 Z"/> </svg>
+                  <span class="author__citation-text"><%= reading_log.citations.count %>件の引用</span>
                 <% else %>
-                <span class="c-status-label__status c-status-label__status--unset">未設定</span>
+                <span class="author__citation-text author__citation-text--blank">引用なし</span>
                 <% end %>
+                </div>
+                <%# 引用数 end %>
               </div>
+
+              <%# 読了日 %>
+              <% reading_log = book.reading_logs.find_by(user: current_user) %>
+              <% if reading_log&.read? && reading_log.read_at.present? %>
+              <div class="author__read-at">
+                読了日：<%= reading_log.read_at.strftime("%Y/%m/%d") %>
+              </div>
+              <% else %>
+              <span class="author__read-at author__read-at--blank">読了日なし</span>
               <% end %>
+              <%# 読了日 end %>
             </div>
-            <%# 読書状況を表示 end %>
-
-            <%# 引用数 %>
-            <div class="author__citation-count">
-            <% if reading_log.citations.any? %>
-              <svg class="author__citation-icon" role="img" xmlns="http://www.w3.org/2000/svg" width="20px" height="20px" viewBox="0 0 24 24" aria-labelledby="chatAltIconTitle" stroke="#3e3e3e" stroke-width="1" stroke-linecap="square" stroke-linejoin="miter" fill="none" color="#3e3e3e"> <title id="chatAltIconTitle">Chat</title> <path d="M13,17 L7,21 L7,17 L3,17 L3,4 L21,4 L21,17 L13,17 Z"/> </svg>
-              <span class="author__citation-text"><%= reading_log.citations.count %>件の引用</span>
-            <% else %>
-            <span class="author__citation-text author__citation-text--blank">引用なし</span>
-            <% end %>
-            </div>
-            <%# 引用数 end %>
-
-
-            <%# 読了日 %>
-            <% reading_log = book.reading_logs.find_by(user: current_user) %>
-            <% if reading_log&.read? && reading_log.read_at.present? %>
-            <div class="author__read-at">
-              読了日：<%= reading_log.read_at.strftime("%Y/%m/%d") %>
-            </div>
-            <% else %>
-            <span class="author__read-at author__read-at--blank">読了日なし</span>
-            <% end %>
-            <%# 読了日 end %>
+            <%# info end %>
 
           </li>
           <% end %>

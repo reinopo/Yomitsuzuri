@@ -1,17 +1,21 @@
+// responsive done
+
 .author {
   width: 100vw;
   display: flex;
   flex-direction: column;
   gap: $rem-24;
-  padding: 56px 0;
+  padding: $rem-40 0;
   background-color: var(--color-bg-base);
 
   &__wrap {
     background-color: var(--color-bg-white);
     padding: $rem-32 $rem-16;
+    width: 100%;
 
     @include mq('tab-up') {
       padding: 2rem;
+      width: 90%;
     }
   }
 
@@ -77,17 +81,26 @@
   // 作品一覧
   &__year-group {
     display: flex;
-    padding: $rem-16 $rem-24;
+    flex-direction: column;
+    padding: $rem-16;
     border-top: 1px solid var(--color-border-base--light);
+
+    @include mq('tab-up') {
+      flex-direction: row;
+      padding: 1rem 1.5rem;
+    }
   }
 
   &__year {
-    width: 140px;
+    width: 100%;
+    margin-bottom: $rem-8;
     font-family: var(--font-family-number);
     font-size: $rem-20;
     font-weight: 400;
 
     @include mq('tab-up') {
+      width: 140px;
+      margin-bottom: 0;
       font-size: 1.5rem;
     }
 
@@ -102,39 +115,80 @@
   }
 
   &__book-list {
-    width: calc(100% - 140px);
+    width: 100%;
     display: flex;
     flex-direction: column;
-    gap: 12px;
+    gap: $rem-12;
+
+    @include mq('tab-up') {
+      width: calc(100% - 140px);
+    }
   }
 
   &__book-item {
     width: 100%;
     display: flex;
-    align-items: center;
-    gap: 16px;
+    align-items: flex-start;
+    gap: $rem-16;
+
+    @include mq('pc') {
+      align-items: center;
+    }
+  }
+  
+  &__thumbnail-img {
+    display: block;
+    width: 80px;
+    height: auto;
+    border-radius: 4px;
+
+    @include mq('tab-up') {
+      width: 60px;
+    }
   }
 
   &__info {
     display: flex;
+    flex-direction: column;
     align-items: flex-start;
-    width: 50%;
-    gap: 16px;
-  }
+    gap: $rem-8;
+    width: calc(100% - 96px);
 
-  &__thumbnail-img {
-    display: block;
-    width: 60px;
-    height: auto;
-    border-radius: 4px;
-  }
+    @include mq('tab') {
+      
+    }
 
+    @include mq('pc') {
+      flex-direction: row;
+      align-items: center;
+      gap: 1rem;
+      width: calc(100% - 76px);
+    }
+  }
+  
   &__title {
-    width: calc(100% - 76px);
+    width: 100%;
+
+    @include mq('pc') {
+      width: 40%;
+    }
+  }
+
+  &__meta {
+    display: flex;
+    align-items: center;
+    gap: $rem-16;
+    width: 100%;
+
+    @include mq('pc') {
+      width: 40%;
+    }
   }
 
   &__status {
-    width: 10%;
+    @include mq('pc') {
+      width: 30%;
+    }
   }
 
   &__status-content {
@@ -143,28 +197,40 @@
   }
 
   &__citation-count {
-    width: 20%;
     display: flex;
     justify-content: center;
     align-items: center;
     gap: 2px;
+
+    @include mq('pc') {
+      width: 70%;
+    }
   }
 
   &__citation-text {
-    font-size: 14px;
+    @include mq('tab-up') {
+      font-size: 0.875rem;
+    }
 
     &--blank {
       display: block;
       color: var(--color-font-gray);
-      font-size: 12px;
+      font-size: $rem-12;
     }
   }
 
   &__read-at {
-    font-size: 14px;
+    width: 100%;
     white-space: nowrap;
-    width: 20%;
-    text-align: right;
+
+    @include mq('tab-up') {
+      font-size: 0.875rem;
+    }
+
+    @include mq('pc') {
+      width: 20%;
+      text-align: right;
+    }
 
     &--blank {
       display: block;
