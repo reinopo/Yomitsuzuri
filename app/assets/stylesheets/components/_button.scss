@@ -1,9 +1,10 @@
+// responsive done
 .c-button {
   display: grid;
   place-items: center;
   width: 100%;
   height: 40px;
-  font-size: 14px;
+  font-size: $rem-12;
   line-height: 1.0;
   border-radius: 4px;
   transition: background-color 0.3s ease, border-color 0.3s ease;
@@ -11,11 +12,18 @@
   &--x-small {
     max-width: 60px;
     height: 30px;
-    font-size: 12px;
+
+    @include mq('tab-up') {
+      font-size: 0.75rem;
+    }
   }
 
   &--small {
-    max-width: 130px;
+    max-width: 100px;
+
+    @include mq('tab-up') {
+      max-width: 128px;
+    }
   }
 
   &--medium {
@@ -43,9 +51,13 @@
 }
 
 .c-link {
-  font-size: 14px;
+  font-size: $rem-14;
   text-decoration: underline;
   text-underline-offset: 4px;
+
+  @include mq('tab-up') {
+    font-size: 0.875rem;
+  }
 
   @media (any-hover: hover) {
       &:hover {
@@ -54,10 +66,18 @@
     }
 }
 
+
+/* -------------------- */
+/* c-link */
+/* -------------------- */
 .c-back-link {
-  font-size: 14px;
+  font-size: $rem-12;
   text-decoration: underline;
   text-underline-offset: 4px;
+
+  @include mq('tab-up') {
+      font-size: 0.875rem;
+    }
 
   @media (any-hover: hover) {
       &:hover {
@@ -67,9 +87,13 @@
 }
 
 .c-delete-link {
-  font-size: 14px;
+  font-size: $rem-12;
   text-decoration: underline;
   text-underline-offset: 4px;
+
+  @include mq('tab-up') {
+      font-size: 0.875rem;
+    }
 
   @media (any-hover: hover) {
     &:hover {

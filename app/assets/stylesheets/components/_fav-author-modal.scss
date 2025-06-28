@@ -1,16 +1,16 @@
 // responsive done
 /* -------------------- */
-/* c-delete-modal */
+/* c-fav-author-modal */
 /* -------------------- */
-.c-delete-modal {
+.c-fav-author-modal {
   align-items: center;
   justify-content: center;
   position: fixed;
   top: 0;
   left: 0;
+  z-index: 9999;
   width: 100%;
   height: 100%;
-  z-index: 9999;
   background-color: var(--color-bg-modal);
 
   &__content {
@@ -25,22 +25,9 @@
     }
   }
 
-  &__text--small {
-    margin-top: $rem-4;
-
-    @include mq('tab-up') {
-      font-size: 0.875rem;
-    }
-  }
-
-  &__form {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    margin-top: $rem-12;
-  }
-
-  &__btn {
+  &__close {
+    margin-top: $rem-8;
+    font-size: $rem-12;
 
     @media (any-hover: hover) {
       &:hover {

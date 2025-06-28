@@ -1,19 +1,24 @@
+// responsive done
 /* -------------------- */
 /* c-citation */
 /* -------------------- */
 .c-citation {
   display: flex;
   justify-content: center;
-  gap: 4px;
-  margin: 16px 0;
+  margin: $rem-16 0;
+  gap: $rem-4;
 
   &__content {
     width: calc(100% - 28px);
+    position: relative;
+    padding: $rem-8 80px $rem-8 $rem-12;
     background-color: var(--color-bg-gray);
     border-left: 4px solid var(--color-border-base--light);
-    padding: 12px 100px 12px 16px;
     border-radius: 4px;
-    position: relative;
+
+    @include mq('tab-up') {
+      padding: 0.75rem 6.25rem 0.75rem 1rem;
+    }
   }
 
   &__text {
@@ -22,28 +27,36 @@
   }
 
   &__info {
-    position: absolute;
-    bottom: 8px;
-    right: 12px;
     display: flex;
     flex-direction: column;
     align-items: flex-end;
+    position: absolute;
+    bottom: 8px;
+    right: 12px;
   }
 
   &__page {
-    font-size: 12px;
+    font-size: $rem-12;
     color: var(--color-font-gray);
+
+    @include mq('tab-up') {
+      font-size: 0.75rem;
+    }
   }
 
   &__date {
-    font-size: 12px;
+    font-size: $rem-12;
     color: var(--color-font-gray);
+
+    @include mq('tab-up') {
+      font-size: 0.75rem;
+    }
   }
 
   &__delete-form {
-    width: 24px;
     display: grid;
     align-items: center;
+    width: 24px;
   }
 
   &__delete-btn {
@@ -63,6 +76,10 @@
   }
 
   &__book-link {
-    font-size: 14px;
+    font-size: $rem-14;
+
+    @include mq('tab-up') {
+      font-size: 0.875rem;
+    }
   }
 }

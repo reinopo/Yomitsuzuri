@@ -1,23 +1,27 @@
+// responsive done
 .c-published-date {
   &__label {
     display: inline-block;
+    margin: $rem-8 0 $rem-4 0;
     color: var(--color-font-gray);
-    font-size: 14px;
-    margin: 8px 0 4px 0;
+
+    @include mq('tab-up') {
+      font-size: 0.875rem;
+    }
   }
 
   &__selects {
     display: flex;
     align-items: flex-end;
-    gap: 8px;
+    gap: $rem-8;
   }
 
   &__select {
-    font-size: 12px;
+    font-size: $rem-12;
+    padding: 2px $rem-8;
     border: 1px solid var(--color-border-base--light);
     border-radius: 4px;
     cursor: pointer;
-    padding: 2px 8px;
 
     @media (any-hover: hover) {
       &:hover {
@@ -27,7 +31,7 @@
   }
 
   &__submit {
-    font-size: 12px;
+    font-size: $rem-12;
     border-bottom: 1px solid var(--color-border-base);
 
     @media (any-hover: hover) {

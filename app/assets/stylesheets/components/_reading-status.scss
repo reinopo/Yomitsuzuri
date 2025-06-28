@@ -1,3 +1,4 @@
+// responsive done
 // 読書状況
 .c-status-label {
   &__wrap {
@@ -7,11 +8,11 @@
 
   &__status {
     display: inline-block;
-    font-size: 14px;
+    padding: 0 $rem-4;
+    font-size: $rem-12;
     font-weight: normal;
     letter-spacing: 0.08em;
     border-radius: 4px;
-    padding: 0 4px;
 
     &--read {
       color: var(--color-font-read);
@@ -42,10 +43,10 @@
   }
 
   &__icon {
+    margin-left: $rem-4;
     background: none;
     border: none;
     cursor: pointer;
-    margin-left: 4px;
   }
 
   &__icon-svg {
@@ -58,17 +59,17 @@
   }
 
   &__form {
-    font-size: 14px;
+    align-items: flex-end;
+    gap: $rem-8;
     position: absolute;
     top: -8px;
     left: 40px;
     z-index: 10;
-    align-items: flex-end;
-    gap: 8px;
+    font-size: $rem-12;
   }
 
   &__submit {
-    font-size: 12px;
+    font-size: $rem-12;
     border-bottom: 1px solid var(--color-border-base);
 
     @media (any-hover: hover) {

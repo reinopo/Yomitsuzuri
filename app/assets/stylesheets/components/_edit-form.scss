@@ -1,23 +1,29 @@
+// responsive done
 .c-edit-form {
-  padding: 0 32px;
+
+  @include mq('tab-up') {
+    padding: 0 2rem;
+  }
 
   &__field {
-    margin-bottom: 8px;
+    margin-bottom: $rem-8;
   }
 
   &__label {
     display: block;
-    margin-bottom: 4px;
-    font-size: 14px;
+    margin-bottom: $rem-4;
   }
 
   &__textarea {
     width: 100%;
+    padding: $rem-8;
     border: 1px solid var(--color-border-base--light);
     border-radius: 4px;
-    padding: 8px;
-    font-size: 14px;
     resize: vertical;
+
+    @include mq('tab-up') {
+      font-size: 0.875rem;
+    }
 
     &:focus {
       border: 1px solid var(--color-border-base);
@@ -27,7 +33,7 @@
   &__flex {
     display: flex;
     align-items: flex-end;
-    gap: 24px;
+    gap: $rem-24;
 
     .c-edit-form__field {
       margin-bottom: 0;
@@ -36,12 +42,15 @@
 
   &__input {
     width: 120px;
+    padding: $rem-8;
     border: 1px solid var(--color-border-base--light);
     border-radius: 4px;
-    padding: 8px;
-    font-size: 14px;
     resize: vertical;
     cursor: pointer;
+
+    @include mq('tab-up') {
+      font-size: 0.875rem;
+    }
 
     &:focus {
       border: 1px solid var(--color-border-base);
@@ -49,6 +58,6 @@
   }
 
   &__submit {
-    margin-top: 8px;
+    margin-top: $rem-8;
   }
 }

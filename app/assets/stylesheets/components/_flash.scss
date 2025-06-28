@@ -1,3 +1,5 @@
+// responsive done
+
 /* -------------------- */
 /* c-flash */
 /* -------------------- */
@@ -34,16 +36,21 @@
 /* -------------------- */
 .c-flash {
   position: fixed;
-  bottom: 32px;
-  left: 32px;
-  background-color: var(--color-bg-flash);
-  color: var(--color-font-white);
-  padding: 16px 24px;
-  border-radius: 4px;
-  font-size: 14px;
+  bottom: 24px;
+  left: 24px;
   z-index: 9999;
+  padding: $rem-16 $rem-24;
+  color: var(--color-font-white);
+  background-color: var(--color-bg-flash);
+  border-radius: 4px;
   opacity: 1;
   transition: opacity 0.5s ease;
+
+  @include mq('tab-up') {
+    bottom: 32px;
+    left: 32px;
+    font-size: 0.875rem;
+  }
 
   &.is-fading-out {
     opacity: 0;

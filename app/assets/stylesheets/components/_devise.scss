@@ -1,37 +1,43 @@
+// responsive done
+
 .c-devise {
   &__container {
-    padding: 32px 16px;
+    padding: $rem-56 $rem-16;
+
+    @include mq('tab-up') {
+      padding: 2rem 1rem;
+    }
   }
 
   &__title {
-    font-size: 20px;
+    margin-bottom: $rem-16;
+    font-size: $rem-20;
     font-weight: 600;
     text-align: center;
-    margin-bottom: 16px;
   }
 
   &__inner {
     max-width: 400px;
     width: 100%;
+    margin: 0 auto;
+    padding: $rem-32;
     border: 1px solid var(--color-border-base--light);
     border-radius: 4px;
-    margin: 0 auto;
-    padding: 32px;
   }
 
   &__input-title {
     display: inline-block;
-    font-size: 16px;
-    margin: 0 0.5rem 4px 0;
+    margin: 0 0.5rem $rem-4 0;
+    font-size: $rem-16;
   }
 
   &__input {
     width: 100%;
     height: 40px;
+    padding: $rem-8 $rem-40 $rem-8 $rem-8;
+    margin-bottom: $rem-16;
     border: 1px solid var(--color-border-base--light);
     border-radius: 4px;
-    padding: 8px 40px 8px 8px;
-    margin-bottom: 16px;
   }
 
   &__password-wrap {
@@ -42,7 +48,6 @@
     position: absolute;
     right: 8px;
     top: 8px;
-    // transform: translateY(-50%);
     background: none;
     border: none;
     cursor: pointer;
@@ -61,16 +66,12 @@
 
   &__remember-me {
     display: block;
-    margin-bottom: 16px;
+    margin-bottom: $rem-16;
   }
 
   &__note {
-    font-size: 12px;
-    margin-bottom: 16px;
-  }
-
-  &__link-wrapper {
-    
+    font-size: $rem-12;
+    margin-bottom: $rem-16;
   }
 
   &__link-wrapper--centered {
@@ -82,12 +83,12 @@
   }
 
   &__link-wrapper--spaced {
-    margin-top: 16px;
+    margin-top: $rem-16;
   }
 
   &__link {
     display: inline-block;
-    font-size: 12px;
+    font-size: $rem-12;
     border-bottom: 1px solid var(--color-border-base);
 
     @media (any-hover: hover) {
@@ -100,7 +101,7 @@
 
   &__error-message {
     color: var(--color-font-caution);
-    font-size: 14px;
-    margin-bottom: 16px;
+    font-size: $rem-14;
+    margin-bottom: $rem-16;
   }
 }
