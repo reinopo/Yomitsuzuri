@@ -105,6 +105,7 @@
 
     @include mq('sp') {
       width: 280px;
+      font-size: $rem-12;
 
       &.is-closed {
         display: none;
