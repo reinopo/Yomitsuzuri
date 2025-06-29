@@ -301,6 +301,10 @@
 
   &__recent {
     margin-top: $rem-4;
+
+    @include mq('pc') {
+      font-size: 0.875rem;
+    }
   }
 }
 

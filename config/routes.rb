@@ -25,7 +25,7 @@ Rails.application.routes.draw do
   # 静的ページ
   get 'static/terms' => "static#terms", as: :terms
   get 'static/privacy' => "static#privacy", as: :privacy
-  get 'static/contact' => "static#contact"
+  get 'static/about' => "static#about", as: :about
 
   # その他カスタムルート
   get 'home/index' => 'home#index'
