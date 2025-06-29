@@ -52,24 +52,36 @@
 
             <%# 読書状況変更 %>
             <div class="c-status-edit__wrap">
-              <button type="button" class="c-status-edit__icon" aria-label="編集">
+              <button type="button"
+                      class="c-status-edit__icon"
+                      data-modal-target="reading-status-modal"
+                      aria-label="読書状況を編集">
                 <svg class="c-status-edit__icon-svg" role="img" xmlns="http://www.w3.org/2000/svg" width="20px" height="20px" viewBox="0 0 24 24" aria-labelledby="newIconTitle" stroke="#3e3e3e" stroke-width="1" stroke-linecap="square" stroke-linejoin="miter" fill="none" color="#3e3e3e"> <title id="newIconTitle">編集</title> <path d="M19 14V22H2.99997V4H13"/> <path d="M17.4608 4.03921C18.2418 3.25817 19.5082 3.25816 20.2892 4.03921L20.9608 4.71079C21.7418 5.49184 21.7418 6.75817 20.9608 7.53921L11.5858 16.9142C11.2107 17.2893 10.702 17.5 10.1716 17.5L7.5 17.5L7.5 14.8284C7.5 14.298 7.71071 13.7893 8.08579 13.4142L17.4608 4.03921Z"/> <path d="M16.25 5.25L19.75 8.75"/> </svg>
               </button>
 
-              <%= form_with model: @reading_log,
-                            url: update_reading_status_path(@reading_log),
-                            method: :patch,
-                            class: "c-status-edit__form is-hidden",
-                              local: true do |f| %>
-                <div class="c-register-modal__select-wrap">
-                  <%= f.select :reading_status, [
-                    ["既読", "read"],
-                    ["未読", "unread"],
-                    ["積読", "stacked"]
-                  ], {}, class: "c-register-modal__status c-status-edit__select" %>
+              <div class="c-reading-status-modal is-hidden" id="reading-status-modal">
+                <div class="c-reading-status-modal__overlay" data-modal-close></div>
+                <div class="c-reading-status-modal__content">
+                  <h2 class="c-reading-status-modal__title">読書状況を変更</h2>
+                  <%= form_with model: @reading_log,
+                                url: update_reading_status_path(@reading_log),
+                                method: :patch,
+                                class: "c-reading-status-modal__form",
+                                local: true do |f| %>
+                    <div class="c-register-modal__select-wrap">
+                      <%= f.select :reading_status, [
+                        ["既読", "read"],
+                        ["未読", "unread"],
+                        ["積読", "stacked"]
+                      ], {}, class: "c-register-modal__status" %>
+                    </div>
+                    <div class="c-reading-status-modal__actions">
+                      <%= f.submit "保存", class: "c-reading-status-modal__submit" %>
+                    </div>
+                  <% end %>
+                  <button class="c-reading-status-modal__close" type="button" data-modal-close>閉じる</button>
                 </div>
-                <%= f.submit "保存", class: "c-status-edit__submit" %>
-              <% end %>
+              </div>
             </div>
             <%# 読書状況変更 end %>
           </div>

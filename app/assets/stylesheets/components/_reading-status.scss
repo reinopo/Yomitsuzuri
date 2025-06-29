@@ -2,8 +2,9 @@
 // 読書状況
 .c-status-label {
   &__wrap {
-    display: flex;
+    display: inline-flex;
     align-items: center;
+    margin-left: $rem-16;
   }
 
   &__status {
@@ -12,6 +13,7 @@
     font-size: $rem-12;
     font-weight: normal;
     letter-spacing: 0.08em;
+    text-wrap: nowrap;
     border-radius: 4px;
 
     &--read {
@@ -57,18 +59,48 @@
       }
     }
   }
+}
+
+// 読書状況変更モーダル
+.c-reading-status-modal {
+  align-items: center;
+  justify-content: center;
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 9999;
+  width: 100%;
+  height: 100%;
+  background-color: var(--color-bg-modal);
+
+  &__content {
+    width: 80%;
+    padding: $rem-40 $rem-32 $rem-32 $rem-32;
+    text-align: center;
+    background: var(--color-bg-white);
+    border-radius: 10px;
+
+    @include mq('tab-up') {
+      width: auto;
+    }
+  }
+
+  &__title {
+    margin-bottom: $rem-16;
+    font-size: $rem-16;
+    font-weight: normal;
+  }
 
   &__form {
+    display: flex;
+    justify-content: center;
     align-items: flex-end;
-    gap: $rem-8;
-    position: absolute;
-    top: -8px;
-    left: 40px;
-    z-index: 10;
+    gap: $rem-12;
     font-size: $rem-12;
   }
 
   &__submit {
+    margin-top: $rem-12;
     font-size: $rem-12;
     border-bottom: 1px solid var(--color-border-base);
 
@@ -76,6 +108,19 @@
       &:hover {
         color: var(--color-font-black);
         border-bottom: 1px solid var(--color-font-black);
+      }
+    }
+  }
+
+  &__close {
+    margin-top: $rem-24;
+    font-size: $rem-14;
+
+    @media (any-hover: hover) {
+      &:hover {
+        color: var(--color-font-black);
+        text-decoration: underline;
+        text-underline-offset: 2px;
       }
     }
   }
