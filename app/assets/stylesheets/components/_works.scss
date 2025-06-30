@@ -91,10 +91,12 @@
 
     @include mq('tab') {
       width: 112px;
+      height: 160px;
     }
 
     @include mq('pc') {
       width: 120px;
+      height: 170px;
     }
   }
 

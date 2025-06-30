@@ -3,14 +3,24 @@
 Google Books APIを用いた作品検索、読書状況の管理、著者ごとの作品年表の表示などを実装しています。  
 スマートフォンからもご確認いただけます。  
 
+#### テスト用アカウント
+メールアドレス：  
+パスワード：
+
 <img src="./docs/kv.png" width="800">
 
 ## 機能紹介
-<img src="./docs/Kapture 2025-06-29 at 18.55.28 copy.gif" width="400">
-|   |   |
+| 本を検索 | 本を登録 |
 |-----------|-----------|
-| **作品を検索してマイページに登録**<br><img src="./docs/function-search.png" width="400"> | **著者ごとの作品年表・読了率**<br><img src="./docs/function-author.png" width="400"> |
-| **感じたことや心に残った引用を作品ページで登録**<br><img src="./docs/function-book.png" width="400"> | **登録した引用を一覧で振り返る**<br><img src="./docs/function-citation.png" width="400"> |
+| <img src="./docs/search.gif" width="400"> | <img src="./docs/register.gif" width="400"> |
+
+| 著者をお気に入りに登録 | 著者ページ |
+| --- | --- |
+| <img src="./docs/favorite.gif" width="400"> | <img src="./docs/author.gif" width="400"> |
+
+| 引用を追加 | 引用を一覧で振り返る |
+| --- | --- |
+| <img src="./docs/add-citation.gif" width="400"> | <img src="./docs/citation.gif" width="400"> |
 
 ## 使用技術
 | カテゴリ | 技術スタック |
