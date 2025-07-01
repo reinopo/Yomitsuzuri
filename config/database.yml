@@ -1,3 +1,25 @@
+default: &default
+  adapter: postgresql
+  encoding: unicode
+  pool: 5
+  username: <%= ENV["DB_USERNAME"] %>
+  password: <%= ENV["DB_PASSWORD"] %>
+  host: localhost
+
+development:
+  <<: *default
+  database: yomitsuzuri_development
+
+test:
+  <<: *default
+  database: yomitsuzuri_test
+
+production:
+  <<: *default
+  database: yomitsuzuri_production
+  username: <%= ENV["DB_USERNAME"] %>
+  password: <%= ENV["DB_PASSWORD"] %>
+
 # MySQL. Versions 5.5.8 and up are supported.
 #
 # Install the MySQL driver
@@ -9,25 +31,25 @@
 # And be sure to use new-style password hashing:
 #   https://dev.mysql.com/doc/refman/5.7/en/password-hashing.html
 #
-default: &default
-  adapter: mysql2
-  encoding: utf8mb4
-  pool: <%= ENV.fetch("RAILS_MAX_THREADS") { 5 } %>
-  username: <%= ENV['DATABASE_USER'] %>
-  password: <%= ENV['DATABASE_PASSWORD'] %>
-  host: <%= ENV['DATABASE_HOST'] %>
-  socket: /tmp/mysql.sock
+# default: &default
+#   adapter: mysql2
+#   encoding: utf8mb4
+#   pool: <%= ENV.fetch("RAILS_MAX_THREADS") { 5 } %>
+#   username: <%= ENV['DATABASE_USER'] %>
+#   password: <%= ENV['DATABASE_PASSWORD'] %>
+#   host: <%= ENV['DATABASE_HOST'] %>
+#   socket: /tmp/mysql.sock
 
-development:
-  <<: *default
-  database: yomitsuzuri_development
+# development:
+#   <<: *default
+#   database: yomitsuzuri_development
 
-# Warning: The database defined as "test" will be erased and
-# re-generated from your development database when you run "rake".
-# Do not set this db to the same as development or production.
-test:
-  <<: *default
-  database: yomitsuzuri_test
+# # Warning: The database defined as "test" will be erased and
+# # re-generated from your development database when you run "rake".
+# # Do not set this db to the same as development or production.
+# test:
+#   <<: *default
+#   database: yomitsuzuri_test
 
 # As with config/credentials.yml, you never want to store sensitive information,
 # like your database password, in your source code. If your source code is
@@ -49,8 +71,8 @@ test:
 # Read https://guides.rubyonrails.org/configuring.html#configuring-a-database
 # for a full overview on how database connection configuration can be specified.
 #
-production:
-  <<: *default
-  database: yomitsuzuri_production
-  username: yomitsuzuri
-  password: <%= ENV["YOMITSUZURI_DATABASE_PASSWORD"] %>
+# production:
+#   <<: *default
+#   database: yomitsuzuri_production
+#   username: yomitsuzuri
+#   password: <%= ENV["YOMITSUZURI_DATABASE_PASSWORD"] %>

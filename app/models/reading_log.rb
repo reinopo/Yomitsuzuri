@@ -2,6 +2,7 @@ class ReadingLog < ApplicationRecord
   belongs_to :user
   belongs_to :book
   has_many :citations, dependent: :destroy
+  validates :book_id, uniqueness: { scope: :user_id }
   accepts_nested_attributes_for :citations
 
   enum reading_status: { read: 0, unread: 1, stacked: 2 }

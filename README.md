@@ -32,11 +32,16 @@ Google Books APIを用いた作品検索、読書状況の管理、著者ごと�
 | フレームワーク | Ruby on Rails 7.1.5.1 |
 | バックエンド | Ruby 3.4.3 / Rails |
 | フロントエンド | HTML / SCSS / JavaScript (ES6, Turbo) |
-| DB | MySQL |
+| DB | PostgreSQL |
 | 認証機能 | Devise |
 | API | Google Books API |
-| 開発環境 | ローカル (Mac + VSCode) |
-| デプロイ環境 | 未定（ローカル開発中） |
+| インフラ | Heroku |
+| 開発環境 | ローカル (Mac + VSCode + Rails + PostgreSQL) |
+
+## 技術選定・構成の背景
+
+- 当初はMySQLを使用していたが、Herokuへのデプロイに合わせてPostgreSQLに切り替え
+- 今後のクラウド運用を想定し、Herokuで公式サポートされている構成に統一
 
 ## 機能一覧
 #### ユーザー認証 (Devise)
