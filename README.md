@@ -16,15 +16,15 @@ Google Books APIを用いた作品検索、読書状況の管理、著者ごと�
 ## 主な機能
 | 本を検索 | 本を登録 |
 |-----------|-----------|
-| <img src="./docs/search.gif" width="400"> | <img src="./docs/register.gif" width="400"> |
+| <img src="./docs/search.gif" width="380"> | <img src="./docs/register.gif" width="380"> |
 
 | 著者をお気に入りに登録 | 著者ページ |
 | --- | --- |
-| <img src="./docs/favorite.gif" width="400"> | <img src="./docs/author.gif" width="400"> |
+| <img src="./docs/favorite.gif" width="380"> | <img src="./docs/author.gif" width="380"> |
 
 | 引用を追加 | 引用を一覧で振り返る |
 | --- | --- |
-| <img src="./docs/add-citation.gif" width="400"> | <img src="./docs/citation.gif" width="400"> |
+| <img src="./docs/add-citation.gif" width="380"> | <img src="./docs/citation.gif" width="380"> |
 
 ## 使用技術
 | カテゴリ | 技術スタック |
