@@ -3,7 +3,7 @@
 /* scroll-snap */
 /* -------------------- */
 body.is-home main {
-  height: 100vh;
+  height: 100dvh;
   margin-top: 0;
   scroll-snap-type: y mandatory;
   scroll-behavior: smooth;
@@ -20,7 +20,7 @@ body.is-home main {
 
 .home-scroll-snap {
   width: 100vw;
-  height: calc(100vh - 64px);
+  height: calc(100dvh - 64px);
   scroll-snap-align: start;
   scroll-snap-stop: always;
 
@@ -51,7 +51,7 @@ body.is-home main {
 /* -------------------- */
 .home-kv {
   position: relative;
-  height: calc(100vh - 48px);
+  height: calc(100dvh - 48px);
   margin-top: 48px;
   font-family: var(--font-family-serif);
   color: var(--color-font-white);
