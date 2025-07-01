@@ -64,6 +64,18 @@
 
   &__text {
     margin-bottom: $rem-12;
+
+    &--spaced {
+      margin-bottom: $rem-20;
+      line-height: 2;
+      letter-spacing: 0.04em;
+    }
+  }
+
+  &__span {
+    display: block;
+    margin: 2px 0 2px $rem-8;
+    letter-spacing: 0.04em;
   }
 
   &__date {
