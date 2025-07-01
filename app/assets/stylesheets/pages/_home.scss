@@ -15,6 +15,7 @@ body.is-home main {
   @include mq('sp') {
     scroll-snap-type: none;
     scroll-padding-top: 0;
+    overflow-y: visible;
   }
 }
 
