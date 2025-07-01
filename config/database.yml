@@ -16,9 +16,7 @@ test:
 
 production:
   <<: *default
-  database: yomitsuzuri_production
-  username: <%= ENV["DB_USERNAME"] %>
-  password: <%= ENV["DB_PASSWORD"] %>
+  url: <%= ENV['DATABASE_URL'] %>
 
 # MySQL. Versions 5.5.8 and up are supported.
 #
