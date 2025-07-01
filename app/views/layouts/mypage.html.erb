@@ -80,7 +80,8 @@
                   alt="<%= current_user.nickname %>のプロフィール画像"
                 />
 
-                <%= form_with  url: user_registration_path,
+                <%= form_with  model: current_user,
+                              url: user_registration_path,
                               method: :patch,
                               local: true,
                               data: { turbo: false },
