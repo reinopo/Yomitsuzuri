@@ -39,7 +39,7 @@
     <%= stylesheet_link_tag "application", "data-turbo-track": "reload" %>
 
     <%# JS %>
-    <%= javascript_importmap_tags %>
+    <%= javascript_include_tag "application", "data-turbo-track": "reload", type: "module" %>
   </head>
 
   <%= tag.body data: { user_id: current_user&.id } do %>

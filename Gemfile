@@ -16,7 +16,7 @@ gem "pg"
 # Use the Puma web server [https://github.com/puma/puma]
 
 # Use JavaScript with ESM import maps [https://github.com/rails/importmap-rails]
-gem "importmap-rails"
+# gem "importmap-rails"
 
 # Hotwire's SPA-like page accelerator [https://turbo.hotwired.dev]
 gem "turbo-rails"
@@ -84,3 +84,5 @@ group :development do
   gem 'letter_opener'
   gem 'letter_opener_web'
 end
+
+gem "jsbundling-rails", "~> 1.3"
