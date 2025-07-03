@@ -76,7 +76,7 @@ gem 'devise-i18n'
 
 gem "puma", "~> 6.6"
 
-gem 'sassc-rails'
+gem "dartsass-rails", "0.5.1"
 
 gem 'active_storage_validations', '~> 0.9.6'
 
