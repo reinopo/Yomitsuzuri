@@ -25,7 +25,7 @@
     <%# 作品情報 %>
     <div class="book-detail__info">
       <div class="book-detail__image">
-        <%= image_tag @book.thumbnail_link.presence || 'no-image.jpeg', alt: "#{@book.title} の表紙画像", class: "book-detail__image-img" %>
+        <%= image_tag @book.thumbnail_link.presence || 'no-image.jpg', alt: "#{@book.title} の表紙画像", class: "book-detail__image-img" %>
       </div>
 
       <%# 作品テキスト部分 %>
