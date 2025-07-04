@@ -35,7 +35,7 @@ Google Books APIを用いた作品検索、読書状況の管理、著者ごと�
 | DB | PostgreSQL |
 | 認証機能 | Devise |
 | API | Google Books API |
-| インフラ | Heroku |
+| インフラ | Heroku + Cloudinary |
 | 開発環境 | Mac + VSCode + Rails + PostgreSQL |
 
 ## 機能一覧
