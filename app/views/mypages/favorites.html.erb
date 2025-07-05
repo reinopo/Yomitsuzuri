@@ -12,7 +12,6 @@
       <%= link_to "古い順", favorites_mypage_path(sort: "old"), class: "mypage__fav-authors__sort-link" %>
     </div>
 
-
     <ul class="mypage__fav-authors__list">
       <% @favorite_authors.each do |fav| %>
         <% author = fav.author %>

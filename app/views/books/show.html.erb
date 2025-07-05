@@ -6,7 +6,6 @@
 
 <section class="book-detail">
   <%# フラッシュ %>
-  
   <% if flash[:reading_log_notice] %>
     <div class="c-flash">
       <%= flash[:reading_log_notice] %>
@@ -18,7 +17,6 @@
       <%= flash[:reading_log_alert] %>
     </div>
   <% end %>
-
   <%# フラッシュ end %>
 
   <div class="book-detail__wrap l-container--s">
@@ -89,7 +87,6 @@
           <%# 読書状況 end %>
         </h1>
 
-        
         <%# 著者 %>
         <p class="book-detail__author">
           <% @book.authors.each_with_index do |author, index| %>
@@ -168,7 +165,7 @@
     <% if @reading_log %>
       <div class="book-detail__date-wrap">
         <% if @reading_log&.read? && @reading_log.read_at.present? %>
-        <p class="book-detail__date">読了日：<%= @reading_log.read_at.strftime("%Y/%m/%d") %></p>
+          <p class="book-detail__date">読了日：<%= @reading_log.read_at.strftime("%Y/%m/%d") %></p>
         <% end %>
         <p class="book-detail__date">登録日：<%= @reading_log.created_at.strftime("%Y/%m/%d") %></p>
       </div>
