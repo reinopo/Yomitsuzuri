@@ -86,3 +86,6 @@ group :development do
 end
 
 gem "jsbundling-rails", "~> 1.3"
+
+gem 'cloudinary', require: false
+gem 'activestorage-cloudinary-service'
