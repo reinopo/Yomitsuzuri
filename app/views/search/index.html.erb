@@ -43,10 +43,11 @@
                   作品を登録
                 </button>
               <% else %>
-                <%= link_to "作品を登録", new_user_session_path, class: "c-works__btn--5columns c-button c-button--small c-button--white" %>
+                <%= link_to "作品を登録",
+                    new_user_session_path,
+                    class: "c-works__btn--5columns c-button c-button--small c-button--white" %>
               <% end %>
             </div>
-
           </li>
         <% end %>
       </ul>
@@ -54,7 +55,6 @@
       <p>該当する本は見つかりませんでした。</p>
     <% end %>
   </div>
-
 
   <%# 作品登録モーダル %>
   <div class="c-register-modal is-hidden">
@@ -87,14 +87,20 @@
 
           <div class="c-register-modal__textarea-wrap">
             <%= f.label :comment, "コメント", class: "c-register-modal__label" %>
-            <%= f.text_area :comment, id: "comment", placeholder: "あなたの考えを記しておきましょう", class: "c-register-modal__textarea" %>
+            <%= f.text_area :comment,
+                id: "comment",
+                placeholder: "あなたの考えを記しておきましょう",
+                class: "c-register-modal__textarea" %>
             <%# scopeにreading_logを設定しているので、name="reading_log[comment]"と同じ %>
           </div>
 
           <%= f.fields_for :citations do |cf| %>
             <div class="c-register-modal__textarea-wrap">
               <%= cf.label :content, "引用メモ", class: "c-register-modal__label" %>
-              <%= cf.text_area :content, id: "content", placeholder: "心に残った文章を書き留めておきましょう", class: "c-register-modal__textarea" %>
+              <%= cf.text_area :content,
+                  id: "content",
+                  placeholder: "心に残った文章を書き留めておきましょう",
+                  class: "c-register-modal__textarea" %>
 
               <div class="c-register-modal__input-wrap">
                 <%= cf.label :page_number, "ページ番号", class: "c-register-modal__label" %>
@@ -102,7 +108,7 @@
               </div>
             </div>
           <% end %>
-
+          
           <div>
             <%= f.label :reading_status, "読書状況", class: "c-register-modal__label" %>
             <div class="c-register-modal__select-wrap">
