@@ -47,111 +47,108 @@
     <%= render "shared/header" %>
 
     <main class="mypage">
-    
-    <div class="mypage__index">
+      <div class="mypage__index">
 
-    <%# フラッシュ %>
-    <% if flash[:reading_log_deleted_notice] %>
+      <%# フラッシュ %>
+      <% if flash[:reading_log_deleted_notice] %>
       <div class="c-flash">
         <%= flash[:reading_log_deleted_notice] %>
       </div>
-    <% end %>
-    <%# フラッシュ end %>
+      <% end %>
+      <%# フラッシュ end %>
 
-    <%# プロフィール更新フラッシュ %>
-    <% if flash[:profile_notice] %>
+      <%# プロフィール更新フラッシュ %>
+      <% if flash[:profile_notice] %>
       <div class="c-flash">
         <%= flash[:profile_notice] %>
       </div>
-    <% end %>
-    <%# プロフィール更新フラッシュ end %>
+      <% end %>
+      <%# プロフィール更新フラッシュ end %>
 
-        <div class="mypage__wrap">
+      <div class="mypage__wrap">
 
-          <%# プロフィール %>
-          <section class="mypage__profile">
-            <%# プロフィール画像とユーザー名表示 %>
-            <div class="mypage__profile-info">
-              <div class="mypage__avatar-wrap">
-                <img
-                  id="avatar-preview"
-                  class="mypage__avatar"
-                  src="<%= current_user.avatar.attached? ? url_for(current_user.avatar.variant(resize_to_fill: [100, 100])) : asset_path('icon-default-avatar.svg') %>"
-                  alt="<%= current_user.nickname %>のプロフィール画像"
-                />
+        <%# プロフィール %>
+        <section class="mypage__profile">
+          <%# プロフィール画像とユーザー名表示 %>
+          <div class="mypage__profile-info">
+            <div class="mypage__avatar-wrap">
+              <img
+                id="avatar-preview"
+                class="mypage__avatar"
+                src="<%= current_user.avatar.attached? ? url_for(current_user.avatar.variant(resize_to_fill: [100, 100])) : asset_path('icon-default-avatar.svg') %>"
+                alt="<%= current_user.nickname %>のプロフィール画像"
+              />
 
-                <%= form_with  model: current_user,
-                              url: user_registration_path,
-                              method: :patch,
-                              local: true,
-                              data: { turbo: false },
-                              html: { multipart: true, class: "mypage__avatar-form" } do |f| %>
-                  <%= f.file_field :avatar,
-                        name: "user[avatar]",
-                        class: "mypage__avatar-input",
-                        accept: "image/*",
-                        id: "avatar_upload_input",
-                        onchange: "handleFileChange(event)" %>
+              <%= form_with  model: current_user,
+                            url: user_registration_path,
+                            method: :patch,
+                            local: true,
+                            data: { turbo: false },
+                            html: { multipart: true, class: "mypage__avatar-form" } do |f| %>
+                <%= f.file_field :avatar,
+                      name: "user[avatar]",
+                      class: "mypage__avatar-input",
+                      accept: "image/*",
+                      id: "avatar_upload_input",
+                      onchange: "handleFileChange(event)" %>
 
-                  <label for="avatar_upload_input" class="mypage__avatar-upload">
-                    <span class="mypage__avatar-upload-icon">
-                      <svg class="mypage__avatar-upload-svg" role="img" xmlns="http://www.w3.org/2000/svg" width="30px" height="30px" viewBox="0 0 24 24" aria-labelledby="addIconTitle" stroke="#3e3e3e" stroke-width="1" stroke-linecap="square" stroke-linejoin="miter" fill="none" color="#3e3e3e"> <title id="addIconTitle">追加</title> <path d="M17 12L7 12M12 17L12 7"/> <circle cx="12" cy="12" r="10"/> </svg>
-                    </span>
-                  </label>
-                <% end %>
+                <label for="avatar_upload_input" class="mypage__avatar-upload">
+                  <span class="mypage__avatar-upload-icon">
+                    <svg class="mypage__avatar-upload-svg" role="img" xmlns="http://www.w3.org/2000/svg" width="30px" height="30px" viewBox="0 0 24 24" aria-labelledby="addIconTitle" stroke="#3e3e3e" stroke-width="1" stroke-linecap="square" stroke-linejoin="miter" fill="none" color="#3e3e3e"> <title id="addIconTitle">追加</title> <path d="M17 12L7 12M12 17L12 7"/> <circle cx="12" cy="12" r="10"/> </svg>
+                  </span>
+                </label>
+              <% end %>
+            </div>
+
+            <h2 class="mypage__name"><%= current_user.nickname %></h2>
+          </div>
+
+          <%# 画像プレビューモーダル %>
+          <div class="avatar-preview-modal is-hidden">
+            <div class="avatar-preview-modal__content">
+              <p>この画像でプロフィールを更新しますか？</p>
+              <img class="avatar-preview-modal__img" src="" alt="プレビュー画像" />
+              <div class="avatar-preview-modal__actions">
+                <button class="avatar-preview-modal__button avatar-preview-modal__button--confirm" type="button">OK</button>
+                <button class="avatar-preview-modal__button avatar-preview-modal__button--cancel" type="button">キャンセル</button>
               </div>
-
-              <h2 class="mypage__name"><%= current_user.nickname %></h2>
             </div>
+          </div>
+          <%# 画像プレビューモーダル end %>
 
-            <%# 画像プレビューモーダル %>
-            <div class="avatar-preview-modal is-hidden">
-              <div class="avatar-preview-modal__content">
-                <p>この画像でプロフィールを更新しますか？</p>
-                <img class="avatar-preview-modal__img" src="" alt="プレビュー画像" />
-                <div class="avatar-preview-modal__actions">
-                  <button class="avatar-preview-modal__button avatar-preview-modal__button--confirm" type="button">OK</button>
-                  <button class="avatar-preview-modal__button avatar-preview-modal__button--cancel" type="button">キャンセル</button>
-                </div>
-              </div>
-            </div>
-            <%# 画像プレビューモーダル end %>
+          <div class="mypage__actions">
+            <%= link_to "アカウント情報編集", edit_user_registration_path, class: "c-link" %>
+            <%= button_to "ログアウト",
+                destroy_user_session_path,
+                method: :delete,
+                form: { data: { turbo: false } },
+                class: "c-link"
+              %>
+          </div>
+        </section>
+        <%# プロフィール end %>
 
-            <div class="mypage__actions">
-              <%= link_to "アカウント情報編集", edit_user_registration_path, class: "c-link" %>
-              <%= button_to "ログアウト",
-                  destroy_user_session_path,
-                  method: :delete,
-                  form: { data: { turbo: false } },
-                  class: "c-link"
-                %>
-            </div>
-          </section>
-          <%# プロフィール end %>
+        <section class="mypage__contents-wrap">
+          <ul class="mypage__nav">
+            <li class="mypage__nav-item">
+              <%= link_to "ホーム", home_mypage_path, class: ["mypage__nav-link", ("is-active" if current_page?(home_mypage_path))].compact.join(" ") %>
+            </li>
+            <li class="mypage__nav-item">
+              <%= link_to "お気に入り著者", favorites_mypage_path, class: ["mypage__nav-link", ("is-active" if current_page?(favorites_mypage_path))].compact.join(" ") %>
+            </li>
+            <li class="mypage__nav-item">
+              <%= link_to "引用メモ", citations_mypage_path, class: ["mypage__nav-link mypage__nav-link--last", ("is-active" if current_page?(citations_mypage_path))].compact.join(" ") %>
+            </li>
+          </ul>
 
-          <section class="mypage__contents-wrap">
-            <ul class="mypage__nav">
-              <li class="mypage__nav-item">
-                <%= link_to "ホーム", home_mypage_path, class: ["mypage__nav-link", ("is-active" if current_page?(home_mypage_path))].compact.join(" ") %>
-              </li>
-              <li class="mypage__nav-item">
-                <%= link_to "お気に入り著者", favorites_mypage_path, class: ["mypage__nav-link", ("is-active" if current_page?(favorites_mypage_path))].compact.join(" ") %>
-              </li>
-              <li class="mypage__nav-item">
-                <%= link_to "引用メモ", citations_mypage_path, class: ["mypage__nav-link mypage__nav-link--last", ("is-active" if current_page?(citations_mypage_path))].compact.join(" ") %>
-              </li>
-            </ul>
-
-            <!-- ここからページ固有↓ -->
-              <%= yield %>
-            <!-- ここまでページ固有↑ -->
-          </section>
-        </div>
+          <!-- ここからページ固有↓ -->
+            <%= yield %>
+          <!-- ここまでページ固有↑ -->
+        </section>
       </div>
-    </main>
+    </div>
+  </main>
 
     <%= render "shared/footer" %>
   <% end %>
-  
-
 </html>

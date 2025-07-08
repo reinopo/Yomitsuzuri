@@ -7,31 +7,30 @@
 <div class="mypage__contents mypage__home">
   <% if @reading_logs.present? %>
     <h2 class="c-title-level2 l-mb-16">登録した本</h2>
-      <ul class="c-works c-works--4columns">
-        <% @reading_logs.each do |log| %>
-          <% book = log.book %>
-          <li class="c-works__item c-works__item--4columns">
-            <% image_url = book.thumbnail_link %>
-            <img width="120" class="c-works__image c-works__image--4columns" src="<%= image_url.present? && image_url.start_with?("http") ? image_url : asset_path("no-image.jpg") %>" alt="<%= book.title %> の表紙画像">
+    <ul class="c-works c-works--4columns">
+      <% @reading_logs.each do |log| %>
+        <% book = log.book %>
+        <li class="c-works__item c-works__item--4columns">
+          <% image_url = book.thumbnail_link %>
+          <img width="120" class="c-works__image c-works__image--4columns" src="<%= image_url.present? && image_url.start_with?("http") ? image_url : asset_path("no-image.jpg") %>" alt="<%= book.title %> の表紙画像">
 
-            <div class="c-works__info c-works__info--4columns">
-              <div class="c-works__text">
-                <%= link_to book.title, book_path(book), class: "c-works__title c-works__title--4columns c-works__title--link" %>
-                <p class="c-works__author c-works__author--4columns">
-                  <%= book.authors.map(&:name).join(", ") %>
-                </p>
-                <% if log&.read? && log.read_at.present? %>
-                  <p class="c-works__read-at">
-                    読了日：<%= log.read_at.strftime("%Y/%m/%d") %>
-                  </p>
-                <% end %>
-              </div>
-
-              <%# <%= link_to "詳細を見る", book_path(book), class: "c-button c-button--small c-button--white c-button--center" %>
+          <div class="c-works__info c-works__info--4columns">
+            <div class="c-works__text">
+              <%= link_to book.title, book_path(book), class: "c-works__title c-works__title--4columns c-works__title--link" %>
+              <p class="c-works__author c-works__author--4columns">
+                <%= book.authors.map(&:name).join(", ") %>
+              </p>
+              <% if log&.read? && log.read_at.present? %>
+              <p class="c-works__read-at">
+                読了日：<%= log.read_at.strftime("%Y/%m/%d") %>
+              </p>
+              <% end %>
             </div>
-          </li>
-        <% end %>
-      </ul>
+            <%# <%= link_to "詳細を見る", book_path(book), class: "c-button c-button--small c-button--white c-button--center" %>
+          </div>
+        </li>
+      <% end %>
+    </ul>
   <% else %>
     <p>まだ作品が登録されていません。</p>
   <% end %>
