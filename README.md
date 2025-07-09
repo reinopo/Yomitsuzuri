@@ -4,10 +4,13 @@ Google Books APIを用いた作品検索、読書状況の管理、著者ごと�
 スマートフォンからもご確認いただけます。  
 
 #### テスト用アカウント
-メールアドレス：  
-パスワード：
+メールアドレス： test@example.com  
+パスワード： password  
+サイトURL： https://www.yomitsuzuri.com
 
-<img src="./docs/kv.png" width="800">
+<a href="https://www.yomitsuzuri.com" target="_blank" rel="noopener noreferrer">
+  <img src="./docs/kv.png" width="800" alt="キービジュアル">
+</a>
 
 ## ターゲットユーザー
 - 好きな著者の作品を辿って制覇したい人
@@ -35,7 +38,7 @@ Google Books APIを用いた作品検索、読書状況の管理、著者ごと�
 | DB | PostgreSQL |
 | 認証機能 | Devise |
 | API | Google Books API |
-| インフラ | Heroku + Cloudinary |
+| インフラ | Heroku + Cloudinary + Cloudflare |
 | 開発環境 | Mac + VSCode + Rails + PostgreSQL |
 
 ## 機能一覧
@@ -52,7 +55,7 @@ Google Books APIを用いた作品検索、読書状況の管理、著者ごと�
 #### 著者をお気に入りに登録
 - お気に入りに登録した著者の本を年代順に表示・読了率表示
 
-#### プロフィール画像アップロード (Active Storage + image_processing (MiniMagick))
+#### プロフィール画像アップロード (Active Storage + Cloudinary)
 
 ## ER図
 <img src="./docs/erd.png" width="800" alt="ER図">
