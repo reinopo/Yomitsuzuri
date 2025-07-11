@@ -99,7 +99,9 @@
             data: { mode: "inline" }
           ) do |form| %>
         <div class="c-search c-search--center">
-          <%= form.text_field :q, placeholder: "タイトル・著者名など", class: "c-search__text-field" %>
+          <%= form.text_field :q,
+              placeholder: "タイトル・著者名など",
+              class: "c-search__text-field" %>
           <div class="c-search__warning-wrap">
             <div class="c-search__warning is-hidden">！入力してください</div>
           </div>

@@ -212,12 +212,17 @@
       <%= form_with(model: [@reading_log, Citation.new], local: true, class: "c-edit-form__form") do |f| %>
         <div class="c-edit-form__field">
           <%= f.label :content, "引用を追加", class: "c-edit-form__label" %>
-          <%= f.text_area :content, rows: 3, placeholder: "心に残った文章を書き留めておきましょう", class: "c-edit-form__textarea" %>
+          <%= f.text_area :content,
+              rows: 3,
+              placeholder: "心に残った文章を書き留めておきましょう",
+              class: "c-edit-form__textarea" %>
         </div>
         <div class="c-edit-form__flex">
           <div class="c-edit-form__field">
             <%= f.label :page_number, "ページ番号", class: "c-edit-form__label" %>
-            <%= f.text_field :page_number, placeholder: "例：p.123", class: "c-edit-form__input" %>
+            <%= f.text_field :page_number,
+                placeholder: "例：p.123",
+                class: "c-edit-form__input" %>
           </div>
           <%= f.submit "追加する", class: "c-button c-button--x-small c-button--white c-edit-form__submit" %>
         </div>
@@ -228,7 +233,9 @@
     <%# コメント %>
     <% if @reading_log.comment.present? %>
       <p class="book-detail__comment"><%= @reading_log.comment %></p>
-      <time class="book-detail__comment-date">（更新日：<%= @reading_log.updated_at.strftime("%Y/%m/%d") %>）</time>
+      <time class="book-detail__comment-date">
+        （更新日：<%= @reading_log.updated_at.strftime("%Y/%m/%d") %>）
+      </time>
     <% else %>
       <p class="book-detail__comment">コメントはまだありません。</p>
     <% end %>
@@ -245,7 +252,10 @@
                     method: :patch,
                     class: "c-edit-form__form", local: true do |f| %>
         <div class="c-edit-form__field">
-          <%= f.text_area :comment, rows: 3, placeholder: "コメントを編集", class: "c-edit-form__textarea" %>
+          <%= f.text_area :comment,
+              rows: 3,
+              placeholder: "コメントを編集",
+              class: "c-edit-form__textarea" %>
         </div>
         <%= f.submit "保存する", class: "c-button c-button--x-small c-button--white c-edit-form__submit" %>
       <% end %>
@@ -265,12 +275,12 @@
     </div>
 
     <%# 本削除ボタン %>
-    <!-- 削除ボタン（モーダル開くだけ） -->
     <button type="button"
             class="c-delete-link c-delete-modal__open--book"
             data-reading-log-id="<%= @reading_log.id %>">
       本を削除する
     </button>
+    <%# 本削除ボタン end %>
   </div>
 </section>
 
