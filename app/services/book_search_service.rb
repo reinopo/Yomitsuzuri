@@ -4,10 +4,13 @@ require "json"
 
 # Google Books APIを叩いて本の情報を取得
 class BookSearchService
+  # APIのエンドポイントを定義
   GOOGLE_BOOKS_URL = "https://www.googleapis.com/books/v1/volumes"
 
   def initialize(query)
+    # query(検索ワード)を引数で受け取る
     @query = query
+    # application.rbで設定したAPIキー
     @api_key = Rails.configuration.x.google_books.api_key
   end
 
