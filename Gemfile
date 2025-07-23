@@ -3,7 +3,7 @@ source "https://rubygems.org"
 ruby "3.4.3"
 
 # Bundle edge Rails instead: gem "rails", github: "rails/rails", branch: "main"
-gem "rails", "~> 7.1.0"
+gem "rails", "~> 7.2.0"
 
 # The original asset pipeline for Rails [https://github.com/rails/sprockets-rails]
 gem "sprockets-rails"
@@ -19,7 +19,7 @@ gem "pg"
 # gem "importmap-rails"
 
 # Hotwire's SPA-like page accelerator [https://turbo.hotwired.dev]
-gem "turbo-rails"
+gem "turbo-rails", ">= 2.0.14"
 
 # Hotwire's modest JavaScript framework [https://stimulus.hotwired.dev]
 gem "stimulus-rails"
@@ -72,7 +72,7 @@ gem "dotenv-rails"
 
 gem "devise"
 
-gem 'devise-i18n'
+gem 'devise-i18n', '>= 1.14.0'
 
 gem "puma", "~> 6.6"
 
