@@ -16,7 +16,6 @@ class SearchController < ApplicationController
   def create_books_from_api_data(books_data)
     books_data.each do |data|
       book = Book.find_or_initialize_by(google_id: data[:google_id])
-      puts "📦 published_date raw from API: #{data[:published_date].inspect}"
 
       book.assign_attributes(
         title: data[:title],

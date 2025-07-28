@@ -8,7 +8,7 @@ class BookSearchService
   GOOGLE_BOOKS_URL = "https://www.googleapis.com/books/v1/volumes"
 
   def initialize(query)
-    # query(検索ワード)を引数で受け取る
+    # 検索ワード
     @query = query
     # application.rbで設定したAPIキー
     @api_key = Rails.configuration.x.google_books.api_key
@@ -23,9 +23,12 @@ class BookSearchService
       langRestrict: 'ja'
     })
 
+    # uriに対してGETリクエストを送信。結果はNet::HTTPオブジェクト
     response = Net::HTTP.get_response(uri)
+    # 成功(200 OK)でなければ空配列を返して処理を終了
     return [] unless response.is_a?(Net::HTTPSuccess)
 
+    # 成功の場合はparse_itemsを呼び出す。この時、受け取ったJSON文字列をRubyのハッシュに変換し、その中のitems配列を引数として渡す
     parse_items(JSON.parse(response.body)["items"] || [])
   end
 
