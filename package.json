@@ -9,6 +9,6 @@
   },
   "dependencies": {
     "@hotwired/turbo-rails": "^8.0.16",
-    "esbuild": "^0.25.5"
+    "esbuild": "^0.25.6"
   }
 }
