@@ -3,7 +3,7 @@ source "https://rubygems.org"
 ruby "3.4.3"
 
 # Bundle edge Rails instead: gem "rails", github: "rails/rails", branch: "main"
-gem "rails", "~> 7.1.0"
+gem "rails", "~> 7.1.5", ">= 7.1.5.2"
 
 # The original asset pipeline for Rails [https://github.com/rails/sprockets-rails]
 gem "sprockets-rails"
@@ -78,7 +78,7 @@ gem "puma", "~> 6.6"
 
 gem "dartsass-rails", "0.5.1"
 
-gem 'active_storage_validations', '~> 0.9.6'
+gem 'active_storage_validations', '~> 1.0.0'
 
 group :development do
   gem 'letter_opener'
