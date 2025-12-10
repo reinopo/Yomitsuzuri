@@ -68,7 +68,7 @@ group :test do
   gem "selenium-webdriver"
 end
 
-gem "dotenv-rails"
+gem "dotenv-rails", ">= 3.2.0"
 
 gem "devise"
 
