@@ -70,7 +70,7 @@ end
 
 gem "dotenv-rails"
 
-gem "devise"
+gem "devise", ">= 5.0.0"
 
 gem 'devise-i18n'
 
