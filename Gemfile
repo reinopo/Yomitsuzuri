@@ -87,7 +87,7 @@ end
 
 gem "jsbundling-rails", "~> 1.3"
 
-gem 'cloudinary'
+gem 'cloudinary', '>= 2.4.0'
 
 group :development do
   gem 'derailed_benchmarks'
